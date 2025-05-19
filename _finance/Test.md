@@ -162,7 +162,7 @@ It allows more **flexible**, **customizable**, and **realistic** risk measuremen
 
 Below is how SRM assigns weights (\$\phi\_\gamma(p)\$) to losses based on their severity, controlled by the **risk aversion parameter** \$\gamma\$:
 
-![Spectral Risk Weights](https://raw.githubusercontent.com/your-github-repo/images/spectral_risk_weights.png)
+![spectral_risk_weights.png](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/spectral_risk_weights.png?raw=True)
 
 * Smaller \$\gamma\$ (e.g., 0.5): focuses more on **worst-case losses**
 * Larger \$\gamma\$ (e.g., 2): more evenly spreads attention across the tail
