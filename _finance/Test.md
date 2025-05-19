@@ -1,5 +1,5 @@
 ---
-title: "1.1 Estimating Market Risk Measures"
+title: "Coherent & Spectral Risk Management"
 collection: finance
 permalink: /finance/market_risk_estimation
 excerpt: 'Deep dive into VaR, Expected Shortfall, and Spectral Risk Measures (SRM)'
@@ -8,7 +8,7 @@ date: 2025-05-19
 location: ""
 ---
 
-# 1.1 Estimating Market Risk Measures
+# Estimating Market Risk Measures
 
 In today’s financial environment, managing market risk is not optional — it’s essential.  
 This post introduces key tools to measure market risk, starting from basic return data to advanced concepts like Expected Shortfall (ES) and Spectral Risk Measure (SRM).  
