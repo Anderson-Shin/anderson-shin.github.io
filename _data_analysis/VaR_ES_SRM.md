@@ -9,6 +9,11 @@ venue: "Data Analysis Post"
 location: ""
 ---
 
+-window.MathJax = {  
+-  tex: { … },  
+-  svg: { … }  
+-};  
+
 # Coherent & Spectral Risk Management Practice Using Python
 
 ## 1. Imports & Configuration
@@ -60,7 +65,11 @@ var_daily = portfolio_returns.var()
 ### Expert Analysis
 Data download completed successfully. We define the sample mean and standard deviation as:
 $$
-\mu = \frac{1}{N}\sum_{t=1}^N r_t, \quad \sigma = \sqrt{\frac{1}{N-1}\sum_{t=1}^N (r_t - \mu)^2}
+\mu = \frac{1}{N}\sum_{t=1}^N r_t,
+$$
+
+$$
+\sigma = \sqrt{\frac{1}{N-1}\sum_{t=1}^N (r_t - \mu)^2}
 $$
 We observed **~252** trading days. The series `portfolio_returns` now contains daily P&L percentages. Summary stats (mean, std) will be used below.
 
