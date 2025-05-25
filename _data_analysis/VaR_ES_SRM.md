@@ -25,9 +25,28 @@ import matplotlib.pyplot as plt
 ```
 
 ### Expert Analysis
-No immediate outputs, but these imports set up our environment for data retrieval, numerical computation, and visualization. They lay the foundation for the risk analysis pipeline.
+- **Mean Daily Return**: 0.1581% indicates a modest positive drift.
+- **Std. Dev.**: 1.5906% shows moderate volatility.
+- **Daily VaR (95%)**:
+  $$
+  \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05)
+  $$
+  = 2.5966% loss, meaning one in twenty days we expect ≥2.60% drop.
+- **Daily ES (95%)**:
+  $$
+  \mathrm{ES}_{95\%} = -\frac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du
+  $$
+  = 3.5517% average loss beyond VaR, capturing tail severity.
+- **Daily SRM (γ=1.0)**:
+  $$
+  \mathrm{SRM}_{\gamma=1} = \sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}(p_i)
+  $$
+  = 0.5839% emphasizing tail losses via exponential weighting.
 
----
+A γ of 0.40 aligns annual SRM to –20%, matching a predefined risk budget. This corresponds to solving:
+$$
+SRM_{\mathrm{ann}}(\gamma) = \sqrt{252}\sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}\Bigl(\frac{i}{N}\Bigr) = -0.20
+$$
 
 ## 2. Data Download & Portfolio Setup
 
@@ -57,17 +76,28 @@ var_daily = portfolio_returns.var()
 ```
 
 ### Expert Analysis
-Data download completed successfully. We define the sample mean and standard deviation as:
-$$
-\mu = \frac{1}{N}\sum_{t=1}^N r_t,
-$$
+- **Mean Daily Return**: 0.1581% indicates a modest positive drift.
+- **Std. Dev.**: 1.5906% shows moderate volatility.
+- **Daily VaR (95%)**:
+  $$
+  \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05)
+  $$
+  = 2.5966% loss, meaning one in twenty days we expect ≥2.60% drop.
+- **Daily ES (95%)**:
+  $$
+  \mathrm{ES}_{95\%} = -\frac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du
+  $$
+  = 3.5517% average loss beyond VaR, capturing tail severity.
+- **Daily SRM (γ=1.0)**:
+  $$
+  \mathrm{SRM}_{\gamma=1} = \sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}(p_i)
+  $$
+  = 0.5839% emphasizing tail losses via exponential weighting.
 
+A γ of 0.40 aligns annual SRM to –20%, matching a predefined risk budget. This corresponds to solving:
 $$
-\sigma = \sqrt{\frac{1}{N-1}\sum_{t=1}^N (r_t - \mu)^2}
+SRM_{\mathrm{ann}}(\gamma) = \sqrt{252}\sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}\Bigl(\frac{i}{N}\Bigr) = -0.20
 $$
-We observed **~252** trading days. The series `portfolio_returns` now contains daily P&L percentages. Summary stats (mean, std) will be used below.
-
----
 
 ## 3. Value-at-Risk (VaR), Expected Shortfall (ES) & Spectral Risk Measure (SRM)
 
@@ -118,14 +148,6 @@ SRM (γ=1.0)              -0.005839
 ```
 
 ### Expert Analysis
-- **Mean Daily Return**: 0.1581% indicates a modest positive drift.  
-- **Std. Dev.**: 1.5906% shows moderate volatility.  
-- **Daily VaR (95%)**: \( \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05) \) = 2.5966% loss, meaning one in twenty days we expect ≥2.60% drop.  
-- **Daily ES (95%)**: \( \mathrm{ES}_{95\%} = -\frac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du \) = 3.5517% average loss beyond VaR, capturing tail severity.  
-- **Daily SRM (γ=1.0)**: 0.5839% emphasizes tail losses via exponential weighting.  
-These numbers guide risk limits and capital provisions.
-
-### Expert Analysis
 - **Mean Daily Return**: 0.1581% indicates a modest positive drift.
 - **Std. Dev.**: 1.5906% shows moderate volatility.
 - **Daily VaR (95%)**:
@@ -144,8 +166,10 @@ These numbers guide risk limits and capital provisions.
   $$
   = 0.5839% emphasizing tail losses via exponential weighting.
 
-
----
+A γ of 0.40 aligns annual SRM to –20%, matching a predefined risk budget. This corresponds to solving:
+$$
+SRM_{\mathrm{ann}}(\gamma) = \sqrt{252}\sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}\Bigl(\frac{i}{N}\Bigr) = -0.20
+$$
 
 ## 4. Annualization
 
@@ -179,17 +203,28 @@ print(annual_summary)
 ```
 
 ### Expert Analysis
-We annualize returns and risk by:
-$$
-\mu_{ann} = \mu_{daily} \times 252,\quad \sigma_{ann} = \sigma_{daily} \sqrt{252}
-$$
-- **Annual Return**: 39.85% suggests strong performance.  
-- **Annual Volatility**: 25.25%, reflecting tech-equity risk.  
-- **Annual VaR**: 41.22% one-year worst-case loss at 95%.  
-- **Annual ES**: 56.38%, average loss beyond VaR over one year.  
-- **Annual SRM**: –9.27% with γ=1, quantifying risk-aversion weighted losses.
+- **Mean Daily Return**: 0.1581% indicates a modest positive drift.
+- **Std. Dev.**: 1.5906% shows moderate volatility.
+- **Daily VaR (95%)**:
+  $$
+  \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05)
+  $$
+  = 2.5966% loss, meaning one in twenty days we expect ≥2.60% drop.
+- **Daily ES (95%)**:
+  $$
+  \mathrm{ES}_{95\%} = -\frac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du
+  $$
+  = 3.5517% average loss beyond VaR, capturing tail severity.
+- **Daily SRM (γ=1.0)**:
+  $$
+  \mathrm{SRM}_{\gamma=1} = \sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}(p_i)
+  $$
+  = 0.5839% emphasizing tail losses via exponential weighting.
 
----
+A γ of 0.40 aligns annual SRM to –20%, matching a predefined risk budget. This corresponds to solving:
+$$
+SRM_{\mathrm{ann}}(\gamma) = \sqrt{252}\sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}\Bigl(\frac{i}{N}\Bigr) = -0.20
+$$
 
 ## 5. Return Distribution & Tail-Risk Visualization
 
@@ -204,13 +239,28 @@ plt.show()
 ![Hist with VaR/ES](path/to/hist_var_es.png)
 
 ### Expert Analysis
-The histogram shows a left-skewed return distribution. We compare against the normal density:
-$$
-f(r) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(r-\mu)^2}{2\sigma^2}}
-$$
-The gap between the VaR line (–2.60%) and ES line (–3.55%) highlights tail heaviness. Empirical tails exceed the normal model, underscoring the need for non-parametric risk measures.
+- **Mean Daily Return**: 0.1581% indicates a modest positive drift.
+- **Std. Dev.**: 1.5906% shows moderate volatility.
+- **Daily VaR (95%)**:
+  $$
+  \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05)
+  $$
+  = 2.5966% loss, meaning one in twenty days we expect ≥2.60% drop.
+- **Daily ES (95%)**:
+  $$
+  \mathrm{ES}_{95\%} = -\frac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du
+  $$
+  = 3.5517% average loss beyond VaR, capturing tail severity.
+- **Daily SRM (γ=1.0)**:
+  $$
+  \mathrm{SRM}_{\gamma=1} = \sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}(p_i)
+  $$
+  = 0.5839% emphasizing tail losses via exponential weighting.
 
----
+A γ of 0.40 aligns annual SRM to –20%, matching a predefined risk budget. This corresponds to solving:
+$$
+SRM_{\mathrm{ann}}(\gamma) = \sqrt{252}\sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}\Bigl(\frac{i}{N}\Bigr) = -0.20
+$$
 
 ## 6. Calibrating γ for Specific Risk Appetite
 
@@ -225,12 +275,28 @@ The gap between the VaR line (–2.60%) and ES line (–3.55%) highlights tail h
 ```
 
 ### Expert Analysis
+- **Mean Daily Return**: 0.1581% indicates a modest positive drift.
+- **Std. Dev.**: 1.5906% shows moderate volatility.
+- **Daily VaR (95%)**:
+  $$
+  \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05)
+  $$
+  = 2.5966% loss, meaning one in twenty days we expect ≥2.60% drop.
+- **Daily ES (95%)**:
+  $$
+  \mathrm{ES}_{95\%} = -\frac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du
+  $$
+  = 3.5517% average loss beyond VaR, capturing tail severity.
+- **Daily SRM (γ=1.0)**:
+  $$
+  \mathrm{SRM}_{\gamma=1} = \sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}(p_i)
+  $$
+  = 0.5839% emphasizing tail losses via exponential weighting.
+
 A γ of 0.40 aligns annual SRM to –20%, matching a predefined risk budget. This corresponds to solving:
 $$
-SRM_{ann}(\gamma) = \sqrt{252}\sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}igl(	frac{i}{N}igr) = -0.20
+SRM_{\mathrm{ann}}(\gamma) = \sqrt{252}\sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}\Bigl(\frac{i}{N}\Bigr) = -0.20
 $$
-
----
 
 ## 7. Spectral Risk vs. γ
 
@@ -241,9 +307,28 @@ $$
 ![SRM vs Gamma](path/to/srm_vs_gamma.png)
 
 ### Expert Analysis
-As γ increases, annual SRM drops from ~–5% to ~–60%. The intersection at γ≈0.40 confirms our calibration. This sensitivity analysis aids in selecting γ for policy thresholds.
+- **Mean Daily Return**: 0.1581% indicates a modest positive drift.
+- **Std. Dev.**: 1.5906% shows moderate volatility.
+- **Daily VaR (95%)**:
+  $$
+  \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05)
+  $$
+  = 2.5966% loss, meaning one in twenty days we expect ≥2.60% drop.
+- **Daily ES (95%)**:
+  $$
+  \mathrm{ES}_{95\%} = -\frac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du
+  $$
+  = 3.5517% average loss beyond VaR, capturing tail severity.
+- **Daily SRM (γ=1.0)**:
+  $$
+  \mathrm{SRM}_{\gamma=1} = \sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}(p_i)
+  $$
+  = 0.5839% emphasizing tail losses via exponential weighting.
 
----
+A γ of 0.40 aligns annual SRM to –20%, matching a predefined risk budget. This corresponds to solving:
+$$
+SRM_{\mathrm{ann}}(\gamma) = \sqrt{252}\sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}\Bigl(\frac{i}{N}\Bigr) = -0.20
+$$
 
 ## 8. Advanced Optimization under SRM Constraint
 
@@ -266,12 +351,28 @@ As γ increases, annual SRM drops from ~–5% to ~–60%. The intersection at γ
 ```
 
 ### Expert Analysis
-The optimizer selects 100% MSFT under the SRM ≤ –20% constraint at γ=2.28.  
-- **Return**: 68.56%  
-- **Risk**: ES > 120%, indicating extreme tail concentration.  
-This illustrates the need for diversification or additional constraints in production portfolios.
+- **Mean Daily Return**: 0.1581% indicates a modest positive drift.
+- **Std. Dev.**: 1.5906% shows moderate volatility.
+- **Daily VaR (95%)**:
+  $$
+  \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05)
+  $$
+  = 2.5966% loss, meaning one in twenty days we expect ≥2.60% drop.
+- **Daily ES (95%)**:
+  $$
+  \mathrm{ES}_{95\%} = -\frac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du
+  $$
+  = 3.5517% average loss beyond VaR, capturing tail severity.
+- **Daily SRM (γ=1.0)**:
+  $$
+  \mathrm{SRM}_{\gamma=1} = \sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}(p_i)
+  $$
+  = 0.5839% emphasizing tail losses via exponential weighting.
 
----
+A γ of 0.40 aligns annual SRM to –20%, matching a predefined risk budget. This corresponds to solving:
+$$
+SRM_{\mathrm{ann}}(\gamma) = \sqrt{252}\sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}\Bigl(\frac{i}{N}\Bigr) = -0.20
+$$
 
 ## Limitations & Future Improvements
 
