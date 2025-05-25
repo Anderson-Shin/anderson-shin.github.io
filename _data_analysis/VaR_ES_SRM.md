@@ -125,6 +125,26 @@ SRM (γ=1.0)              -0.005839
 - **Daily SRM (γ=1.0)**: 0.5839% emphasizes tail losses via exponential weighting.  
 These numbers guide risk limits and capital provisions.
 
+### Expert Analysis
+- **Mean Daily Return**: 0.1581% indicates a modest positive drift.
+- **Std. Dev.**: 1.5906% shows moderate volatility.
+- **Daily VaR (95%)**:
+  $$
+  \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05)
+  $$
+  = 2.5966% loss, meaning one in twenty days we expect ≥2.60% drop.
+- **Daily ES (95%)**:
+  $$
+  \mathrm{ES}_{95\%} = -\frac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du
+  $$
+  = 3.5517% average loss beyond VaR, capturing tail severity.
+- **Daily SRM (γ=1.0)**:
+  $$
+  \mathrm{SRM}_{\gamma=1} = \sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}(p_i)
+  $$
+  = 0.5839% emphasizing tail losses via exponential weighting.
+
+
 ---
 
 ## 4. Annualization
