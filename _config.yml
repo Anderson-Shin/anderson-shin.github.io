@@ -133,7 +133,6 @@ lsi: false
 excerpt_separator: "\n\n"
 incremental: false
 
-
 # Markdown Processing
 kramdown:
   input: GFM
@@ -145,11 +144,12 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
-  # ↓ MathJax 엔진 활성화 옵션 추가 ↓
+  # ↓ 여기서부터 추가 ↓
   math_engine: mathjax
   math_engine_opts:
     preview: true
     tex_extensions: ["AMSmath.js", "AMSsymbols.js"]
+
 
 
 # Collections
