@@ -8,6 +8,14 @@ date: 2025-05-23
 location: ""
 ---
 
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\(', '\)']],
+    displayMath: [['$$','$$']]
+  },
+  svg: { fontCache: 'global' }
+};
+
 # Coherent & Spectral Risk Management Practice Using Python
 
 ## 1. Imports & Configuration
@@ -59,7 +67,7 @@ var_daily = portfolio_returns.var()
 ### Expert Analysis
 Data download completed successfully. We define the sample mean and standard deviation as:
 $$
-\mu = rac{1}{N}\sum_{t=1}^N r_t, \quad \sigma = \sqrt{rac{1}{N-1}\sum_{t=1}^N (r_t - \mu)^2}
+\mu = \frac{1}{N}\sum_{t=1}^N r_t, \quad \sigma = \sqrt{\frac{1}{N-1}\sum_{t=1}^N (r_t - \mu)^2}
 $$
 We observed **~252** trading days. The series `portfolio_returns` now contains daily P&L percentages. Summary stats (mean, std) will be used below.
 
@@ -117,7 +125,7 @@ SRM (γ=1.0)              -0.005839
 - **Mean Daily Return**: 0.1581% indicates a modest positive drift.  
 - **Std. Dev.**: 1.5906% shows moderate volatility.  
 - **Daily VaR (95%)**: \( \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05) \) = 2.5966% loss, meaning one in twenty days we expect ≥2.60% drop.  
-- **Daily ES (95%)**: \( \mathrm{ES}_{95\%} = -rac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du \) = 3.5517% average loss beyond VaR, capturing tail severity.  
+- **Daily ES (95%)**: \( \mathrm{ES}_{95\%} = -\frac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du \) = 3.5517% average loss beyond VaR, capturing tail severity.  
 - **Daily SRM (γ=1.0)**: 0.5839% emphasizes tail losses via exponential weighting.  
 These numbers guide risk limits and capital provisions.
 
@@ -157,7 +165,7 @@ print(annual_summary)
 ### Expert Analysis
 We annualize returns and risk by:
 $$
-\mu_{ann} = \mu_{daily} 	imes 252,\quad \sigma_{ann} = \sigma_{daily} \sqrt{252}
+\mu_{ann} = \mu_{daily} \times 252,\quad \sigma_{ann} = \sigma_{daily} \sqrt{252}
 $$
 - **Annual Return**: 39.85% suggests strong performance.  
 - **Annual Volatility**: 25.25%, reflecting tech-equity risk.  
@@ -182,7 +190,7 @@ plt.show()
 ### Expert Analysis
 The histogram shows a left-skewed return distribution. We compare against the normal density:
 $$
-f(r) = rac{1}{\sigma\sqrt{2\pi}} e^{-rac{(r-\mu)^2}{2\sigma^2}}
+f(r) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(r-\mu)^2}{2\sigma^2}}
 $$
 The gap between the VaR line (–2.60%) and ES line (–3.55%) highlights tail heaviness. Empirical tails exceed the normal model, underscoring the need for non-parametric risk measures.
 
