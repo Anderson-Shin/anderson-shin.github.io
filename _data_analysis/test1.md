@@ -8,7 +8,6 @@ date: 2025-05-23
 location: ""
 ---
 
-<script>
 window.MathJax = {
   tex: {
     inlineMath: [['$', '$'], ['\(', '\)']],
@@ -16,8 +15,6 @@ window.MathJax = {
   },
   svg: { fontCache: 'global' }
 };
-</script>
-<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 # Coherent & Spectral Risk Management Practice Using Python
 
