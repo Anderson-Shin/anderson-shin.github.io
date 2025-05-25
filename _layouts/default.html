@@ -1,16 +1,10 @@
----
-layout: compress
----
-
-{% include base_path %}
-
-<!doctype html>
-<html lang="{{ site.locale | slice: 0,2 }}" class="no-js">
+<!DOCTYPE html>
+<html lang="{{ site.locale | slice: 0,2 }}">
   <head>
     {% include head.html %}
     {% include head/custom.html %}
 
-    <!-- ================ MathJax 설정 ================ -->
+    <!-- ========== MathJax 설정 ========== -->
     <script>
     window.MathJax = {
       tex: {
@@ -21,25 +15,25 @@ layout: compress
     };
     </script>
     <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <!-- ============================================ -->
+    <!-- ============================================= -->
 
+    <!-- (여기에 기존 default.html 의 나머지 head 요소들: CSS, meta 등) -->
   </head>
 
   <body>
-
     {% include browser-upgrade.html %}
     {% include masthead.html %}
 
-    {{ content }}
+    <div id="main" role="main">
+      {% include sidebar.html %}
 
-    <div class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include footer.html %}
-      </footer>
+      {{ content }}
+
+      {% include post_pagination.html %}
     </div>
 
+    {% include footer/custom.html %}
+    {% include footer.html %}
     {% include scripts.html %}
-
   </body>
 </html>
