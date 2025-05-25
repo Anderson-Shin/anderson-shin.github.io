@@ -8,12 +8,6 @@ excerpt: '…'
 venue: "Data Analysis Post"
 location: ""
 ---
-
--window.MathJax = {  
--  tex: { … },  
--  svg: { … }  
--};  
-
 # Coherent & Spectral Risk Management Practice Using Python
 
 ## 1. Imports & Configuration
