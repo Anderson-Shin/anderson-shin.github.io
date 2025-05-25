@@ -41,11 +41,10 @@ tickers        = ["AAPL", "TSLA", "AMZN", "MSFT"]
 start_date     = "2024-01-01"
 end_date       = "2025-01-01"
 initial_budget = 1_000_000
-weights        = np.array([0.25, 0.25, 0.25, 0.25])  # equal allocation
+weights        = np.array([0.25, 0.25, 0.25, 0.25])
 
 data    = yf.download(tickers, start=start_date, end=end_date)["Close"]
 returns = data.pct_change().dropna()
-
 portfolio_returns = (returns * weights).sum(axis=1)
 mean_daily = portfolio_returns.mean()
 std_daily  = portfolio_returns.std()
@@ -108,19 +107,19 @@ SRM (γ=1)     -0.005839
 - **Mean Daily Return**: 0.1581% — modest positive drift.  
 - **Std Dev**: 1.5906% — moderate volatility.  
 - **Daily VaR (95%)**:  
-  $$
+  {% raw %}$$
   \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05)
-  $$  
+  $${% endraw %}  
   = 2.5966% loss (one out of twenty days).  
 - **Daily ES (95%)**:  
-  $$
+  {% raw %}$$
   \mathrm{ES}_{95\%} = -rac{1}{0.05}\int_{0}^{0.05}F_R^{-1}(u)\,\mathrm{d}u
-  $$  
+  $${% endraw %}  
   = 3.5517% average loss beyond VaR.  
 - **Daily SRM (γ=1.0)**:  
-  $$
+  {% raw %}$$
   \mathrm{SRM}_{\gamma=1} = \sum_{i=1}^N w_i\,L_{(i)}\,\phi_{\gamma}(p_i)
-  $$  
+  $${% endraw %}  
   = 0.5839%, weighting tail losses exponentially.
 
 ---
@@ -142,13 +141,13 @@ SRM_ann  = srm_daily  * np.sqrt(trading_days)
 
 ### Expert Analysis
 - **Annual Return**:  
-  $$
+  {% raw %}$$
   \mu_{\mathrm{ann}} = \mu_{\mathrm{daily}}	imes252
-  $$  
+  $${% endraw %}  
 - **Annual Volatility**:  
-  $$
+  {% raw %}$$
   \sigma_{\mathrm{ann}} = \sigma_{\mathrm{daily}}\sqrt{252}
-  $$
+  $${% endraw %}
 
 ---
 
@@ -166,17 +165,17 @@ plt.show()
 ![Histogram with VaR & ES](path/to/hist_var_es.png)
 
 ### Expert Analysis
-The histogram reveals a left-skewed distribution with heavier tails than the normal model:
-$$
-f(r) = rac{1}{\sigma\sqrt{2\pi}} \exp\!iggl(-rac{(r - \mu)^2}{2\sigma^2}iggr).
-$$
+The histogram reveals a left-skewed distribution with heavier tails than the normal model:  
+{% raw %}$$
+f(r) = rac{1}{\sigma\sqrt{2\pi}} \exp\!igl(-	frac{(r - \mu)^2}{2\sigma^2}igr)
+$${% endraw %}
 
 ---
 
 ## 6. Calibrating γ for Specific Risk Appetite
 
 ```python
-# Find gamma where annual SRM ≈ -20%
+# Solve for gamma where annual SRM ≈ -20%
 ```
 
 ```
@@ -184,11 +183,11 @@ $$
 ```
 
 ### Expert Analysis
-$$
+{% raw %}$$
 SRM_{\mathrm{ann}}(\gamma)
 = \sqrt{252}\sum_{i=1}^N w_i\,L_{(i)}\,\phi_{\gamma}\!\Bigl(rac{i}{N}\Bigr)
-= -0.20.
-$$
+= -0.20
+$${% endraw %}
 
 ---
 
@@ -212,17 +211,17 @@ As γ increases, annual SRM drops from ~–5% to ~–60%. Intersection at γ≈0
 ```
 
 ```
-▶ Portfolio: 100% MSFT, SRM ≤ -20%
+▶ Portfolio: 100% MSFT
 ```
 
 ### Expert Analysis
-Corner solution highlights need for diversification, constraints, and cost modeling.
+Corner solution highlights need for diversification, cost, and turnover constraints.
 
 ---
 
 ## Limitations & Future Improvements
 
-1. **Asset Universe Expansion**  
-2. **Dynamic Volatility (GARCH/Monte Carlo)**  
-3. **Transaction & Liquidity Costs**  
-4. **Robust, Multi-objective Optimization**
+1. **Asset Universe Expansion**: include fixed income, alternatives, commodities.  
+2. **Dynamic Volatility**: implement GARCH/Monte Carlo for regime shifts.  
+3. **Transaction & Liquidity Costs**: integrate trading frictions.  
+4. **Robust Optimization**: apply diversification limits and multi-objective frameworks.
