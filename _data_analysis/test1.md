@@ -11,7 +11,7 @@ location: ""
 <script>
 window.MathJax = {
   tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    inlineMath: [['$', '$'], ['\(', '\)']],
     displayMath: [['$$','$$']]
   },
   svg: { fontCache: 'global' }
@@ -70,12 +70,11 @@ var_daily = portfolio_returns.var()
 ### Expert Analysis
 Data download completed successfully. We define the sample mean and standard deviation as:
 $$
-\mu = \frac{1}{N}\sum_{t=1}^N r_t, \quad \sigma = \sqrt{\frac{1}{N-1}\sum_{t=1}^N (r_t - \mu)^2}
+\mu = rac{1}{N}\sum_{t=1}^N r_t, \quad \sigma = \sqrt{rac{1}{N-1}\sum_{t=1}^N (r_t - \mu)^2}
 $$
- We observed **~252** trading days. The series `portfolio_returns` now contains daily P&L percentages. Summary stats (mean, std) will be used below.
+We observed **~252** trading days. The series `portfolio_returns` now contains daily P&L percentages. Summary stats (mean, std) will be used below.
 
 ---
-
 
 ## 3. Value-at-Risk (VaR), Expected Shortfall (ES) & Spectral Risk Measure (SRM)
 
@@ -128,8 +127,8 @@ SRM (γ=1.0)              -0.005839
 ### Expert Analysis
 - **Mean Daily Return**: 0.1581% indicates a modest positive drift.  
 - **Std. Dev.**: 1.5906% shows moderate volatility.  
-- **Daily VaR (95%)**: \( \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05) \) = 2.5966% loss, meaning one in twenty days we expect ≥2.60% drop.
-- **Daily ES (95%)**: \( \mathrm{ES}_{95\%} = -\frac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du \) = 3.5517% average loss beyond VaR, capturing tail severity.
+- **Daily VaR (95%)**: \( \mathrm{VaR}_{95\%} = -F_R^{-1}(0.05) \) = 2.5966% loss, meaning one in twenty days we expect ≥2.60% drop.  
+- **Daily ES (95%)**: \( \mathrm{ES}_{95\%} = -rac{1}{0.05}\int_{0}^{0.05} F_R^{-1}(u)\,du \) = 3.5517% average loss beyond VaR, capturing tail severity.  
 - **Daily SRM (γ=1.0)**: 0.5839% emphasizes tail losses via exponential weighting.  
 These numbers guide risk limits and capital provisions.
 
@@ -167,11 +166,10 @@ print(annual_summary)
 ```
 
 ### Expert Analysis
- We annualize returns and risk by:
+We annualize returns and risk by:
 $$
-\mu_{ann} = \mu_{daily} \times 252, \quad \sigma_{ann} = \sigma_{daily} \sqrt{252}
+\mu_{ann} = \mu_{daily} 	imes 252,\quad \sigma_{ann} = \sigma_{daily} \sqrt{252}
 $$
-### Expert Analysis
 - **Annual Return**: 39.85% suggests strong performance.  
 - **Annual Volatility**: 25.25%, reflecting tech-equity risk.  
 - **Annual VaR**: 41.22% one-year worst-case loss at 95%.  
@@ -195,20 +193,9 @@ plt.show()
 ### Expert Analysis
 The histogram shows a left-skewed return distribution. We compare against the normal density:
 $$
-f(r) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(r-\mu)^2}{2\sigma^2}}
+f(r) = rac{1}{\sigma\sqrt{2\pi}} e^{-rac{(r-\mu)^2}{2\sigma^2}}
 $$
- The gap between the VaR line (–2.60%) and ES line (–3.55%) highlights tail heaviness. Compared to a normal distribution, empirical tails are fatter, indicating potential underestimation by parametric VaR models.
-
-```python
-# Tail highlight and drawdown
-# ...
-```
-
-![Tail & Drawdown](path/to/tail_drawdown.png)
-
-### Expert Analysis
-- **Tail Highlight**: Colored bins below VaR illustrate ~5% tail probability mass.  
-- **Drawdown Plot**: The shaded red areas show cumulative drawdown periods, peaking at approximately –20%, highlighting periods of recovery lag and max drawdown duration.
+The gap between the VaR line (–2.60%) and ES line (–3.55%) highlights tail heaviness. Empirical tails exceed the normal model, underscoring the need for non-parametric risk measures.
 
 ---
 
@@ -227,9 +214,8 @@ $$
 ### Expert Analysis
 A γ of 0.40 aligns annual SRM to –20%, matching a predefined risk budget. This corresponds to solving:
 $$
-SRM_{ann}(\gamma) = \sqrt{252} \sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}(\tfrac{i}{N}) = -0.20
+SRM_{ann}(\gamma) = \sqrt{252}\sum_{i=1}^N w_i L_{(i)} \phi_{\gamma}igl(	frac{i}{N}igr) = -0.20
 $$
- This calibration process tailors the spectral measure to organizational risk appetite.
 
 ---
 
@@ -267,16 +253,16 @@ As γ increases, annual SRM drops from ~–5% to ~–60%. The intersection at γ
 ```
 
 ### Expert Analysis
-The optimizer selects 100% MSFT to maximize return under the SRM ≤ –20% constraint at γ=2.28. 
+The optimizer selects 100% MSFT under the SRM ≤ –20% constraint at γ=2.28.  
 - **Return**: 68.56%  
-- **Risk**: ES exceeds 120%, indicating extreme tail concentration.  
-This edge case shows the necessity of additional constraints (e.g., diversification, transaction costs) in real-world portfolio construction.
+- **Risk**: ES > 120%, indicating extreme tail concentration.  
+This illustrates the need for diversification or additional constraints in production portfolios.
 
 ---
 
 ## Limitations & Future Improvements
 
 1. **Asset Universe Expansion**: Include fixed income, alternatives, commodities.  
-2. **Dynamic Volatility Modeling**: Use GARCH, Monte Carlo for regime shifts.  
+2. **Dynamic Volatility Modeling**: Use GARCH or Monte Carlo for regime shifts.  
 3. **Transaction & Liquidity Costs**: Model real-world trading frictions.  
-4. **Robust Optimization**: Incorporate diversification limits, multi-objective frameworks to avoid corner solutions.  
+4. **Robust Optimization**: Incorporate diversification limits and multi-objective frameworks to avoid corner solutions.  
