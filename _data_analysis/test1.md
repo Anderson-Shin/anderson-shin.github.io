@@ -8,14 +8,6 @@ date: 2025-05-23
 location: ""
 ---
 
-window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\(', '\)']],
-    displayMath: [['$$','$$']]
-  },
-  svg: { fontCache: 'global' }
-};
-
 # Coherent & Spectral Risk Management Practice Using Python
 
 ## 1. Imports & Configuration
