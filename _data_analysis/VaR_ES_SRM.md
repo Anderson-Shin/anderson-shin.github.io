@@ -110,7 +110,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Sector Daily Returns](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/dailyr_returns.png)
+![dailyr_return](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/dailyr_returns.png)
 
 **Remarks:**
 
@@ -138,7 +138,7 @@ plt.grid(True)
 plt.show()
 ```
 
-![Portfolio Cumulative Return (2020–2024)](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/portfolio_cumul_return.png)
+![portfolio_cumul_return](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/portfolio_cumul_return.png)
 
 **Remarks:**
 
@@ -331,7 +331,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Parameter vs SRM: λ & γ Mapping]([sandbox:/mnt/data/figure_11_2.png](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/gamma_lambda_plot.png))
+![gamma_lambda_plot]([sandbox:/mnt/data/figure_11_2.png](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/gamma_lambda_plot.png))
 
 **Expert Analysis:**  
 - **λ vs. SRM (blue curve):** As $\lambda$ increases, exponential weights concentrate on the most negative returns, making SRM more negative (larger in magnitude). The curve is steep because even small increases in $\lambda$ amplify tail emphasis.  
@@ -394,7 +394,7 @@ plt.grid(True)
 plt.show()
 ```
 
-![Volatility-Based Weights Distribution](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/weighted_vol_distribution.png)
+![weighted_vol_distribution](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/weighted_vol_distribution.png)
 
 **Remarks:**
 
@@ -505,7 +505,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Bootstrap Distribution Comparison](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/bootstraps_distribution.png)
+![bootstraps_distribution](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/bootstraps_distribution.png)
 
 **Remarks:**
 
@@ -600,7 +600,7 @@ def bca_ci(original_sample, bootstrap_dist, stat_func, alpha):
      $$
        z_0 \;=\; \Phi^{-1}\!\Bigl(\frac{\#\{\theta^*_b < \hat{\theta}\}}{B}\Bigr).
      $$
-  3. Compute jackknife estimates \(\hat{\theta}_{(i)}\) by leaving out observation \(i\).
+  3. Compute jackknife estimates $\hat{\theta}_{(i)}$ by leaving out observation $i$.
   4. Acceleration \(a\) is given by:
      $$
        a \;=\; 
@@ -712,7 +712,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Mean Comparison (Standard vs Weighted)](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/mean_comp.png)
+![mean_comp)](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/mean_comp.png)
 
 **Expert Analysis:**
 
