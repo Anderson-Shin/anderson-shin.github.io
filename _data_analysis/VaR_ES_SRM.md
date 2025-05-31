@@ -96,20 +96,21 @@ portfolio_returns = daily_returns.dot(weights_equal)
 ### 3.1. Sector-by-Sector Daily Returns Comparison
 
 ```python
-# Plot daily returns for each sector ETF in subplots with a common y-axis scale
 daily_returns.plot(
     subplots=True,
     sharey=True,
     layout=(5, 2),
+    title=daily_returns.columns,  # <-- 각 subplot의 제목을 컬럼명(티커)으로 설정
     legend=False,
     figsize=(12, 10)
 )
+
 plt.suptitle('Sector Daily Returns (2020–2024)', y=1.02)
 plt.tight_layout()
 plt.show()
 ```
 
-![Sector Daily Returns (2020–2024)](sandbox:/mnt/data/figure_6_0.png)
+![Sector Daily Returns](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/dailyr_returns.png)
 
 **Remarks:**
 
@@ -137,7 +138,7 @@ plt.grid(True)
 plt.show()
 ```
 
-![Portfolio Cumulative Return (2020–2024)](sandbox:/mnt/data/figure_6_1.png)
+![Portfolio Cumulative Return (2020–2024)](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/portfolio_cumul_return.png)
 
 **Remarks:**
 
@@ -330,7 +331,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Parameter vs SRM: λ & γ Mapping](sandbox:/mnt/data/figure_11_2.png)
+![Parameter vs SRM: λ & γ Mapping]([sandbox:/mnt/data/figure_11_2.png](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/gamma_lambda_plot.png))
 
 **Expert Analysis:**  
 - **λ vs. SRM (blue curve):** As $\lambda$ increases, exponential weights concentrate on the most negative returns, making SRM more negative (larger in magnitude). The curve is steep because even small increases in $\lambda$ amplify tail emphasis.  
@@ -393,7 +394,7 @@ plt.grid(True)
 plt.show()
 ```
 
-![Volatility-Based Weights Distribution](sandbox:/mnt/data/figure_16_3.png)
+![Volatility-Based Weights Distribution](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/weighted_vol_distribution.png)
 
 **Remarks:**
 
@@ -504,7 +505,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Bootstrap Distribution Comparison](sandbox:/mnt/data/figure_22_4.png)
+![Bootstrap Distribution Comparison](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/bootstraps_distribution.png)
 
 **Remarks:**
 
@@ -711,7 +712,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Mean Comparison (Standard vs Weighted)](sandbox:/mnt/data/figure_27_5.png)
+![Mean Comparison (Standard vs Weighted)](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/mean_comp.png)
 
 **Expert Analysis:**
 
