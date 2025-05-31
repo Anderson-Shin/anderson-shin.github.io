@@ -331,9 +331,9 @@ plt.tight_layout()
 plt.show()
 ```
 
-![gamma_lambda_plot]((https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/gamma_lambda_plot.png?raw=True)
-)
-**Expert Analysis:**  
+![gamma_lambda_plot](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/gamma_lambda_plot.png?raw=True)
+
+**Remarks:**  
 - **λ vs. SRM (blue curve):** As $\lambda$ increases, exponential weights concentrate on the most negative returns, making SRM more negative (larger in magnitude). The curve is steep because even small increases in $\lambda$ amplify tail emphasis.  
 - **γ vs. SRM (orange curve):** A polynomial spectrum with $\gamma$ is smoother: as $\gamma$ increases, more weight is given to lower-ranked (more negative) returns, but the relationship is less steep than exponential.  
 - **Intersection Points:**  
