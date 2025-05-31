@@ -1,5 +1,4 @@
 ---
-layout: default
 title: "Coherent & Spectral Risk Management Practice Using Python"
 collection: data_analysis
 permalink: /data_analysis/portfolio_risk_estimation_practice1
