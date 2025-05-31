@@ -1,39 +1,36 @@
-<!DOCTYPE html>
-<html lang="{{ site.locale | slice: 0,2 }}">
+---
+layout: compress
+---
+
+{% include base_path %}
+
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js">
   <head>
     {% include head.html %}
     {% include head/custom.html %}
 
-    <!-- ========== MathJax 설정 ========== -->
-    <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$','$$']]
-      },
-      svg: { fontCache: 'global' }
-    };
+    <!-- (1) MathJax 스크립트를 head에 삽입해야 합니다 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"
+      integrity="sha384-여기에_무결성_해시_삽입"
+      crossorigin="anonymous">
     </script>
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <!-- ============================================= -->
-
-    <!-- (여기에 기존 default.html 의 나머지 head 요소들: CSS, meta 등) -->
   </head>
 
   <body>
     {% include browser-upgrade.html %}
     {% include masthead.html %}
 
-    <div id="main" role="main">
-      {% include sidebar.html %}
+    {{ content }}
 
-      {{ content }}
-
-      {% include post_pagination.html %}
+    <div class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include footer.html %}
+      </footer>
     </div>
 
-    {% include footer/custom.html %}
-    {% include footer.html %}
     {% include scripts.html %}
   </body>
 </html>
