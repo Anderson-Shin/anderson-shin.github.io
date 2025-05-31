@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "Coherent & Spectral Risk Management Practice Using Python"
 collection: data_analysis
 permalink: /data_analysis/portfolio_risk_estimation_practice1
@@ -11,7 +12,7 @@ location: ""
 
 # 📊 Bootstrap-Based Precision Risk Analysis Blog Post
 
-This blog post is based on the provided Jupyter Notebook (`Bootstrap_bactesting_integrated_updated.ipynb`) and demonstrates how to use **bootstrap techniques** to estimate **Value at Risk (VaR)**, **Expected Shortfall (ES)**, and **Spectral Risk Measure (SRM)** for a portfolio of sector ETFs. We include detailed output cells, charts, and **expert commentary** for each step. All sections are written in English, and mathematical formulas are explained in context.
+This blog post is practical application for my previous post in the finance blog [“Coherent & Spectral Risk Management”](https://anderson-shin.github.io/finance/market_risk_estimation)  and demonstrates how to use **bootstrap techniques** to estimate **Value at Risk (VaR)**, **Expected Shortfall (ES)**, and **Spectral Risk Measure (SRM)** for a portfolio of sector ETFs. We include detailed output cells, charts, and **expert commentary** for each step. All sections are written in English, and mathematical formulas are explained in context.
 
 ---
 
@@ -19,26 +20,19 @@ This blog post is based on the provided Jupyter Notebook (`Bootstrap_bactesting_
 
 The main objectives of this notebook are:
 
-1. **Data Collection & Preparation**
+1. **Data Collection & Preparation**  
+   - Download daily closing prices for multiple wellknown stocks in various sectors.  
+   - Compute daily portfolio returns using equal weights (for easier demonstration, you may look at my opimization post ["Optimization of portfolio 1"](https://anderson-shin.github.io/data_analysis/yfinance_tutorial_3) as well if you want to apply Mean-variance portfolio theory)
 
-   * Download daily closing prices for multiple sector ETFs.
-   * Compute daily portfolio returns using equal weights.
+2. **Risk Metric Estimation (VaR, ES, SRM) via Bootstrap**  
+   - Perform **Standard (unweighted) bootstrap** and **Weighted bootstrap** (where higher volatility days receive higher sampling probability).  
+   - Calculate **Percentile Confidence Intervals (CI)** and **Bias-Corrected and Accelerated (BCa) CI** for each risk metric.
 
-2. **Risk Metric Estimation (VaR, ES, SRM) via Bootstrap**
+3. **Comparison: Standard vs. Weighted Bootstrap**  
+   - Compare distributions of VaR, ES, and SRM under both sampling schemes.  
+   - Analyze differences in means, standard deviations, and confidence intervals.
 
-   * Perform **Standard (unweighted) bootstrap** and **Weighted bootstrap** (where higher volatility days receive higher sampling probability).
-   * Calculate **Percentile Confidence Intervals (CI)** and **Bias-Corrected and Accelerated (BCa) CI** for each risk metric.
-
-3. **Comparison: Standard vs. Weighted Bootstrap**
-
-   * Compare distributions of VaR, ES, and SRM under both sampling schemes.
-   * Analyze differences in means, standard deviations, and confidence intervals.
-
-4. **Backtesting Concepts (Conceptual)**
-
-   * Outline how to backtest VaR under Basel regulatory guidelines (detailed backtest implementation left to future work).
-
-In practice, financial institutions rely on these risk measures for **regulatory compliance** (e.g., Basel II/III), **portfolio risk management**, and **capital allocation** decisions. Bootstrap-based estimation provides a way to quantify estimation uncertainty—especially important when analyzing **tail risk**.
+In practice, financial institutions rely on these risk measures for **regulatory compliance** (e.g., Basel II/III), **portfolio risk management**, and **capital allocation** decisions. Bootstrap-based estimation provides a way to quantify estimation uncertainty—especially important when analyzing **tail risk**.  
 
 ---
 
@@ -61,7 +55,7 @@ start_date = '2020-01-01'
 end_date = '2024-12-31'
 confidence_level = 0.95       # 95% confidence for VaR and ES
 bootstrap_samples = 10000     # Number of bootstrap resamples
-```
+````
 
 **Expert Commentary:**
 
@@ -86,15 +80,15 @@ weights_equal = np.repeat(1/num_assets, num_assets)
 portfolio_returns = daily_returns.dot(weights_equal)
 ```
 
-**Expert Commentary:**
+**Explanations:**
 
-* The `daily_returns` DataFrame contains the percentage return of each ETF in the universe.
+* The `daily_returns` DataFrame contains the percentage return of each stocks in the tickers list.
 * By assigning equal weights to each ETF (1/10th of the portfolio each), we obtain a single time series `portfolio_returns`.
-* Mathematically, if \$r\_{t,i}\$ is the return of asset \$i\$ on day \$t\$, then the portfolio return on day \$t\$ is:
+* Mathematically, if $r_{t,i}$ is the return of asset $i$ on day $t$, then the portfolio return on day $t$ is:
 
-  $$
-  R_t = \sum_{i=1}^{N} w_i \, r_{t,i}, \quad \text{where } w_i = \frac{1}{N}, \; N = 10.
-  $$
+  
+  $R_t = \sum_{i=1}^{N} w_i$ \, $r_{t,i}$, $\quad$ $\text{where }$ $w_i = \frac{1}{N}$, \, $N = 10$.
+  
 
 ---
 
@@ -209,7 +203,7 @@ def compute_srm_exp(returns_array, lam):
 * The SRM is then:
 
   $$
-  \text{SRM}_{\exp}(\lambda) = - \sum_{i=0}^{n-1} w_i\, x_{(i)}.
+  \text{SRM}_{\exp}(\lambda) \;=\; - \sum_{i=0}^{n-1} w_i\, x_{(i)}.
   $$
 * A larger $\lambda$ assigns exponentially more weight to the worst (most negative) returns, leading to a larger (in magnitude) SRM.
 
@@ -226,7 +220,7 @@ $$
 We then solve the equation
 
 $$
-\text{SRM}_{\exp}(\lambda) = -\,r^*
+\text{SRM}_{\exp}(\lambda) \;=\; -\,r^*
 $$
 
 for $\lambda$ using a root finder (Brent’s method).
@@ -340,7 +334,6 @@ plt.show()
 ![Parameter vs SRM: λ & γ Mapping](sandbox:/mnt/data/figure_11_2.png)
 
 **Expert Analysis:**  
-
 - **λ vs. SRM (blue curve):** As $\lambda$ increases, exponential weights concentrate on the most negative returns, making SRM more negative (larger in magnitude). The curve is steep because even small increases in $\lambda$ amplify tail emphasis.  
 - **γ vs. SRM (orange curve):** A polynomial spectrum with $\gamma$ is smoother: as $\gamma$ increases, more weight is given to lower-ranked (more negative) returns, but the relationship is less steep than exponential.  
 - **Intersection Points:**  
@@ -351,8 +344,6 @@ plt.show()
 - **Practical Implication:**  
   - Use **exponential spectrum** ($\lambda$) when you want a **sharp emphasis** on extreme losses—common in regulatory reports or stress scenarios.  
   - Use **polynomial spectrum** ($\gamma$) for a **more flexible** tail-weighting that can be tuned gradually.  
-
-
 
 ---
 
@@ -377,7 +368,7 @@ print("First 5 volatility-based weights:")
 print(weights_vol[:5])
 ```
 
-```text
+```
 First 5 volatility-based weights:
 [0.000547 0.000319 0.000380 0.000518 0.000549]
 ```
@@ -436,7 +427,7 @@ We will perform **10,000 bootstrap resamples** of the daily portfolio return ser
 We compare:
 
 1. **Standard Bootstrap**: All days sampled with equal probability ($p_i = 1/n$).
-2. **Weighted Bootstrap**: Days sampled with volatility-based weights $p_i = \text{weights_vol}[i]$.
+2. **Weighted Bootstrap**: Days sampled with volatility-based weights $p_i = \text{weights\_vol}[i]$.
 
 ---
 
@@ -751,7 +742,7 @@ plt.show()
 2. **Preference for BCa Confidence Intervals**
 
    * The **Percentile CI** is straightforward to compute but fails to adjust for bias or distribution skewness—potentially underestimating tail uncertainty.
-   * **BCa CI** corrects for bias ($z₀$) and skewness (acceleration $a$), providing a more reliable and conservative interval for tail-heavy metrics.
+   * **BCa CI** corrects for bias (z₀) and skewness (acceleration $a$), providing a more reliable and conservative interval for tail-heavy metrics.
    * In regulatory filings, submitting BCa-adjusted CIs demonstrates transparency regarding risk estimate uncertainty.
 
 3. **Choosing Spectral Parameters ($\lambda$ vs. $\gamma$)**
@@ -771,3 +762,5 @@ plt.show()
 >
 > * All core code snippets, charts, and tables originate from the provided Jupyter Notebook (`Bootstrap_bactesting_integrated_updated.ipynb`).
 > * This blog post highlights key steps, formulas, and expert commentary; you may refer to the notebook for full implementation details and additional backtesting concepts.
+
+```
