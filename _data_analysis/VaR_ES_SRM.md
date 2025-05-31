@@ -12,7 +12,7 @@ location: ""
 
 # 📊 Bootstrap-Based Precision Risk Analysis Blog Post
 
-This blog post is practical application for my previous post in the finance blog [“Coherent & Spectral Risk Management”](https://anderson-shin.github.io/finance/market_risk_estimation)  and demonstrates how to use **bootstrap techniques** to estimate **Value at Risk (VaR)**, **Expected Shortfall (ES)**, and **Spectral Risk Measure (SRM)** for a portfolio of sector ETFs. We include detailed output cells, charts, and **expert commentary** for each step. All sections are written in English, and mathematical formulas are explained in context.
+This blog post is practical application for my previous post in the finance blog [“Coherent & Spectral Risk Management”](https://anderson-shin.github.io/finance/market_risk_estimation)  and demonstrates how to use **bootstrap techniques** to estimate **Value at Risk (VaR)**, **Expected Shortfall (ES)**, and **Spectral Risk Measure (SRM)** for a portfolio of stocks in different sectors. I included detailed output cells, charts, and **remarks** for each step. All sections are written in English, and mathematical formulas are explained in context.
 
 ---
 
@@ -22,7 +22,7 @@ The main objectives of this notebook are:
 
 1. **Data Collection & Preparation**  
    - Download daily closing prices for multiple wellknown stocks in various sectors.  
-   - Compute daily portfolio returns using equal weights (for easier demonstration, you may look at my opimization post ["Optimization of portfolio 1"](https://anderson-shin.github.io/data_analysis/yfinance_tutorial_3) as well if you want to apply Mean-variance portfolio theory)
+   - Compute daily portfolio returns using equal weights (for easier demonstration). You may look at my opimization post ["Optimization of portfolio 1"](https://anderson-shin.github.io/data_analysis/yfinance_tutorial_3) as well if you want to apply Mean-variance portfolio theory.
 
 2. **Risk Metric Estimation (VaR, ES, SRM) via Bootstrap**  
    - Perform **Standard (unweighted) bootstrap** and **Weighted bootstrap** (where higher volatility days receive higher sampling probability).  
@@ -57,9 +57,9 @@ confidence_level = 0.95       # 95% confidence for VaR and ES
 bootstrap_samples = 10000     # Number of bootstrap resamples
 ````
 
-**Expert Commentary:**
+**Remarks**
 
-* We use the `yfinance` package to download daily closing prices for ten major sector ETFs from January 1, 2020, through December 31, 2024.
+* I used the `yfinance` package to download daily closing prices for ten major stocks in each sectors from January 1, 2020, through December 31, 2024.
 * A 95% confidence level is chosen for VaR and ES calculations, meaning we look at the 5th percentile of portfolio loss distribution (i.e., VaR at 5% significance).
 * Performing 10,000 bootstrap resamples provides sufficient statistical accuracy and stability for confidence interval estimation.
 
@@ -87,7 +87,7 @@ portfolio_returns = daily_returns.dot(weights_equal)
 * Mathematically, if $r_{t,i}$ is the return of asset $i$ on day $t$, then the portfolio return on day $t$ is:
 
   
-  $R_t = \sum_{i=1}^{N} w_i$ \, $r_{t,i}$, $\quad$ $\text{where }$ $w_i = \frac{1}{N}$, \, $N = 10$.
+  $R_t = \sum_{i=1}^{N} w_i$ \, $r_{t,i}$, $\quad$ $\text{where }$ $w_i = \frac{1}{N}$, , $N = 10$.
   
 
 ---
@@ -112,11 +112,11 @@ plt.show()
 
 ![Sector Daily Returns (2020–2024)](sandbox:/mnt/data/figure_6_0.png)
 
-**Expert Analysis:**
+**Remarks:**
 
-* Each subplot shows the daily return series for one sector ETF.
+* Each subplot shows the daily return series for one stock in each sector.
 * By setting `sharey=True`, all subplots use the same vertical scale, allowing direct comparison of volatility across sectors.
-* Notice that the **Energy ETF (XLE)** exhibits pronounced spikes and troughs—indicative of higher volatility—compared to more stable sectors like **Consumer Staples (XLP)**.
+* Notice that the **Energy stock (XLE)** exhibits pronounced spikes and troughs—indicative of higher volatility—compared to more stable sectors like **Consumer Staples (XLP)**.
 * In risk estimation, days with large swings (outliers) have outsized influence on tail risk metrics (VaR/ES/SRM).
 
 ---
@@ -140,11 +140,11 @@ plt.show()
 
 ![Portfolio Cumulative Return (2020–2024)](sandbox:/mnt/data/figure_6_1.png)
 
-**Expert Commentary:**
+**Remarks:**
 
 * The cumulative return graph highlights major market events: the COVID-19 crash in early 2020, subsequent recovery in 2021, inflation shock around 2022, and later volatility in 2023–2024.
 * These extreme periods directly affect tail-risk estimation: very negative returns during 2020 and 2022 will feed into the bootstrap distribution and push VaR/ES estimates lower (more negative).
-* In practice, risk teams often segment the data into sub-periods or apply time-varying models, but here we use the whole 2020–2024 span for simplicity.
+* In practice, risk teams often segment the data into sub-periods or apply time-varying models, but here I used the whole 2020–2024 span for simplicity.
 
 ---
 
@@ -155,7 +155,7 @@ The **Spectral Risk Measure (SRM)** is a coherent risk measure that weights loss
 1. **Exponential Spectrum** (parameterized by $\lambda$): Places exponentially more weight on the worst losses.
 2. **Polynomial (Gamma) Spectrum** (parameterized by $\gamma$): Assigns weights proportional to rank$^{\gamma-1}$.
 
-We will demonstrate how to choose the parameter $\lambda^*$ so that the SRM corresponds to a target annual loss threshold (e.g., $-20\%$).
+I will demonstrate how to choose the parameter $\lambda^*$ so that the SRM corresponds to a target annual loss threshold (e.g., $-20\%$).
 
 ---
 
@@ -238,9 +238,9 @@ lambda_star = brentq(f_lambda, a=0.01, b=100)
 print(f"Found λ* = {lambda_star:.4f}")
 ```
 
-**Expert Commentary:**
+**Remarks:**
 
-* We use `brentq` to find the root of $f(\lambda) = 0$.
+* I used `brentq` to find the root of $f(\lambda) = 0$.
 * The result $\lambda^* \approx 0.415$ (example value) indicates how steeply we emphasize extreme losses: higher $\lambda$ leads to greater penalization of the most negative returns.
 * In practice, risk managers choose $\lambda$ to reflect their risk aversion profile.
 
@@ -351,7 +351,7 @@ plt.show()
 
 ### 5.1. Volatility-Based Weight Calculation
 
-To create a **weighted bootstrap**, we assign higher sampling weights to days with higher realized volatility. Here, we use a 20-day rolling standard deviation of portfolio returns as a proxy for “current market volatility.”
+To create a **weighted bootstrap**, we assign higher sampling weights to days with higher realized volatility. Here, I used a 20-day rolling standard deviation of portfolio returns as a proxy for “current market volatility.”
 
 ```python
 # 1) Compute 20-day rolling volatility (standard deviation) of portfolio returns
@@ -373,7 +373,7 @@ First 5 volatility-based weights:
 [0.000547 0.000319 0.000380 0.000518 0.000549]
 ```
 
-**Expert Commentary:**
+**Remarks:**
 
 * Days with higher **past 20-day volatility** receive a larger weight in sampling, making it more likely that “high-volatility” days appear multiple times in the bootstrap sample.
 * This approach ensures that **recent market stress periods** (when volatility spikes) are oversampled, leading to more conservative tail-risk estimates.
@@ -396,7 +396,7 @@ plt.show()
 
 ![Volatility-Based Weights Distribution](sandbox:/mnt/data/figure_16_3.png)
 
-**Expert Analysis:**
+**Remarks:**
 
 * The histogram shows a **skewed distribution**: a small number of days carry relatively high weight, while most days have very small weights.
 * This “heavy tail” in the weight distribution emphasizes extreme-volatility days in sampling.
@@ -406,7 +406,7 @@ plt.show()
 
 ## 6. Bootstrap Estimation of Risk Metrics
 
-We will perform **10,000 bootstrap resamples** of the daily portfolio return series. For each resample, we compute:
+Now I will perform **10,000 bootstrap resamples** of the daily portfolio return series. For each resample, I computed:
 
 * **VaR (Value at Risk):** The 5th percentile (since $\alpha = 1 - 0.95 = 0.05$).
 
@@ -424,7 +424,7 @@ We will perform **10,000 bootstrap resamples** of the daily portfolio return ser
   \text{SRM}_{\exp}(\lambda^*) = -\sum_{i=1}^{n} w_i(\lambda^*)\,x_{(i)}, \quad x_{(i)} \text{ sorted returns}.
   $$
 
-We compare:
+Now I will compare:
 
 1. **Standard Bootstrap**: All days sampled with equal probability ($p_i = 1/n$).
 2. **Weighted Bootstrap**: Days sampled with volatility-based weights $p_i = \text{weights\_vol}[i]$.
@@ -469,9 +469,9 @@ for _ in range(bootstrap_samples):
 print("Bootstrap sampling completed.")
 ```
 
-**Expert Commentary:**
+**Remarks:**
 
-* After 10,000 iterations, we have six distributions:
+* After 10,000 iterations, I obtained six distributions:
 
   * Standard Bootstrap: `std_VaR`, `std_ES`, `std_SRM`.
   * Weighted Bootstrap: `wtd_VaR`, `wtd_ES`, `wtd_SRM`.
@@ -507,7 +507,7 @@ plt.show()
 
 ![Bootstrap Distribution Comparison](sandbox:/mnt/data/figure_22_4.png)
 
-**Expert Analysis:**
+**Remarks:**
 
 * **VaR Distributions** (top row):
 
@@ -526,7 +526,7 @@ plt.show()
 
 ## 7. Confidence Interval (CI) Comparison
 
-To quantify uncertainty, we compute 95% **Percentile CI** and **BCa CI** for each metric under both sampling schemes.
+To quantify uncertainty, I computed 95% **Percentile CI** and **BCa CI** for each metric under both sampling schemes.
 
 ### 7.1. Defining CI Calculation Functions
 
@@ -590,12 +590,12 @@ def bca_ci(original_sample, bootstrap_dist, stat_func, alpha):
 
 - **Percentile CI**: For a bootstrap distribution 
   $$
-    \{ \hat{\theta}^*_b \}_{b=1}^{B},
+    \{\hat{\theta}^*_b \}_{b=1}^{B},
   $$
   the lower bound is the $\tfrac{\alpha}{2}$ -percentile and the upper bound is the $1 - \tfrac{\alpha}{2}$ -percentile.
 
 - **BCa CI**: Adjusts for both **bias** ($z_0$) and **skewness** (acceleration $a$).
-  1. Let \(\hat{\theta}\) be the statistic from the original sample.
+  1. Let $\hat\theta$ be the statistic from the original sample.
   2. Compute 
      $$
        z_0 \;=\; \Phi^{-1}\!\Bigl(\frac{\#\{\theta^*_b < \hat{\theta}\}}{B}\Bigr).
@@ -607,7 +607,7 @@ def bca_ci(original_sample, bootstrap_dist, stat_func, alpha):
        \frac{\displaystyle \sum_{i=1}^{n} \bigl(\overline{\theta}_{(\cdot)} - \hat{\theta}_{(i)}\bigr)^3}
             {\,6 \Bigl[\displaystyle \sum_{i=1}^{n} \bigl(\overline{\theta}_{(\cdot)} - \hat{\theta}_{(i)}\bigr)^2\Bigr]^{3/2}},
      $$
-     where \(\overline{\theta}_{(\cdot)}\) is the mean of the jackknife estimates.
+     where $\overline{\theta}_{(\cdot)}$ is the mean of the jackknife estimates.
   5. Compute adjusted percentiles \(p_L\) and \(p_U\):
      $$
        p_L = \Phi\!\Bigl(z_0 + \frac{z_0 + z_{\alpha/2}}{1 - a \,(z_0 + z_{\alpha/2})}\Bigr), 
@@ -758,9 +758,27 @@ plt.show()
 
 ---
 
-> **Appendix:**
->
-> * All core code snippets, charts, and tables originate from the provided Jupyter Notebook (`Bootstrap_bactesting_integrated_updated.ipynb`).
-> * This blog post highlights key steps, formulas, and expert commentary; you may refer to the notebook for full implementation details and additional backtesting concepts.
+## 9. Lessons Learned & Future Improvements
 
-```
+* **Key Takeaways:**
+
+  * Bootstrap methods provide a practical way to quantify estimation uncertainty for tail‐risk metrics, illustrating how different resampling schemes (standard vs. volatility‐weighted) yield distinct VaR, ES, and SRM distributions.
+  * BCa confidence intervals offer a more robust assessment of tail‐risk uncertainty compared to simple percentile intervals by correcting for bias and skewness.
+  * Exponential and polynomial spectral functions can be calibrated to target the same tail‐risk level, but they differ in how sharply they emphasize extreme losses—offering flexibility to match an institution’s risk‐aversion profile.
+
+* **Areas for Improvement:**
+
+  1. **Data Window and Regime Sensitivity:**
+
+     * The analysis uses a fixed 2020–2024 window. Future work could incorporate rolling windows or regime‐switching models to adapt to changing market conditions (e.g., crisis vs. calm).
+  2. **Alternative Weighting Schemes:**
+
+     * Explore other weighting schemes beyond 20‐day rolling volatility (e.g., GARCH‐based volatility estimates, liquidity or sentiment signals) to see how they affect tail‐risk estimates.
+  3. **Backtest Validation:**
+
+     * Implement a formal VaR backtest (e.g., Kupiec or Christoffersen tests) to evaluate how well the bootstrap‐based VaR predictions align with realized losses.
+  4. **Multi-Period Risk Measures:**
+
+     * Extend SRM and ES calculations to multi‐day horizons (e.g., 10‐day VaR) using Monte Carlo or block bootstrap techniques to capture temporal dependence.
+
+By considering theses improvements I believe it will be more practical and expertised. I am still studying a lot of new stuffs and maybe my post is not fully covering the real-world adaptation. I will further enhance these for my future posts. Thank you for reading :)
