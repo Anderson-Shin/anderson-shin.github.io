@@ -339,21 +339,19 @@ plt.show()
 
 ![Parameter vs SRM: λ & γ Mapping](sandbox:/mnt/data/figure_11_2.png)
 
-**Expert Analysis:**
+**Expert Analysis:**  
 
-- **λ vs. SRM (blue curve):** As \( \lambda \) increases, exponential weights concentrate on the most negative returns, making SRM more negative (larger in magnitude). The curve is steep because even small increases in \( \lambda \) amplify tail emphasis.
-- **γ vs. SRM (orange curve):** A polynomial spectrum with \( \gamma \) is smoother: as \( \gamma \) increases, more weight is given to lower-ranked (more negative) returns, but the relationship is less steep than exponential.
+- **λ vs. SRM (blue curve):** As $\lambda$ increases, exponential weights concentrate on the most negative returns, making SRM more negative (larger in magnitude). The curve is steep because even small increases in $\lambda$ amplify tail emphasis.  
+- **γ vs. SRM (orange curve):** A polynomial spectrum with $\gamma$ is smoother: as $\gamma$ increases, more weight is given to lower-ranked (more negative) returns, but the relationship is less steep than exponential.  
 - **Intersection Points:**  
-  \[
-    (\lambda^*,\;\gamma^*) \quad\text{yield the same target SRM}
-    \quad
-    \mathrm{SRM}_{\text{target}} \;\approx\; -0.098\% 
-    \quad(\text{daily equivalent of } -20\% \text{ annually})
-  \]
-  This shows that different spectral families can achieve similar tail-risk levels under different parameterizations.
-- **Practical Implication:**
-  - Use **exponential spectrum** (\( \lambda \)) when you want a **sharp emphasis** on extreme losses—common in regulatory reports or stress scenarios.
-  - Use **polynomial spectrum** (\( \gamma \)) for a **more flexible** tail-weighting that can be tuned gradually.
+  $$
+    (\lambda^*,\; \gamma^*) \quad\text{yield the same target SRM} \quad \text{SRM}_{\text{target}} \approx -0.098\% \quad(\text{daily equivalent of } -20\% \text{ annually})
+  $$  
+  This shows that different spectral families can achieve similar tail-risk levels under different parameterizations.  
+- **Practical Implication:**  
+  - Use **exponential spectrum** ($\lambda$) when you want a **sharp emphasis** on extreme losses—common in regulatory reports or stress scenarios.  
+  - Use **polynomial spectrum** ($\gamma$) for a **more flexible** tail-weighting that can be tuned gradually.  
+
 
 
 ---
@@ -600,35 +598,35 @@ def bca_ci(original_sample, bootstrap_dist, stat_func, alpha):
 **Mathematical Explanation:**
 
 - **Percentile CI**: For a bootstrap distribution 
-  \[
+  $$
     \{ \hat{\theta}^*_b \}_{b=1}^{B},
-  \]
+  $$
   the lower bound is the \(\tfrac{\alpha}{2}\)-percentile and the upper bound is the \(1 - \tfrac{\alpha}{2}\)-percentile.
 
 - **BCa CI**: Adjusts for both **bias** (\(z_0\)) and **skewness** (acceleration \(a\)).
   1. Let \(\hat{\theta}\) be the statistic from the original sample.
   2. Compute 
-     \[
+     $$
        z_0 \;=\; \Phi^{-1}\!\Bigl(\frac{\#\{\theta^*_b < \hat{\theta}\}}{B}\Bigr).
-     \]
+     $$
   3. Compute jackknife estimates \(\hat{\theta}_{(i)}\) by leaving out observation \(i\).
   4. Acceleration \(a\) is given by:
-     \[
+     $$
        a \;=\; 
        \frac{\displaystyle \sum_{i=1}^{n} \bigl(\overline{\theta}_{(\cdot)} - \hat{\theta}_{(i)}\bigr)^3}
             {\,6 \Bigl[\displaystyle \sum_{i=1}^{n} \bigl(\overline{\theta}_{(\cdot)} - \hat{\theta}_{(i)}\bigr)^2\Bigr]^{3/2}},
-     \]
+     $$
      where \(\overline{\theta}_{(\cdot)}\) is the mean of the jackknife estimates.
   5. Compute adjusted percentiles \(p_L\) and \(p_U\):
-     \[
+     $$
        p_L = \Phi\!\Bigl(z_0 + \frac{z_0 + z_{\alpha/2}}{1 - a \,(z_0 + z_{\alpha/2})}\Bigr), 
        \quad
        p_U = \Phi\!\Bigl(z_0 + \frac{z_0 + z_{1-\alpha/2}}{1 - a \,(z_0 + z_{1-\alpha/2})}\Bigr).
-     \]
+     $$
   6. The BCa CI is then 
-     \[
+     $$
        \bigl[\hat{\theta}^*_{(p_L)},\; \hat{\theta}^*_{(p_U)}\bigr].
-     \]
+     $$
 
 
 ---
