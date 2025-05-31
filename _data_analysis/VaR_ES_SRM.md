@@ -592,9 +592,9 @@ def bca_ci(original_sample, bootstrap_dist, stat_func, alpha):
   $$
     \{ \hat{\theta}^*_b \}_{b=1}^{B},
   $$
-  the lower bound is the \(\tfrac{\alpha}{2}\)-percentile and the upper bound is the \(1 - \tfrac{\alpha}{2}\)-percentile.
+  the lower bound is the $\tfrac{\alpha}{2}$ -percentile and the upper bound is the $1 - \tfrac{\alpha}{2}$ -percentile.
 
-- **BCa CI**: Adjusts for both **bias** (\(z_0\)) and **skewness** (acceleration \(a\)).
+- **BCa CI**: Adjusts for both **bias** ($z_0$) and **skewness** (acceleration $a$).
   1. Let \(\hat{\theta}\) be the statistic from the original sample.
   2. Compute 
      $$
@@ -669,12 +669,12 @@ df_pivot = df_ci.pivot(index='Metric', columns='Method')
 df_pivot
 ```
 
-| Metric  |   | Standard  |          | Weighted     |              |              |              |           |          |              |              |              |              |
-| ------- | - | --------- | -------- | ------------ | ------------ | ------------ | ------------ | --------- | -------- | ------------ | ------------ | ------------ | ------------ |
-|         |   | Mean      | Std      | Pct CI Lower | Pct CI Upper | BCa CI Lower | BCa CI Upper | Mean      | Std      | Pct CI Lower | Pct CI Upper | BCa CI Lower | BCa CI Upper |
-| **ES**  |   | -0.032411 | 0.003188 | -0.039135    | -0.026778    | -0.041244    | -0.027833    | -0.057044 | 0.005310 | -0.067405    | -0.046937    | -0.067405    | -0.046937    |
-| **SRM** |   | -0.000881 | 0.000406 | -0.001678    | -0.000088    | -0.001705    | -0.000118    | -0.001292 | 0.000664 | -0.002605    | -0.000010    | -0.001783    | 0.000741     |
-| **VaR** |   | -0.018137 | 0.001145 | -0.021060    | -0.016026    | -0.021152    | -0.016176    | -0.027625 | 0.002456 | -0.031217    | -0.024206    | -0.031217    | -0.024206    |
+| Metric | Mean (Standard) | Mean (Weighted) | Std (Standard) | Std (Weighted) | Pct CI Low (Standard) | Pct CI Low (Weighted) | Pct CI High (Standard) | Pct CI High (Weighted) | BCa CI Low (Standard) | BCa CI Low (Weighted) | BCa CI High (Standard) | BCa CI High (Weighted) |
+|--------|-----------------|-----------------|----------------|----------------|-----------------------|-----------------------|------------------------|------------------------|-----------------------|-----------------------|------------------------|------------------------|
+| ES     | -0.032442       | -0.057099       | 0.003186       | 0.005289       | -0.039185             | -0.067538             | -0.026689              | -0.046963              | -0.041105             | -0.067538             | -0.027764              | -0.046963              |
+| SRM    | -0.000884       | -0.001294       | 0.000409       | 0.000669       | -0.001694             | -0.002601             | -0.000084              | 0.000015               | -0.001719             | -0.001796             | -0.000108              | 0.000807               |
+| VaR    | -0.018133       | -0.027652       | 0.001158       | 0.002465       | -0.021069             | -0.031217             | -0.015969              | -0.024206              | -0.021152             | -0.031217             | -0.016064              | -0.024206              |
+
 
 > **Table Explanation:**
 >
