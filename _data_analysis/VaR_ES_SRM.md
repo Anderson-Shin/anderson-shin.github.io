@@ -19,22 +19,26 @@ This blog post is based on the provided Jupyter Notebook (`Bootstrap_bactesting_
 
 The main objectives of this notebook are:
 
-1. **Data Collection & Preparation**  
-   - Download daily closing prices for multiple sector ETFs.  
-   - Compute daily portfolio returns using equal weights.
+1. **Data Collection & Preparation**
 
-2. **Risk Metric Estimation (VaR, ES, SRM) via Bootstrap**  
-   - Perform **Standard (unweighted) bootstrap** and **Weighted bootstrap** (where higher volatility days receive higher sampling probability).  
-   - Calculate **Percentile Confidence Intervals (CI)** and **Bias-Corrected and Accelerated (BCa) CI** for each risk metric.
+   * Download daily closing prices for multiple sector ETFs.
+   * Compute daily portfolio returns using equal weights.
 
-3. **Comparison: Standard vs. Weighted Bootstrap**  
-   - Compare distributions of VaR, ES, and SRM under both sampling schemes.  
-   - Analyze differences in means, standard deviations, and confidence intervals.
+2. **Risk Metric Estimation (VaR, ES, SRM) via Bootstrap**
 
-4. **Backtesting Concepts (Conceptual)**  
-   - Outline how to backtest VaR under Basel regulatory guidelines (detailed backtest implementation left to future work).
+   * Perform **Standard (unweighted) bootstrap** and **Weighted bootstrap** (where higher volatility days receive higher sampling probability).
+   * Calculate **Percentile Confidence Intervals (CI)** and **Bias-Corrected and Accelerated (BCa) CI** for each risk metric.
 
-In practice, financial institutions rely on these risk measures for **regulatory compliance** (e.g., Basel II/III), **portfolio risk management**, and **capital allocation** decisions. Bootstrap-based estimation provides a way to quantify estimation uncertainty—especially important when analyzing **tail risk**.  
+3. **Comparison: Standard vs. Weighted Bootstrap**
+
+   * Compare distributions of VaR, ES, and SRM under both sampling schemes.
+   * Analyze differences in means, standard deviations, and confidence intervals.
+
+4. **Backtesting Concepts (Conceptual)**
+
+   * Outline how to backtest VaR under Basel regulatory guidelines (detailed backtest implementation left to future work).
+
+In practice, financial institutions rely on these risk measures for **regulatory compliance** (e.g., Basel II/III), **portfolio risk management**, and **capital allocation** decisions. Bootstrap-based estimation provides a way to quantify estimation uncertainty—especially important when analyzing **tail risk**.
 
 ---
 
@@ -57,7 +61,7 @@ start_date = '2020-01-01'
 end_date = '2024-12-31'
 confidence_level = 0.95       # 95% confidence for VaR and ES
 bootstrap_samples = 10000     # Number of bootstrap resamples
-````
+```
 
 **Expert Commentary:**
 
@@ -86,7 +90,11 @@ portfolio_returns = daily_returns.dot(weights_equal)
 
 * The `daily_returns` DataFrame contains the percentage return of each ETF in the universe.
 * By assigning equal weights to each ETF (1/10th of the portfolio each), we obtain a single time series `portfolio_returns`.
-* Mathematically, if \$r\_{t,i}\$ is the return of asset \$i\$ on day \$t\$, then the portfolio return on day \$t\$ is:  \$R\_t = \sum\_{i=1}^{N} w\_i\$ , \$r\_{t,i}\$, \$\quad\$ \$\text{where }\$ \$w\_i = \frac{1}{N}\$, , \$N = 10\$.
+* Mathematically, if \$r\_{t,i}\$ is the return of asset \$i\$ on day \$t\$, then the portfolio return on day \$t\$ is:
+
+  $$
+  R_t = \sum_{i=1}^{N} w_i \, r_{t,i}, \quad \text{where } w_i = \frac{1}{N}, \; N = 10.
+  $$
 
 ---
 
@@ -201,7 +209,7 @@ def compute_srm_exp(returns_array, lam):
 * The SRM is then:
 
   $$
-  \text{SRM}_{\exp}(\lambda) \;=\; - \sum_{i=0}^{n-1} w_i\, x_{(i)}.
+  \text{SRM}_{\exp}(\lambda) = - \sum_{i=0}^{n-1} w_i\, x_{(i)}.
   $$
 * A larger $\lambda$ assigns exponentially more weight to the worst (most negative) returns, leading to a larger (in magnitude) SRM.
 
@@ -218,7 +226,7 @@ $$
 We then solve the equation
 
 $$
-\text{SRM}_{\exp}(\lambda) \;=\; -\,r^*
+\text{SRM}_{\exp}(\lambda) = -\,r^*
 $$
 
 for $\lambda$ using a root finder (Brent’s method).
@@ -364,7 +372,7 @@ print("First 5 volatility-based weights:")
 print(weights_vol[:5])
 ```
 
-```
+```text
 First 5 volatility-based weights:
 [0.000547 0.000319 0.000380 0.000518 0.000549]
 ```
@@ -423,7 +431,7 @@ We will perform **10,000 bootstrap resamples** of the daily portfolio return ser
 We compare:
 
 1. **Standard Bootstrap**: All days sampled with equal probability ($p_i = 1/n$).
-2. **Weighted Bootstrap**: Days sampled with volatility-based weights $p_i = \text{weights\_vol}[i]$.
+2. **Weighted Bootstrap**: Days sampled with volatility-based weights $p_i = \text{weights_vol}[i]$.
 
 ---
 
@@ -585,7 +593,7 @@ def bca_ci(original_sample, bootstrap_dist, stat_func, alpha):
 **Mathematical Explanation:**
 
 * **Percentile CI**: For a bootstrap distribution $\{\hat{\theta}^*_b\}_{b=1}^{B}$, the lower bound is the $\tfrac{\alpha}{2}$-percentile and the upper bound is the $1 - \tfrac{\alpha}{2}$-percentile.
-* **BCa CI**: Adjusts for both **bias** (z0) and **skewness** (acceleration $a$).
+* **BCa CI**: Adjusts for both **bias** ($z_0$) and **skewness** (acceleration $a$).
 
   1. Let $\hat{\theta}$ be the statistic from the original sample.
   2. Compute $z_0 = \Phi^{-1}\!\bigl(\tfrac{\#\{\theta^*_b < \hat{\theta}\}}{B}\bigr)$.
@@ -593,11 +601,11 @@ def bca_ci(original_sample, bootstrap_dist, stat_func, alpha):
   4. Acceleration $a$ is given by:
 
      $$
-     a = \frac{\sum_{i} (\bar{\theta}_{(\cdot)} - \hat{\theta}_{(i)})^3}
-              {\,6 \Bigl[\sum_{i} (\bar{\theta}_{(\cdot)} - \hat{\theta}_{(i)})^2\Bigr]^{3/2}},
+     a = \frac{\sum_{i} (\overline{\theta}_{(\cdot)} - \hat{\theta}_{(i)})^3}
+              {\,6 \Bigl[\sum_{i} (\overline{\theta}_{(\cdot)} - \hat{\theta}_{(i)})^2\Bigr]^{3/2}},
      $$
 
-     where $\bar{\theta}_{(\cdot)}$ is the mean of the jackknife estimates.
+     where $\overline{\theta}_{(\cdot)}$ is the mean of the jackknife estimates.
   5. Compute adjusted percentiles $p_L$ and $p_U$:
 
      $$
@@ -728,7 +736,7 @@ plt.show()
 2. **Preference for BCa Confidence Intervals**
 
    * The **Percentile CI** is straightforward to compute but fails to adjust for bias or distribution skewness—potentially underestimating tail uncertainty.
-   * **BCa CI** corrects for bias (z₀) and skewness (acceleration $a$), providing a more reliable and conservative interval for tail-heavy metrics.
+   * **BCa CI** corrects for bias ($z₀$) and skewness (acceleration $a$), providing a more reliable and conservative interval for tail-heavy metrics.
    * In regulatory filings, submitting BCa-adjusted CIs demonstrates transparency regarding risk estimate uncertainty.
 
 3. **Choosing Spectral Parameters ($\lambda$ vs. $\gamma$)**
@@ -748,5 +756,3 @@ plt.show()
 >
 > * All core code snippets, charts, and tables originate from the provided Jupyter Notebook (`Bootstrap_bactesting_integrated_updated.ipynb`).
 > * This blog post highlights key steps, formulas, and expert commentary; you may refer to the notebook for full implementation details and additional backtesting concepts.
-
-```
