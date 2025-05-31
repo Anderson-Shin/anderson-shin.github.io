@@ -1,5 +1,4 @@
 ---
-layout: default
 title: "Coherent & Spectral Risk Management Practice Using Python"
 collection: data_analysis
 permalink: /data_analysis/portfolio_risk_estimation_practice1
@@ -12,7 +11,7 @@ location: ""
 
 # 📊 Bootstrap-Based Precision Risk Analysis Blog Post
 
-This blog post is practical application for my previous post in the finance blog [“Coherent & Spectral Risk Management”](https://anderson-shin.github.io/finance/market_risk_estimation)  and demonstrates how to use **bootstrap techniques** to estimate **Value at Risk (VaR)**, **Expected Shortfall (ES)**, and **Spectral Risk Measure (SRM)** for a portfolio of sector ETFs. We include detailed output cells, charts, and **expert commentary** for each step. All sections are written in English, and mathematical formulas are explained in context.
+This blog post is based on the provided Jupyter Notebook (`Bootstrap_bactesting_integrated_updated.ipynb`) and demonstrates how to use **bootstrap techniques** to estimate **Value at Risk (VaR)**, **Expected Shortfall (ES)**, and **Spectral Risk Measure (SRM)** for a portfolio of sector ETFs. We include detailed output cells, charts, and **expert commentary** for each step. All sections are written in English, and mathematical formulas are explained in context.
 
 ---
 
@@ -21,8 +20,8 @@ This blog post is practical application for my previous post in the finance blog
 The main objectives of this notebook are:
 
 1. **Data Collection & Preparation**  
-   - Download daily closing prices for multiple wellknown stocks in various sectors.  
-   - Compute daily portfolio returns using equal weights (for easier demonstration, you may look at my opimization post ["Optimization of portfolio 1"](https://anderson-shin.github.io/data_analysis/yfinance_tutorial_3) as well if you want to apply Mean-variance portfolio theory)
+   - Download daily closing prices for multiple sector ETFs.  
+   - Compute daily portfolio returns using equal weights.
 
 2. **Risk Metric Estimation (VaR, ES, SRM) via Bootstrap**  
    - Perform **Standard (unweighted) bootstrap** and **Weighted bootstrap** (where higher volatility days receive higher sampling probability).  
@@ -31,6 +30,9 @@ The main objectives of this notebook are:
 3. **Comparison: Standard vs. Weighted Bootstrap**  
    - Compare distributions of VaR, ES, and SRM under both sampling schemes.  
    - Analyze differences in means, standard deviations, and confidence intervals.
+
+4. **Backtesting Concepts (Conceptual)**  
+   - Outline how to backtest VaR under Basel regulatory guidelines (detailed backtest implementation left to future work).
 
 In practice, financial institutions rely on these risk measures for **regulatory compliance** (e.g., Basel II/III), **portfolio risk management**, and **capital allocation** decisions. Bootstrap-based estimation provides a way to quantify estimation uncertainty—especially important when analyzing **tail risk**.  
 
@@ -80,15 +82,11 @@ weights_equal = np.repeat(1/num_assets, num_assets)
 portfolio_returns = daily_returns.dot(weights_equal)
 ```
 
-**Explanations:**
+**Expert Commentary:**
 
-* The `daily_returns` DataFrame contains the percentage return of each stocks in the tickers list.
+* The `daily_returns` DataFrame contains the percentage return of each ETF in the universe.
 * By assigning equal weights to each ETF (1/10th of the portfolio each), we obtain a single time series `portfolio_returns`.
-* Mathematically, if $r_{t,i}$ is the return of asset $i$ on day $t$, then the portfolio return on day $t$ is:
-
-  
-  $R_t = \sum_{i=1}^{N} w_i$ \, $r_{t,i}$, $\quad$ $\text{where }$ $w_i = \frac{1}{N}$, \, $N = 10$.
-  
+* Mathematically, if \$r\_{t,i}\$ is the return of asset \$i\$ on day \$t\$, then the portfolio return on day \$t\$ is:  \$R\_t = \sum\_{i=1}^{N} w\_i\$ , \$r\_{t,i}\$, \$\quad\$ \$\text{where }\$ \$w\_i = \frac{1}{N}\$, , \$N = 10\$.
 
 ---
 
@@ -752,4 +750,3 @@ plt.show()
 > * This blog post highlights key steps, formulas, and expert commentary; you may refer to the notebook for full implementation details and additional backtesting concepts.
 
 ```
-
