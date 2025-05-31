@@ -1,39 +1,87 @@
 <!DOCTYPE html>
-<html lang="{{ site.locale | slice: 0,2 }}">
-  <head>
-    {% include head.html %}
-    {% include head/custom.html %}
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ page.title }}</title>
 
-    <!-- ========== MathJax 설정 ========== -->
-    <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$','$$']]
-      },
-      svg: { fontCache: 'global' }
-    };
-    </script>
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <!-- ============================================= -->
+  <!-- MathJax 불러오기: 수식 렌더링을 위해 아래 스크립트 추가 -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"
+    integrity="sha384-여기에_실제_무결성_해시를_넣으세요"
+    crossorigin="anonymous">
+  </script>
 
-    <!-- (여기에 기존 default.html 의 나머지 head 요소들: CSS, meta 등) -->
-  </head>
+  <!-- 필요한 CSS/JS가 있다면 여기에 추가 -->
+</head>
+<body>
+  {% include base_path %}
 
-  <body>
-    {% include browser-upgrade.html %}
-    {% include masthead.html %}
+  <article class="page talk" itemscope itemtype="http://schema.org/CreativeWork">
+    {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
+      {% include page__hero.html %}
+    {% endif %}
 
-    <div id="main" role="main">
-      {% include sidebar.html %}
+    {% if page.url != "/" and site.breadcrumbs %}
+      {% unless paginator %}
+        {% include breadcrumbs.html %}
+      {% endunless %}
+    {% endif %}
 
-      {{ content }}
+    <div class="page__inner-wrap">
+      <header>
+        {% if page.title %}
+          <h1 class="page__title" itemprop="headline">
+            {{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}
+          </h1>
+        {% endif %}
+        {% if page.date %}
+          <p class="page__date">
+            <time datetime="{{ page.date | date_to_xmlschema }}">
+              {{ page.date | date: "%B %d, %Y" }}
+            </time>
+          </p>
+        {% endif %}
+      </header>
+
+      <section class="page__content" itemprop="text">
+        {{ content }}
+        {% if page.link %}
+          <div>
+            <a href="{{ page.link }}" class="btn">
+              {{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}
+            </a>
+          </div>
+        {% endif %}
+      </section>
+
+      <footer class="page__meta">
+        {% include page__taxonomy.html %}
+        {% if page.share %}
+          {% include social-share.html %}
+        {% endif %}
+      </footer>
 
       {% include post_pagination.html %}
     </div>
 
-    {% include footer/custom.html %}
-    {% include footer.html %}
-    {% include scripts.html %}
-  </body>
+    {% if site.comments.provider and page.comments %}
+      {% include comments.html %}
+    {% endif %}
+
+    {% if page.id and page.related and site.related_posts.size > 0 %}
+      <div class="page__related">
+        {% if site.data.ui-text[site.locale].related_label %}
+          <h4 class="page__related-title">
+            {{ site.data.ui-text[site.locale].related_label | default: "You May Also Enjoy" }}
+          </h4>
+        {% endif %}
+        <div class="grid__wrapper">
+          {% for post in site.related_posts limit:4 %}
+            {% include archive-single.html type="grid" %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </article>
+</body>
 </html>
