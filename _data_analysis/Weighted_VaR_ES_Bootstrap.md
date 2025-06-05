@@ -77,7 +77,7 @@ def get_age_weights(length, half_life):
     raw = (1 - lam) * np.power(lam, length - idx)
     return raw / raw.sum()
 ```
-Recent observations carry exponentially more weight. The decay factor \(\lambda = 2^{-1/h}\), where \(h\) is the chosen half‐life (10, 21, or 63 days).  
+Recent observations carry exponentially more weight. The decay factor $$\lambda = 2^{-1/h}$$, where $$h$$ is the chosen half‐life (10, 21, or 63 days).  
 
 **Commentary:**  
 Age weighting allows the model to emphasize “recency.” A 10‐day half‐life captures only the past two weeks of market action, potentially missing older but still relevant tail events, while a 63‐day half‐life incorporates earlier crisis periods (e.g., March 2020). Practitioners must choose a half‐life informed by whether they believe short‐term or medium‐term shocks dominate.
@@ -89,7 +89,7 @@ def get_vol_weights(returns_series, window):
     raw = rolling_vol.values
     return raw / raw.sum()
 ```
-Weights are proportional to rolling standard deviations over the window: \(w_t \propto \mathrm{RollingStdDev}(r_t)\).  
+Weights are proportional to rolling standard deviations over the window: $$w_t \propto \mathrm{RollingStdDev}(r_t)$$.  
 
 **Commentary:**  
 Volatility weighting concentrates sampling on days with the highest realized volatility. A 10‐day window will overemphasize mega‐spikes like early 2020 and late 2022, producing extremely fat tail estimates. A longer window (63 days) smooths out overly concentrated clusters but still prioritizes major upheavals.
@@ -109,7 +109,7 @@ def get_corr_weights(returns_df, window):
         corr_vals[i] = np.mean(np.abs(off_diag))
     return corr_vals / corr_vals.sum()
 ```
-For each date, compute average off‐diagonal absolute correlations. High systemic correlation implies higher sampling weight: \(w_t \propto \frac{1}{n(n-1)} \sum_{i \neq j} |\rho_{ij}^{(t)}|\).  
+For each date, compute average off‐diagonal absolute correlations. High systemic correlation implies higher sampling weight: $$w_t \propto \frac{1}{n(n-1)} \sum_{i \neq j} |\rho_{ij}^{(t)}|$$  
 
 **Commentary:**  
 Correlation weighting captures periods when assets move in sync—often crisis or “risk‐off” regimes. A 10‐day correlation window may isolate a flash crisis, while 63 days captures broader contagion phases. This is particularly relevant for stress testing and macroprudential surveillance, where joint movements matter more than individual volatility spikes.
@@ -141,9 +141,9 @@ def generate_es_samples(sample, weights, alpha, n_bootstrap):
             es_samps.append(es_temp)
     return np.array(es_samps)
 ```
-For each method-window pair, draw \(n\_bootstrap=10000\) resamples. Each resample yields:  
-- **VaR**(\(\alpha=1%\)): 1st percentile of the bootstrap sample (loss).  
-- **ES**: average of all returns \(\le\) that 1% percentile (loss).  
+For each method-window pair, draw $$n\_bootstrap=10000$$ resamples. Each resample yields:  
+- **VaR**($$\alpha=1%$$): 1st percentile of the bootstrap sample (loss).  
+- **ES**: average of all returns $$\le$$ that 1% percentile (loss).  
 
 **Remarks:**  
 - This non‐parametric approach avoids heavy distributional assumptions.  
@@ -213,7 +213,7 @@ def bca_ci(sample, stat_func, boot_dist, alpha=0.05):
         print(f"[BCa CI Fail] jackknife std: {np.std(jack_vals):.6f}")
     return lower, upper
 ```
-BCa adjusts for both bias (\(z_0\)) and acceleration (\(a\)) due to skew in the sampling distribution. When jackknife variability is low, it falls back gracefully to percentile.  
+BCa adjusts for both bias ($$z_0$$) and acceleration ($$a$$) due to skew in the sampling distribution. When jackknife variability is low, it falls back gracefully to percentile.  
 
 **Commentary:**  
 - BCa attempts to account for skew and bias in bootstrap distributions.  
@@ -282,7 +282,7 @@ display(results_df)
 ![summary](https://github.com/Anderson-Shin/anderson-shin.github.io/blob/master/images/data_analysis_img/Weighted_Bootstrap/summary.png?raw=True)
   
 
-**Expert Commentary on Tabular Results:**  
+**Comments on Tabular Results:**  
 
 #### Age‐Weighted Method  
 - **Window = 10 days**:  
