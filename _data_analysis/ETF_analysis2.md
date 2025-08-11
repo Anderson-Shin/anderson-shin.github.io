@@ -50,7 +50,10 @@ This analysis was conducted using a modular Python framework. The process is bro
    * **Historical:** Uses the empirical distribution of past returns.  
    * **GARCH-FHS:** A hybrid model using a GARCH(1,1) model (from the arch library) to forecast volatility combined with historical simulation on standardized residuals.  
 4. **Backtesting (risk_analyzer.py):** The VaR models were backtested using Kupiec's Proportion of Failures (POF) test to check the frequency of exceptions. The ES models were validated by comparing the predicted ES to the average of actual losses that exceeded the VaR threshold.  
-5. **Dynamic Rebalancing (portfolio_optimizer.py):** A quarterly rebalancing strategy was simulated by re-optimizing the portfolio at the end of each quarter and applying the new weights for the subsequent period. This was then compared against the static buy-and-hold strategy.
+5.  **Dynamic Rebalancing (`portfolio_optimizer.py`):** To contrast the static "Buy-and-Hold" approach, a dynamic rebalancing strategy was simulated. This strategy was implemented using the `run_dynamic_rebalancing` function with a frequency set to **Quarter End ('QE')**. The process works as follows:
+    * At the end of each quarter, the strategy uses all available historical return data *up to that point* to re-run the Sharpe Ratio optimization, calculating a new set of optimal weights.
+    * These new weights are then applied to the portfolio for the *entire next quarter* (the holding period).
+    * The daily returns for each holding period are calculated and then concatenated to create a single, continuous performance series for the dynamically rebalanced portfolio. This method allows the strategy to adapt to changing market conditions based on the most recent historical performance.
 
 ## **3. Optimal Portfolio Composition & Strategy Analysis**
 
@@ -86,9 +89,14 @@ During the analysis period, **GLD** delivered the highest annualized return (30.
 
 ### **3.3. Strategy Comparison: Dynamic Rebalancing vs. Buy-and-Hold**
 
-The performance of the initial "Buy-and-Hold" strategy was compared against a "Dynamic Rebalancing" strategy where weights were reset quarterly.
+To determine the most effective investment approach for the period, the performance of the static **"Buy-and-Hold"** strategy was compared against an active **"Dynamic Rebalancing"** strategy.
+
+* The **Buy-and-Hold** approach involves applying the initial optimal weights and holding them for the entire duration, representing a passive investment style.
+* The **Dynamic Rebalancing** approach, in contrast, actively adapts to the market. At the end of each quarter, it re-evaluates past performance to calculate new optimal weights, which are then held until the next rebalancing date. This strategy aims to systematically sell high and buy low, potentially reducing risk.
 
 ![Rebalancing vs. Buy-and-Hold](/images/20250811_200754_rebalancing_comparison.png)
+
+The following table and chart compare the results of these two distinct approaches.
 
 | Strategy | Annualized Return | Annualized Volatility | Sharpe Ratio | Max Drawdown (MDD) |
 | :---- | :---- | :---- | :---- | :---- |
