@@ -212,7 +212,7 @@ defaults:
       path: ""
       type: statistics
     values:
-      layout: single
+      layout: talk
       author_profile: true
       share: true
       comments: true
@@ -221,7 +221,7 @@ defaults:
       path: ""
       type: finance
     values:
-      layout: single
+      layout: talk
       author_profile: true
       share: true
       comments: true
