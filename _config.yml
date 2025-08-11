@@ -81,14 +81,22 @@ analytics:
 # Site Author
 author:
   name             : "Anderson Shin"
-  avatar           : "profile.JPG"
+  avatar           : "profile.JPG" # /images/profile.JPG 처럼 전체 경로를 쓰는 것이 더 안정적일 수 있습니다.
   bio              : "Wow, you entered my zone!"
   location         : "Hong Kong/Incheon, South Korea"
-  Email            : "kobito0520@gmail.com"
-  github           : "/Anderson-Shin"
-  instagram        : "god_meanseong"
-  linkedin         : "minseongshin"
-
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:kobito0520@gmail.com"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin-in"
+      url: "https://www.linkedin.com/in/minseongshin"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/Anderson-Shin"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      url: "https://www.instagram.com/god_meanseong"
 
 # Reading Files
 include:
