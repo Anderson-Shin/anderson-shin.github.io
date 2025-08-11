@@ -94,13 +94,15 @@ To determine the most effective investment approach for the period, the performa
 * The **Buy-and-Hold** approach involves applying the initial optimal weights and holding them for the entire duration, representing a passive investment style.
 * The **Dynamic Rebalancing** approach, in contrast, actively adapts to the market. At the end of each quarter, it re-evaluates past performance to calculate new optimal weights, which are then held until the next rebalancing date. This strategy aims to systematically sell high and buy low, potentially reducing risk.
 
+The following table and chart compare the results of these two distinct approaches.
+
 ![Rebalancing vs. Buy-and-Hold](/images/20250811_200754_rebalancing_comparison.png)
 
-The following table and chart compare the results of these two distinct approaches.
+
 
 | Strategy | Annualized Return | Annualized Volatility | Sharpe Ratio | Max Drawdown (MDD) |
 | :---- | :---- | :---- | :---- | :---- |
-| **Buy and Hold** | **33.55%** | **19.72%** | **1.46** | \-7.09% |
+| **Buy and Hold** | **27.37%** | **13.13%** | **1.72** | \-7.09% |
 | Dynamic Rebalancing | 29.83% | 21.93% | 1.14 | **\-5.86%** |
 
 **Analysis:** The **Buy-and-Hold** strategy generated a higher return and a superior Sharpe Ratio. This outperformance is attributed to the strong upward trend of both VTI and GLD during the period, where allowing the winners to run was more profitable than rebalancing. However, it is noteworthy that the Dynamic Rebalancing strategy provided better downside protection, as evidenced by its lower Maximum Drawdown.
