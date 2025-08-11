@@ -212,23 +212,23 @@ def es_backtest(returns, var, es):
 
 ### Correlation Heatmap of Risky Assets
 This heatmap visualizes the correlation coefficients between the daily returns of the risky assets in the portfolio. Values closer to 1 indicate a strong positive correlation, while values closer to -1 indicate a strong negative correlation. This helps in understanding diversification benefits.
-![Correlation Heatmap](correlation_heatmap.png)
+![Correlation Heatmap](/images/correlation_heatmap.png)
 
 ### Portfolio Performance
 This plot shows the cumulative returns of the optimal portfolio over the analyzed period. It illustrates the growth of an initial investment over time.
-![Portfolio Performance](portfolio_performance.png)
+![Portfolio Performance](/images/portfolio_performance.png)
 
 ### Portfolio Drawdown
 This chart displays the percentage decline from previous peaks in the portfolio's value. It highlights the largest peak-to-trough decline during the period, indicating the maximum loss an investor would have experienced from a peak.
-![Portfolio Drawdown](drawdown.png)
+![Portfolio Drawdown](/images/drawdown.png)
 
 ### Distribution of Returns with VaR Estimates
 This histogram shows the frequency distribution of the portfolio's daily returns. The vertical lines indicate the Value at Risk (VaR) estimates from the Parametric, Historical, and GARCH-FHS models, illustrating the estimated maximum loss at the 99% confidence level.
-![Distribution of Returns](returns_distribution.png)
+![Distribution of Returns](/images/returns_distribution.png)
 
 ### QQ-Plot of Optimal Portfolio Returns
 This Quantile-Quantile (QQ) plot compares the distribution of the portfolio's returns against a theoretical normal distribution. Deviations from the straight line indicate departures from normality, particularly "fat tails" which suggest a higher likelihood of extreme events.
-![QQ-Plot](qq_plot.png)
+![QQ-Plot](/images/qq_plot.png)
 
 ## Feedback on Analysis
 
