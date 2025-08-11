@@ -17,7 +17,7 @@ tags:
 
 ## Executive Summary
 
-This report presents a comparative analysis of Parametric, Non-Parametric (Historical), and GARCH-Filtered Historical Simulation (FHS) risk models for an optimized portfolio of your chosen ETFs from January 2020 to December 2023.
+This report presents a comparative analysis of Parametric, Non-Parametric (Historical), and GARCH-Filtered Historical Simulation (FHS) risk models for an optimized portfolio of your chosen ETFs from January 2024 to July 2025.
 
 The analysis concludes that while the GARCH-FHS model provides the lowest VaR estimate, its performance in predicting the magnitude of tail losses is less accurate than the Historical Simulation model. The **Historical Simulation model demonstrates the best overall performance**, passing the frequency backtest and accurately predicting the magnitude of tail losses in the ES backtest.
 
