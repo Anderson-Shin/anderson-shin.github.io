@@ -17,7 +17,7 @@ tags:
 
 # **ETF Portfolio Risk Analysis Report**
 
-This blog post is practical application for my previous post in the data analysis blog [“ETF Portfolio Risk Analysis: Backtesting Parametric vs. Non-Parametric Models”](https://https://anderson-shin.github.io/data_analysis/etf-risk-analysis-backtesting)  and demonstrates how rebalancing technique could be considered. I have added individual components performance data to give clearer view for diversification effect.
+This blog post is practical application for my previous post in the data analysis blog [“ETF Portfolio Risk Analysis: Backtesting Parametric vs. Non-Parametric Models”](https://anderson-shin.github.io/data_analysis/etf-risk-analysis-backtesting)  and demonstrates how rebalancing technique could be considered. I have added individual components performance data to give clearer view for diversification effect.
 
 ## **1. Executive Summary**
 
