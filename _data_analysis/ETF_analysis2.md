@@ -26,7 +26,7 @@ This report provides an in-depth risk analysis of an optimized portfolio compose
 **Key Findings:**
 
 1. **Optimal Risk Model:** The **Historical Simulation model** was identified as the most reliable risk assessment tool. It successfully passed the Kupiec's POF backtest with a high p-value (0.98) and its Expected Shortfall (ES) estimate of \-2.58% almost perfectly matched the average actual loss during tail events.  
-2. **Optimal Investment Strategy:** The **Buy-and-Hold strategy** delivered superior performance compared to dynamic rebalancing, achieving a higher Sharpe Ratio (1.46 vs. 1.14). This indicates that for the given period, maintaining the initial optimal allocation was more efficient than incurring the costs and potential whipsaws of frequent trading.  
+2. **Optimal Investment Strategy:** The **Buy-and-Hold strategy** delivered superior performance compared to dynamic rebalancing, achieving a higher Sharpe Ratio (1.72 vs. 1.14). This indicates that for the given period, maintaining the initial optimal allocation was more efficient than incurring the costs and potential whipsaws of frequent trading.  
 3. **Optimal Portfolio Composition:** The portfolio was allocated to **US Equities (VTI) at 32.85%** and **Gold (GLD) at 67.15%**. This structure leveraged the exceptionally low correlation (0.11) between the two assets to achieve effective diversification and strong risk-adjusted returns.
 
 ## **2. Methodology**
