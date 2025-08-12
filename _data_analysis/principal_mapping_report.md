@@ -14,16 +14,13 @@ tags:
   - Bond ETF
 ---
 
-
-# **Bond ETF Portfolio Risk Analysis: Backtesting a Dynamic VaR Model with Principal Mapping**
-
-## **1\. Introduction**
+# **1\. Introduction**
 
 This report presents a comprehensive Value at Risk (VaR) analysis for a diversified bond ETF portfolio. The primary objective was to implement a **dynamic VaR model** using the **Principal Mapping** technique and to rigorously validate its predictive accuracy. VaR is a critical risk metric that quantifies potential portfolio losses, and this analysis demonstrates a robust framework for its application in managing fixed-income risk.
 
-## **2\. Methodology**
+# **2\. Methodology**
 
-### **2.1. Portfolio and Risk Factors**
+## **2.1. Portfolio and Risk Factors**
 
 The analysis was conducted on a hypothetical **$1,000,000 portfolio** with equal initial weights (33.3% each) allocated to three distinct bond ETFs: **SHY, LQD, and TLT**. The specific characteristics of each ETF used in the model are as follows:
 
@@ -36,15 +33,15 @@ The analysis was conducted on a hypothetical **$1,000,000 portfolio** with equal
 
 Daily changes in the U.S. Treasury zero-coupon yield curve at key vertices (1Y, 2Y, 5Y, 7Y, 10Y, 20Y, 30Y) were defined as the primary risk factors driving portfolio value changes.
 
-### **2.2. VaR Calculation: Principal Mapping & Dynamic Estimation**
+## **2.2. VaR Calculation: Principal Mapping & Dynamic Estimation**
 
 The portfolio's risk was modeled in three distinct steps: mapping market value exposures, calculating price sensitivity, and computing the final dynamic VaR.
 
-#### **Step 1: Exposure Mapping (Position Vector, x)**
+### **Step 1: Exposure Mapping (Position Vector, x)**
 
 The market value of each ETF was mapped to the two nearest standard yield curve vertices based on its **Weighted Average Life (WAL)** using linear interpolation. The aggregated exposures at each vertex form the position vector **x**.
 
-#### **Step 2: Price Sensitivity (Dollar Duration Vector, DD)**
+### **Step 2: Price Sensitivity (Dollar Duration Vector, DD)**
 
 For each vertex i, the dollar duration was computed as:
 
@@ -56,7 +53,7 @@ Where:
 * $D_i$ is the Effective Duration associated with vertex i.  
 * The 0.01 factor scales the value to represent the dollar change for a 1 percentage point (100 basis points) change in yield.
 
-#### **Step 3: Dynamic VaR Calculation**
+### **Step 3: Dynamic VaR Calculation**
 
 To capture time-varying market volatility, a **252-day rolling window** was used. For each day t in the backtesting period, the VaR was calculated as:
 
@@ -67,7 +64,7 @@ Where:
 * $DD$ is the static Dollar Duration vector.  
 * $\Sigma_t$ is the covariance matrix of daily yield changes, re-estimated for each day t using data from the preceding 252 days.
 
-### **2.3. Model Validation: Backtesting & Kupiec's POF Test**
+## **2.3. Model Validation: Backtesting & Kupiec's POF Test**
 
 The model's accuracy was validated by comparing the forecasted daily VaR against the portfolio's actual daily Profit & Loss (P&L). An "exception" is recorded if $\text{P&L}_t\leq\text{VaR}_t$
 
@@ -83,15 +80,15 @@ Where:
 
 The resulting statistic is compared against a Chi-squared distribution to obtain a p-value. A p-value greater than 0.05 indicates that the model is well-calibrated.
 
-## **3\. Results and Analysis**
+# **3\. Results and Analysis**
 The analysis begins by examining the broader market context provided by the yield curve's behavior, followed by a detailed assessment of the portfolio's performance and the VaR model's accuracy.
-### **3.1. Yield Curve Dynamics**
+## **3.1. Yield Curve Dynamics**
 
 The chart below displays the historical movement of the U.S. Treasury zero-coupon yield curve from 2022 to 2025. A significant upward trend in interest rates across all maturities is visible throughout 2022 and early 2023, reflecting a period of monetary tightening. The subsequent period, which includes our backtesting timeframe, is characterized by heightened volatility and fluctuating yields. This dynamic environment provides a robust setting for testing the VaR model's ability to adapt to changing market conditions.
 
 ![Yield Curve dynamics](/images/yield_curve_dynamics.png)
 
-### **3.2. Portfolio Performance Summary**
+## **3.2. Portfolio Performance Summary**
 
 Over the backtesting period from January 3, 2024, to July 30, 2025, the portfolio exhibited the following performance characteristics:
 
@@ -103,7 +100,7 @@ Over the backtesting period from January 3, 2024, to July 30, 2025, the portfoli
 
 The **Portfolio Cumulative Return** chart below illustrates the growth trajectory of the portfolio throughout the period. The Average 99% VaR indicates that, on an average day, the model predicted a maximum potential loss of approximately $11,533 at the 99% confidence level.
 
-### **3.3. Risk Factor and Concentration Analysis**
+## **3.3. Risk Factor and Concentration Analysis**
 
 ![Yield Change Correlation Heatmap](/images/yield_change_correlation_heatmap.png)
 
@@ -123,7 +120,7 @@ The **Risk Concentration** chart visually represents the mapped exposures from t
 | 20 | $233,000.00 |
 | 30 | $195,000.00 |
 
-### **3.4. VaR Model Validation**
+## **3.4. VaR Model Validation**
 
 ![Daily P&L Distribution](/images/daily_pnl_distribution.png)
 
@@ -153,13 +150,13 @@ The specific details of the three observed exceptions are provided in the table 
 
 The **Daily P\&L vs. 99% VaR** chart visually confirms these findings, showing the three instances where the daily loss (gray line) breached the dynamic VaR threshold (red dashed line).
 
-## **4\. Conclusion**
+# **4\. Conclusion**
 
 This analysis successfully implemented and validated a dynamic Value at Risk model for a diversified bond portfolio. The results demonstrate that the portfolio's risk is primarily driven by its exposure to long-duration assets, with risk factors exhibiting strong co-movement. The dynamic VaR model, which leverages Principal Mapping and a rolling-window estimation, proved highly effective.
 
 The backtesting results, confirmed by a statistically insignificant Kupiec's POF test (p-value \= 0.242), show the model is **well-calibrated and provides a reliable measure of potential portfolio losses**. This framework therefore serves as a robust and practical tool for active risk management of fixed-income portfolios.
 
-## **5\. Limitations and Further Research**
+# **5\. Limitations and Further Research**
 
 While the implemented model proved to be robust, it is important to acknowledge its limitations. The **Principal Mapping** technique, while efficient, does not fully capture non-linear risks such as **convexity**. For portfolios with significant optionality (e.g., mortgage-backed securities), this could lead to an underestimation of risk under large yield shifts.
 
