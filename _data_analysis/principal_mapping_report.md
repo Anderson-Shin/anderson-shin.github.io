@@ -69,7 +69,7 @@ Where:
 
 ### **2.3. Model Validation: Backtesting & Kupiec's POF Test**
 
-The model's accuracy was validated by comparing the forecasted daily VaR against the portfolio's actual daily Profit & Loss (P\&L). An "exception" is recorded if $\text{P\&L}_t\leq\text{VaR}_t$
+The model's accuracy was validated by comparing the forecasted daily VaR against the portfolio's actual daily Profit & Loss (P&L). An "exception" is recorded if $\text{P&L}_t\leq\text{VaR}_t$
 
 The statistical validity was assessed using **Kupiec's Proportion of Failures (POF) test**. The test uses a likelihood ratio statistic, LR\_POF, to determine if the observed failure rate is consistent with the expected failure rate. The formula is:
 
