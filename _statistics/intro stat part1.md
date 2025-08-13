@@ -1,4 +1,17 @@
-# **Probability for Everyone (Part 1): Welcome to the World of Probability**
+---
+title: "Introductory Statistics (Part 1): Setting the Stage"
+collection: statistics
+permalink: /statistics/probability-for-everyone-part1/
+excerpt: "The first post in a beginner-friendly series on probability. This introduction sets the stage by explaining the fundamental concepts of Sample Space and Events, the building blocks for understanding uncertainty."
+date: 2025-08-13
+tags:
+  - Probability
+  - Sample Space
+  - Events
+  - Statistics
+---
+
+# **Introductory Statistics (Part 1): Welcome to the World of Probability**
 
 Does the word "probability" make you think of complex equations and confusing jargon? If so, I have some good news for you. At its heart, probability is simply my favorite way of understanding uncertainty, and it's something I believe we all use intuitively every day. When you check the weather forecast, decide whether to bring an umbrella, or guess who will win the big game, you're thinking in terms of probability.
 
@@ -12,7 +25,7 @@ Before I can talk about the chances of something happening, we first need to agr
 
 Imagine a simple experiment: I roll a standard six-sided die. What are the possible outcomes?
 
-I could roll a 1, a 2, a 3, a 4, a 5, or a 6\. That's the complete list. This set of all possible outcomes is what I call the **Sample Space**.
+I could get value of 1, 2, 3, 4, 5, or a 6\. That's the complete list. This set of all possible outcomes is what I call the **Sample Space**.
 
 **Sample Space (S):** The set of all possible outcomes of an experiment.
 
@@ -37,4 +50,4 @@ Sometimes I want to combine events. The language here comes from set theory, but
 * **Intersection (E ∩ F or EF):** This means event E **AND** event F happen. Using the same E and F, the only outcome that is both even *and* less than 3 is 2\. So, E ∩ F is {2}.  
 * **Complement (Eᶜ):** This means event E **DOES NOT** happen. If E is "rolling an even number" {2, 4, 6}, then its complement Eᶜ is "not rolling an even number," which is {1, 3, 5}.
 
-[Image of a Venn diagram for three sets](https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcT-NV0Ar1SVq3cc89LhFFCCvJfUYIU9yWaDokAmyuhrPd4tgdnxox3pMa2kQnH4kecSQ0hYUUuiSNBh4XYsw3x8e30A9KcUTY1hrLjA-KxIdmgcQUk)
+![Image of a Venn diagram for three sets](/images/Image of a Venn diagram for three sets.jpeg)
