@@ -25,34 +25,37 @@ Before I can talk about the chances of something happening, we first need to agr
 
 Imagine a simple experiment: I roll a standard six-sided die. What are the possible outcomes?
 
-I could get value of 1, 2, 3, 4, 5, or a 6\. That's the complete list. This set of all possible outcomes is what I call the **Sample Space**.
+I could get a value of 1, 2, 3, 4, 5, or a 6. That's the complete list. This set of all possible outcomes is what I call the **Sample Space**.
 
 **Sample Space (S):** The set of all possible outcomes of an experiment.
 
-Now, let's say I'm playing a game where I win if I roll an even number. I'm not interested in every single outcome, but a specific group of outcomes: ${2, 4, 6}$. This specific outcome or set of outcomes I care about is called an **Event**.
+Now, let's say I'm playing a game where I win if I roll an even number. I'm not interested in every single outcome, but a specific group of outcomes: `{2, 4, 6}`. This specific outcome or set of outcomes I care about is called an **Event**.
 
 **Event (E):** A subset of the sample space. It's the specific outcome or group of outcomes I am interested in.
 
 Here are a few more quick examples from my point of view:
 
 * **My Experiment:** Flipping a coin.  
-  * **Sample Space (S):** ${\text{Heads}, \text{Tails}}$  
+  * **Sample Space (S):** `{Heads, Tails}`  
   * **Event (E):** The coin landing on Heads.  
 * **My Experiment:** Drawing a card from a standard deck.  
-  * **Sample Space (S):** ${\text{All 52 cards}}$  
+  * **Sample Space (S):** `{All 52 cards}`  
   * **Event (E):** Drawing a King.
 
 ### **A Touch of Terminology**
 
 Sometimes I want to combine events. The language here comes from set theory, but the ideas are very simple.
 
-![Image of a Venn diagram for three sets](/images/Image of a Venn diagram for three sets.jpeg)
+!
 
-* **Union $(E ∪ F)$:** This means event E **OR** event F (or both) happens. If $E$ is "rolling an even number" ${2, 4, 6}$ and $F$ is "rolling a number less than 3" ${1, 2}$, then $(E ∪ F)$ is ${1, 2, 4, 6}$.  
-* **Intersection (E ∩ F or EF):** This means event E **AND** event F happen. Using the same E and F, the only outcome that is both even *and* less than 3 is 2\. So, $(E ∩ F)$ is ${2}$.  
-* **Complement (Eᶜ):** This means event E **DOES NOT** happen. If E is "rolling an even number" ${2, 4, 6}$, then its complement Eᶜ is "not rolling an even number," which is ${1, 3, 5}$.
+[Image of a Venn diagram for three sets]
+(/images/Image of a Venn diagram for three sets.jpeg)
 
-### **What's Next?
+* **Union $(E ∪ F)$:** This means event E **OR** event F (or both) happens. If $E$ is "rolling an even number" `{2, 4, 6}` and $F$ is "rolling a number less than 3" `{1, 2}`, then $(E ∪ F)$ is `{1, 2, 4, 6}`.
+* **Intersection (E ∩ F or EF):** This means event E **AND** event F happen. Using the same E and F, the only outcome that is both even *and* less than 3 is 2. So, $(E ∩ F)$ is `{2}`.
+* **Complement (Eᶜ):** This means event E **DOES NOT** happen. If E is "rolling an even number" `{2, 4, 6}`, then its complement Eᶜ is "not rolling an even number," which is `{1, 3, 5}`.
+
+### **What's Next?**
 
 And that's it for today. We've done the essential first step: we've learned how to define the world of our experiment with a Sample Space and how to specify the outcomes we're interested in with Events. We haven't calculated any probabilities yet, but we've built the stage on which all the action will take place.
 
