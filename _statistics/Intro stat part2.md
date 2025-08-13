@@ -52,7 +52,7 @@ But what if I look at the card and tell you, "This card is a face card" (a Jack,
 
 So, the new probability is $\frac{4}{12} = \frac{1}{3}$.
 
-This is conditional probability: the probability of an event given that another event has occurred. We write it as $P(E|F)$ and it reads "the probability of E given F." The formula for this perfectly captures our intuition:
+This is conditional probability: the probability of an event given that another event has occurred. We write it as $P(E\|F)$ and it reads "the probability of E given F." The formula for this perfectly captures our intuition:
 
 $P(E\|F) = \frac{P(E \cap F)}{P(F)}$
 
