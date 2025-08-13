@@ -29,17 +29,17 @@ I could get value of 1, 2, 3, 4, 5, or a 6\. That's the complete list. This set 
 
 **Sample Space (S):** The set of all possible outcomes of an experiment.
 
-Now, let's say I'm playing a game where I win if I roll an even number. I'm not interested in every single outcome, but a specific group of outcomes: &lbrace;2, 4, 6\}$. This specific outcome or set of outcomes I care about is called an **Event**.
+Now, let's say I'm playing a game where I win if I roll an even number. I'm not interested in every single outcome, but a specific group of outcomes: &lbrace;2, 4, 6&rbrace;. This specific outcome or set of outcomes I care about is called an **Event**.
 
 **Event (E):** A subset of the sample space. It's the specific outcome or group of outcomes I am interested in.
 
 Here are a few more quick examples from my point of view:
 
 * **My Experiment:** Flipping a coin.  
-  * **Sample Space (S):** &lbrace;\text{Heads}, \text{Tails}\}$  
+  * **Sample Space (S):** &lbrace;\text{Heads}, \text{Tails}&rbrace;  
   * **Event (E):** The coin landing on Heads.  
 * **My Experiment:** Drawing a card from a standard deck.  
-  * **Sample Space (S):** &lbrace;\text{All 52 cards}\}$  
+  * **Sample Space (S):** &lbrace;\text{All 52 cards}&rbrace;  
   * **Event (E):** Drawing a King.
 
 ### **A Touch of Terminology**
@@ -48,9 +48,9 @@ Sometimes I want to combine events. The language here comes from set theory, but
 
 ![Image of a Venn diagram for three sets](/images/Image of a Venn diagram for three sets.jpeg)
 
-* **Union $(E ∪ F)$:** This means event E **OR** event F (or both) happens. If $E$ is "rolling an even number" &lbrace;2, 4, 6\}$ and $F$ is "rolling a number less than 3" &lbrace;1, 2\}$, then $(E ∪ F)$ is &lbrace;1, 2, 4, 6\}$.  
-* **Intersection (E ∩ F or EF):** This means event E **AND** event F happen. Using the same E and F, the only outcome that is both even *and* less than 3 is 2\. So, $(E ∩ F)$ is &lbrace;2\}$.  
-* **Complement (Eᶜ):** This means event E **DOES NOT** happen. If E is "rolling an even number" &lbrace;2, 4, 6\}$, then its complement Eᶜ is "not rolling an even number," which is &lbrace;1, 3, 5\}$.
+* **Union $(E ∪ F)$:** This means event E **OR** event F (or both) happens. If $E$ is "rolling an even number" &lbrace;2, 4, 6&rbrace; and $F$ is "rolling a number less than 3" &lbrace;1, 2&rbrace;, then $(E ∪ F)$ is &lbrace;1, 2, 4, 6&rbrace;.  
+* **Intersection (E ∩ F or EF):** This means event E **AND** event F happen. Using the same E and F, the only outcome that is both even *and* less than 3 is 2\. So, $(E ∩ F)$ is &lbrace;2&rbrace;.  
+* **Complement (Eᶜ):** This means event E **DOES NOT** happen. If E is "rolling an even number" &lbrace;2, 4, 6&rbrace;, then its complement Eᶜ is "not rolling an even number," which is &lbrace;1, 3, 5&rbrace;.
 
 ### **What's Next?
 
