@@ -54,7 +54,7 @@ So, the new probability is $\frac{4}{12} = \frac{1}{3}$.
 
 This is conditional probability: the probability of an event given that another event has occurred. We write it as $P(E|F)$ and it reads "the probability of E given F." The formula for this perfectly captures our intuition:
 
-$P(E|F) = \frac{P(E \cap F)}{P(F)}$
+$P(E\|F) = \frac{P(E \cap F)}{P(F)}$
 
 Where:
 
@@ -67,8 +67,7 @@ Sometimes, new information is completely useless. It doesn't change the probabil
 Imagine I flip a coin and you roll a die. The probability your die shows a 6 is $\frac{1}{6}$. If I tell you my coin landed on Heads, does that change the probability of you rolling a 6? Not at all. The two events are independent.
 
 In formal terms, two events E and F are independent if knowing F has occurred does not change the probability of E.  
-$P(E|F) = P(E)$
-From this, we can derive the most common test for independence. If we substitute this into the conditional probability formula, we get the simple multiplication rule for independent events:  
+From $P(E|F) = P(E)$ we can derive the most common test for independence. If we substitute this into the conditional probability formula, we get the simple multiplication rule for independent events:  
 $P(E \cap F) = P(E)P(F)$
 
 If the probability of two events happening together is just the product of their individual probabilities, they have nothing to do with each other.
