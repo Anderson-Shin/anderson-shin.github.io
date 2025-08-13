@@ -58,7 +58,7 @@ $P(E\|F) = \frac{P(E \cap F)}{P(F)}$
 
 Where:
 
-It tells us to focus only on the outcomes where $F$ has happened $P(F)$ becomes our new denominator) and then find the proportion of those outcomes that also include $E(P(E∩F))$.
+It tells us to focus only on the outcomes where $F$ has happened $P(F)$ becomes our new denominator) and then find the proportion of those outcomes that also include $(P(E∩F))$.
 
 ### **When Information Changes Nothing: Independent Events**
 
