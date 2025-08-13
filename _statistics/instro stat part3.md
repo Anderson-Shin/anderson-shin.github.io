@@ -1,5 +1,5 @@
 ---
-title: "Probability for Everyone (Part 3): Reversing Time with Bayes' Formula"
+title: "Introductory Statistics (Part 3): Reversing Time with Bayes' Formula"
 collection: statistics
 permalink: /statistics/probability-for-everyone-part3/
 excerpt: "The final post in our beginner-friendly introductory probability series. Discover the power of Bayes' Formula to work backward from an effect to its cause. We explore this profound concept with a clear, real-world example of medical testing."
