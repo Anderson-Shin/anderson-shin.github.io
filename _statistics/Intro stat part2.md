@@ -11,7 +11,7 @@ tags:
   - Statistics
 ---
 
-# **Probability for Everyone (Part 2): Putting Numbers on Possibilities**
+# **Putting Numbers on Possibilities**
 
 Welcome back. In our first post, we set the stage for our story. We learned how to define the world of an experiment with a **Sample Space** and how to identify the specific outcomes we care about with **Events**. It was all about organizing our thoughts.
 
@@ -52,9 +52,9 @@ But what if I look at the card and tell you, "This card is a face card" (a Jack,
 
 So, the new probability is $\frac{4}{12} = \frac{1}{3}$.
 
-This is conditional probability: the probability of an event given that another event has occurred. We write it as $P(E|F)$, which reads "the probability of E given F." The formula for this perfectly captures our intuition:
+This is conditional probability: the probability of an event given that another event has occurred. We write it as P(E|F), which reads "the probability of E given F." The formula for this perfectly captures our intuition:
 
-$P(E|F) = \frac{P(E \cap F)}{P(F)}$
+$P(E|F)$ = $\frac{P(E \cap F)}{P(F)}$
 
 It tells us to focus only on the outcomes where F has happened (P(F) becomes our new denominator) and then find the proportion of those outcomes that also include E (P(E∩F)).
 

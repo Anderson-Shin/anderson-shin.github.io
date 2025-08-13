@@ -11,7 +11,7 @@ tags:
   - Statistics
 ---
 
-# **Introductory Statistics (Part 1): Welcome to the World of Probability**
+# **Welcome to the World of Probability**
 
 Does the word "probability" make you think of complex equations and confusing jargon? If so, I have some good news for you. At its heart, probability is simply my favorite way of understanding uncertainty, and it's something I believe we all use intuitively every day. When you check the weather forecast, decide whether to bring an umbrella, or guess who will win the big game, you're thinking in terms of probability.
 
