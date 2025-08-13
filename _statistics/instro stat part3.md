@@ -18,7 +18,7 @@ Hello and welcome to the final installment of our instroductory probability seri
 
 Today, we assemble those pieces to explore one of the most profound ideas in this field: **Bayes' Formula**. It’s a beautifully simple equation that allows us to do something that feels almost like reversing time: to work backward from a known effect to find the probability of its original cause. It’s a tool for updating our beliefs in a logical way, and it quietly powers much of our modern world.
 
-### **A Common, Confusing Problem**
+## **A Common, Confusing Problem**
 
 Let's begin with a classic scenario that shows why we need a tool like Bayes' Formula.
 
@@ -31,7 +31,7 @@ Now, suppose you take the test, and your result comes back **positive**. What is
 
 Most people's intuition jumps to a high number, like 99% or perhaps a bit less. The reality, however, is quite different, and this is where our intuition can often lead us astray.
 
-#### **Let's Think It Through Intuitively**
+### **Let's Think It Through Intuitively**
 
 Instead of starting with a formula, let's imagine a representative group of 10,000 people.
 
@@ -49,7 +49,7 @@ The probability that you have the disease, given your positive test, is the rati
 Total number of people who test positiveNumber of sick people who test positive​=21010​≈0.047  
 That's just **4.7%**. This is a surprisingly low number. It's because the disease is so rare that the small percentage of false positives from the very large healthy population ends up being a much larger group than the true positives from the small sick population.
 
-### **The Elegance of Bayes' Formula**
+## **The Elegance of Bayes' Formula**
 
 What we just did with a concrete example is exactly what Bayes' Formula does in a more general way. It provides a clean, formal structure for this "reversal" of logic.
 
@@ -79,12 +79,12 @@ $P(A∣B)=0.020970.99×0.001​≈0.020970.00099​≈0.0472$
 
 We arrive at the same result, about 4.7%. The formula is a compact and reliable way to structure this kind of reasoning.
 
-### **A Way of Thinking**
+## **A Way of Thinking**
 
 Bayes' Formula is more than just an equation; it's a model for learning. It shows us how to logically update our initial beliefs $(P(A))$ in the face of new evidence (B) to arrive at a more refined, posterior belief ($P(A∣B)$). This principle is the engine behind much of modern data science and artificial intelligence.
 
-### **Series Conclusion**
+## **Series Conclusion**
 
 And with that, our journey comes to a close. We started by simply setting the stage with sample spaces and events. We established the rules of the game with the axioms of probability. We then learned how to adjust our views with conditional probability, and finally, we've seen how to reverse our logic to uncover the probability of a cause from its effect.
 
-I hope this series has helped demystify the world of probability for you. It's a field that combines rigorous logic with a deep understanding of uncertainty, and it's a tool that can help us all think more clearly about the world around us. Thank you for joining me.
+I hope this series has helped demystify the world of probability for you. It's a field that combines rigorous logic with a deep understanding of uncertainty, and it's a tool that can help us all think more clearly about the world around us.
