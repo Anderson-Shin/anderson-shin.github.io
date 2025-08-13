@@ -52,3 +52,8 @@ Sometimes I want to combine events. The language here comes from set theory, but
 * **Intersection (E ∩ F or EF):** This means event E **AND** event F happen. Using the same E and F, the only outcome that is both even *and* less than 3 is 2\. So, E ∩ F is {2}.  
 * **Complement (Eᶜ):** This means event E **DOES NOT** happen. If E is "rolling an even number" {2, 4, 6}, then its complement Eᶜ is "not rolling an even number," which is {1, 3, 5}.
 
+### **What's Next?
+
+And that's it for today. We've done the essential first step: we've learned how to define the world of our experiment with a Sample Space and how to specify the outcomes we're interested in with Events. We haven't calculated any probabilities yet, but we've built the stage on which all the action will take place.
+
+In the next post, we will start putting numbers to these ideas. We'll introduce the fundamental rules of probability and see how they allow us to calculate the chances of these events happening. I hope you'll join me for it.
