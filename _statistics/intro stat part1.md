@@ -17,11 +17,11 @@ Does the word "probability" make you think of complex equations and confusing ja
 
 This is the first post in a friendly, three-part series where I'll guide you through the fundamentals of probability theory. I promise, there's no scary math ahead. I'm going to start from the very beginning, using simple examples to build a solid foundation. So grab a cup of coffee, get comfortable, and let's begin our journey together.
 
-### **The Stage for Our Story: Sample Space and Events**
+## **The Stage for Our Story: Sample Space and Events**
 
 Before I can talk about the chances of something happening, we first need to agree on what *can* happen. In probability, I like to call this "stage" for our experiment the **Sample Space**.
 
-#### **The Intuitive Idea**
+### **The Intuitive Idea**
 
 Imagine a simple experiment: I roll a standard six-sided die. What are the possible outcomes?
 
@@ -42,12 +42,13 @@ Here are a few more quick examples from my point of view:
   * **Sample Space (S):** {All 52 cards}  
   * **Event (E):** Drawing a King.
 
-#### **A Touch of Terminology**
+### **A Touch of Terminology**
 
 Sometimes I want to combine events. The language here comes from set theory, but the ideas are very simple.
+
+![Image of a Venn diagram for three sets](/images/Image of a Venn diagram for three sets.jpeg)
 
 * **Union (E ∪ F):** This means event E **OR** event F (or both) happens. If E is "rolling an even number" {2, 4, 6} and F is "rolling a number less than 3" {1, 2}, then E ∪ F is {1, 2, 4, 6}.  
 * **Intersection (E ∩ F or EF):** This means event E **AND** event F happen. Using the same E and F, the only outcome that is both even *and* less than 3 is 2\. So, E ∩ F is {2}.  
 * **Complement (Eᶜ):** This means event E **DOES NOT** happen. If E is "rolling an even number" {2, 4, 6}, then its complement Eᶜ is "not rolling an even number," which is {1, 3, 5}.
 
-![Image of a Venn diagram for three sets](/images/Image of a Venn diagram for three sets.jpeg)
