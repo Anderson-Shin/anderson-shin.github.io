@@ -4,7 +4,8 @@ collection: statistics
 permalink: /statistics/random-variables-part4/
 excerpt: "The fourth post in our series on random variables. We explore two of the most fundamental concepts for summarizing distributions: Expectation (the average outcome) and Variance (the measure of spread or risk)."
 date: 2025-08-15
-use_math: True
+# This line enables math rendering in many Jekyll themes
+use_math: true
 tags:
   - Expectation
   - Variance
