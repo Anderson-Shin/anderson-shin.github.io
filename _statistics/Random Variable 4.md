@@ -49,14 +49,16 @@ $E[X] = \int_{\alpha}^{\beta} x \cdot \frac{1}{\beta-\alpha}dx = \frac{1}{\beta-
   
 * Example 2: Expectation of an Exponential Random Variable  
 An exponential random variable has a PDF of $f(x) = \lambda e^{-\lambda x}$ for $x \ge 0$.
-
-  $E[X] = \int_{0}^{\infty} x(\lambda e^{-\lambda x})dx$.  
-  Using integration by parts: 
-  
-  ($\int udv = uv - \int vdu$) with $u=x$ and $dv = \lambda e^{-\lambda x} dx$, we get:
-
-  $\begin{align}E[X] &= \left[ -x e^{-\lambda x} \right]_{0}^{\infty} - \int_{0}^{\infty} (-e^{-\lambda x})dx \\ 
-  &= (0-0) + \int_{0}^{\infty} e^{-\lambda x}dx\\ &= \left[ -\frac{1}{\lambda} e^{-\lambda x} \right]_{0}^{\infty}\\ &= (0) - (-\frac{1}{\lambda}) = \frac{1}{\lambda}\end{align}$
+$$
+E[X] = \int_{0}^{\infty} x(\lambda e^{-\lambda x})dx.
+$$
+Using integration by parts ($\int u\,dv = uv - \int v\,du$) with $u=x$ and $dv = \lambda e^{-\lambda x} dx$, we get:
+\begin{align*}
+E[X] &= \left[ -x e^{-\lambda x} \right]_{0}^{\infty} - \int_{0}^{\infty} (-e^{-\lambda x})dx \\
+&= (0-0) + \int_{0}^{\infty} e^{-\lambda x}dx \\
+&= \left[ -\frac{1}{\lambda} e^{-\lambda x} \right]_{0}^{\infty} \\
+&= (0) - \left(-\frac{1}{\lambda}\right) = \frac{1}{\lambda}
+\end{align*}
 
   If events occur at a rate $\lambda$, the expected time until the first event is $1/\lambda$.
 
