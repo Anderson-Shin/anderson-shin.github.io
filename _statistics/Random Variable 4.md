@@ -45,12 +45,13 @@ For a continuous random variable, we replace the sum with an integral.
 
 * Example 1: Uniform Distribution  
 For a uniform distribution on the interval $(\alpha,\beta)$, the PDF is $f(x) = \frac{1}{\beta-\alpha}$.  
-$E[X] = \int_{\alpha}^{\beta} x \cdot \frac{1}{\beta-\alpha} \,dx = \frac{1}{\beta-\alpha} \left[ \frac{x^2}{2} \right]_{\alpha}^{\beta} = \frac{\alpha+\beta}{2}$.  
+$E[X] = \int_{\alpha}^{\beta} x \cdot \frac{1}{\beta-\alpha}dx = \frac{1}{\beta-\alpha} \left[ \frac{x^2}{2} \right]_{\alpha}^{\beta} = \frac{\alpha+\beta}{2}$.
+  
 * Example 2: Expectation of an Exponential Random Variable  
 An exponential random variable has a PDF of $f(x) = \lambda e^{-\lambda x}$ for $x \ge 0$.  
-$E[X] = \int_{0}^{\infty} x(\lambda e^{-\lambda x}) \,dx$.  
-Using integration by parts ($\int u \,dv = uv - \int v \,du$) with $u=x$ and $dv = \lambda e^{-\lambda x} dx$, we get:  
-$E[X] = \left[ -x e^{-\lambda x} \right]_{0}^{\infty} - \int_{0}^{\infty} (-e^{-\lambda x}) \,dx = (0-0) + \int_{0}^{\infty} e^{-\lambda x} \,dx$  
+$E[X] = \int_{0}^{\infty} x(\lambda e^{-\lambda x})dx$.  
+Using integration by parts ($\int u \,dv = uv - \int vdu$) with $u=x$ and $dv = \lambda e^{-\lambda x} dx$, we get:  
+$E[X] = \left[ -x e^{-\lambda x} \right]_{0}^{\infty} - \int_{0}^{\infty} (-e^{-\lambda x}) \,dx = (0-0) + \int_{0}^{\infty} e^{-\lambda x}dx$  
 $E[X] = \left[ -\frac{1}{\lambda} e^{-\lambda x} \right]_{0}^{\infty} = (0) - (-\frac{1}{\lambda}) = \frac{1}{\lambda}$.  
 If events occur at a rate $\lambda$, the expected time until the first event is $1/\lambda$.
 
