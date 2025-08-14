@@ -20,7 +20,7 @@ tags:
 
 ## **A Deep Dive into Random Variables, Post 3: Exploring Continuous Random Variables**
 
-In our first two posts, we built a [solid foundation](https://www.google.com/search?q=https://anderson-shin.github.io/statistics/random-variables-part1/) and explored the world of [discrete random variables](https://anderson-shin.github.io/statistics/random-variables-part2/). Now, we pivot from counting to measuring. Welcome to the domain of **continuous random variables**\!
+In our first two posts, we built a [solid foundation](https://anderson-shin.github.io/statistics/random-variables-part1/) and explored the world of [discrete random variables](https://anderson-shin.github.io/statistics/random-variables-part2/). Now, we pivot from counting to measuring. Welcome to the domain of **continuous random variables**\!
 
 What is the exact temperature tomorrow? How long will a battery last? What is a person's precise height? These values can fall anywhere within a continuous range.
 
@@ -119,7 +119,7 @@ The "bell curve," central to statistics due to its prevalence in nature and its 
 ## Distribution visualzation
 To truly understand how these distributions behave, it's best to see them in action. The interactive tool below allows you to adjust the parameters for each distribution and watch how the Probability Density Function (PDF) and Cumulative Distribution Function (CDF) change in real-time.
 
-<iframe src="/assets/continuous_distribution_visualization.html" 
+<iframe src="/assets/continuous_distribution_pdf.html" 
         width="100%" 
         height="750" 
         style="border:1px solid #ccc; border-radius: 8px;" 
