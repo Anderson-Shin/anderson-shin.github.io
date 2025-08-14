@@ -4,7 +4,6 @@ collection: statistics
 permalink: /statistics/random-variables-part4/
 excerpt: "The fourth post in our series on random variables. We explore two of the most fundamental concepts for summarizing distributions: Expectation (the average outcome) and Variance (the measure of spread or risk)."
 date: 2025-08-15
-# This line enables math rendering in many Jekyll themes
 use_math: true
 tags:
   - Expectation
@@ -55,12 +54,14 @@ $$
 E[X] = \int_{0}^{\infty} x(\lambda e^{-\lambda x})dx.
 $$
 Using integration by parts ($\int u\,dv = uv - \int v\,du$) with $u=x$ and $dv = \lambda e^{-\lambda x} dx$, we get:
+$$
 \begin{align*}
 E[X] &= \left[ -x e^{-\lambda x} \right]_{0}^{\infty} - \int_{0}^{\infty} (-e^{-\lambda x})dx \\
 &= (0-0) + \int_{0}^{\infty} e^{-\lambda x}dx \\
 &= \left[ -\frac{1}{\lambda} e^{-\lambda x} \right]_{0}^{\infty} \\
 &= (0) - \left(-\frac{1}{\lambda}\right) = \frac{1}{\lambda}
 \end{align*}
+$$
 
   If events occur at a rate $\lambda$, the expected time until the first event is $1/\lambda$.
 
