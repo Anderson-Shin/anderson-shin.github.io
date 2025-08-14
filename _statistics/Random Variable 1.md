@@ -12,9 +12,7 @@ tags:
   - Statistics
 ---
 
-# **A Deep Dive into Random Variables (Part 1)**
-
-## **A Deep Dive into Random Variables, Post 1: The Foundation**
+# **Foundations of Random Variables**
 
 Welcome to the first post in our series on random variables\! If you've ever dabbled in statistics or probability, you've likely come across this term. But what exactly is a **random variable**? Is it as mysterious as it sounds? 🤔
 
