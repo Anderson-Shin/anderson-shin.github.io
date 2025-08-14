@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuous Distribution Visualizer (PDF & CDF)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .tab-active {
+            background-color: #059669; /* Green */
+            color: white;
+        }
+        .tab-inactive {
+            background-color: #e2e8f0;
+            color: #475569;
+        }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #059669;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #059669;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">Continuous Distribution Visualizer</h1>
+            <p class="mt-2 text-lg text-slate-600">Explore the PDF and CDF of common continuous distributions.</p>
+        </header>
+
+        <!-- Tabs -->
+        <div class="mb-6">
+            <div class="flex flex-wrap justify-center gap-2 rounded-lg bg-slate-100 p-2" role="tablist">
+                <button id="tab-uniform" class="tab-button tab-active flex-grow sm:flex-grow-0 px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200" role="tab">Uniform</button>
+                <button id="tab-exponential" class="tab-button tab-inactive flex-grow sm:flex-grow-0 px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200" role="tab">Exponential</button>
+                <button id="tab-gamma" class="tab-button tab-inactive flex-grow sm:flex-grow-0 px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200" role="tab">Gamma</button>
+                <button id="tab-normal" class="tab-button tab-inactive flex-grow sm:flex-grow-0 px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200" role="tab">Normal</button>
+            </div>
+        </div>
+
+        <!-- Distribution Panels -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <!-- Uniform Panel -->
+            <div id="panel-uniform" class="panel">
+                <h2 class="text-2xl font-bold mb-1">Uniform Distribution</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="a-uniform" class="block font-medium mb-1">Lower Bound (a)</label>
+                        <input id="a-uniform" type="range" min="-10" max="10" step="0.5" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider">
+                        <div class="text-center mt-1 font-mono" id="a-uniform-value">a = 0.0</div>
+                    </div>
+                    <div>
+                        <label for="b-uniform" class="block font-medium mb-1">Upper Bound (b)</label>
+                        <input id="b-uniform" type="range" min="-10" max="10" step="0.5" value="5" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider">
+                        <div class="text-center mt-1 font-mono" id="b-uniform-value">b = 5.0</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div><canvas id="uniformPdfChart"></canvas></div>
+                    <div><canvas id="uniformCdfChart"></canvas></div>
+                </div>
+            </div>
+
+            <!-- Exponential Panel -->
+            <div id="panel-exponential" class="panel hidden">
+                 <h2 class="text-2xl font-bold mb-1">Exponential Distribution</h2>
+                <div class="mb-4">
+                    <label for="lambda-exponential" class="block font-medium mb-1">Rate (λ)</label>
+                    <input id="lambda-exponential" type="range" min="0.1" max="5" step="0.1" value="1" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider">
+                    <div class="text-center mt-1 font-mono" id="lambda-exponential-value">λ = 1.0</div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div><canvas id="exponentialPdfChart"></canvas></div>
+                    <div><canvas id="exponentialCdfChart"></canvas></div>
+                </div>
+            </div>
+            
+            <!-- Gamma Panel -->
+            <div id="panel-gamma" class="panel hidden">
+                <h2 class="text-2xl font-bold mb-1">Gamma Distribution</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="alpha-gamma" class="block font-medium mb-1">Shape (α)</label>
+                        <input id="alpha-gamma" type="range" min="1" max="20" step="0.5" value="2" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider">
+                        <div class="text-center mt-1 font-mono" id="alpha-gamma-value">α = 2.0</div>
+                    </div>
+                    <div>
+                        <label for="lambda-gamma" class="block font-medium mb-1">Rate (λ)</label>
+                        <input id="lambda-gamma" type="range" min="0.1" max="5" step="0.1" value="1" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider">
+                        <div class="text-center mt-1 font-mono" id="lambda-gamma-value">λ = 1.0</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div><canvas id="gammaPdfChart"></canvas></div>
+                    <div><canvas id="gammaCdfChart"></canvas></div>
+                </div>
+            </div>
+
+            <!-- Normal Panel -->
+            <div id="panel-normal" class="panel hidden">
+                <h2 class="text-2xl font-bold mb-1">Normal Distribution</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="mu-normal" class="block font-medium mb-1">Mean (μ)</label>
+                        <input id="mu-normal" type="range" min="-10" max="10" step="0.5" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider">
+                        <div class="text-center mt-1 font-mono" id="mu-normal-value">μ = 0.0</div>
+                    </div>
+                    <div>
+                        <label for="sigma-normal" class="block font-medium mb-1">Standard Deviation (σ)</label>
+                        <input id="sigma-normal" type="range" min="0.1" max="5" step="0.1" value="1" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer slider">
+                        <div class="text-center mt-1 font-mono" id="sigma-normal-value">σ = 1.0</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div><canvas id="normalPdfChart"></canvas></div>
+                    <div><canvas id="normalCdfChart"></canvas></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- NUMERICAL APPROXIMATIONS ---
+
+        // Gamma function (Lanczos approximation)
+        const lanczosGamma = (z) => {
+            const g = 7;
+            const p = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+            if (z < 0.5) return Math.PI / (Math.sin(Math.PI * z) * lanczosGamma(1 - z));
+            z -= 1;
+            let x = p[0];
+            for (let i = 1; i < g + 2; i++) x += p[i] / (z + i);
+            const t = z + g + 0.5;
+            return Math.sqrt(2 * Math.PI) * Math.pow(t, z + 0.5) * Math.exp(-t) * x;
+        };
+        
+        // Incomplete Gamma function (lower) via numerical integration (Simpson's rule)
+        const incompleteGamma = (s, x) => {
+            if (x < 0) return 0;
+            if (x === 0) return 0;
+            const integrand = (t) => Math.pow(t, s - 1) * Math.exp(-t);
+            let sum = 0;
+            const n = 1000; // Number of steps
+            const h = x / n;
+            for (let i = 0; i <= n; i++) {
+                const t = i * h;
+                let coeff = (i === 0 || i === n) ? 1 : (i % 2 === 1 ? 4 : 2);
+                sum += coeff * integrand(t);
+            }
+            return (h / 3) * sum;
+        };
+
+        // Error function (erf) approximation
+        const erf = (x) => {
+            const a1 = 0.254829592, a2 = -0.284496736, a3 = 1.421413741, a4 = -1.453152027, a5 = 1.061405429, p = 0.3275911;
+            const sign = (x >= 0) ? 1 : -1;
+            x = Math.abs(x);
+            const t = 1.0 / (1.0 + p * x);
+            const y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+            return sign * y;
+        };
+
+        // --- PDF/CDF CALCULATIONS ---
+        const getUniformData = (a, b) => {
+            if (a >= b) return { labels: [], pdf: [], cdf: [] };
+            const height = 1 / (b - a);
+            const range = b - a;
+            const plotStart = a - range * 0.2;
+            const plotEnd = b + range * 0.2;
+            const points = 200;
+            const labels = [], pdf = [], cdf = [];
+            for (let i = 0; i <= points; i++) {
+                const x = plotStart + (i / points) * (plotEnd - plotStart);
+                labels.push(x);
+                pdf.push((x >= a && x <= b) ? height : 0);
+                if (x < a) cdf.push(0);
+                else if (x > b) cdf.push(1);
+                else cdf.push((x - a) / (b - a));
+            }
+            return { labels, pdf, cdf };
+        };
+
+        const getExponentialData = (lambda) => {
+            const labels = [], pdf = [], cdf = [];
+            const plotEnd = 8 / lambda;
+            const points = 200;
+            for (let i = 0; i <= points; i++) {
+                const x = (i / points) * plotEnd;
+                labels.push(x);
+                pdf.push(lambda * Math.exp(-lambda * x));
+                cdf.push(1 - Math.exp(-lambda * x));
+            }
+            return { labels, pdf, cdf };
+        };
+
+        const getGammaData = (alpha, lambda) => {
+            const labels = [], pdf = [], cdf = [];
+            // Mean is alpha/lambda, variance is alpha/lambda^2
+            const mean = alpha / lambda;
+            const stdDev = Math.sqrt(alpha) / lambda;
+            const plotEnd = Math.max(1, mean + 4 * stdDev);
+            const points = 200;
+            const gammaAlpha = lanczosGamma(alpha);
+
+            for (let i = 0; i <= points; i++) {
+                const x = (i / points) * plotEnd;
+                labels.push(x);
+                if (x <= 0) {
+                    pdf.push(0);
+                    cdf.push(0);
+                    continue;
+                }
+                const pdfVal = (Math.pow(lambda, alpha) * Math.pow(x, alpha - 1) * Math.exp(-lambda * x)) / gammaAlpha;
+                pdf.push(pdfVal);
+                const cdfVal = incompleteGamma(alpha, lambda * x) / gammaAlpha;
+                cdf.push(cdfVal);
+            }
+            return { labels, pdf, cdf };
+        };
+        
+        const getNormalData = (mu, sigma) => {
+            const labels = [], pdf = [], cdf = [];
+            const plotStart = mu - 4 * sigma;
+            const plotEnd = mu + 4 * sigma;
+            const points = 200;
+            const constant = 1 / (sigma * Math.sqrt(2 * Math.PI));
+
+            for (let i = 0; i <= points; i++) {
+                const x = plotStart + (i / points) * (plotEnd - plotStart);
+                labels.push(x);
+                const exponent = -Math.pow(x - mu, 2) / (2 * Math.pow(sigma, 2));
+                pdf.push(constant * Math.exp(exponent));
+                cdf.push(0.5 * (1 + erf((x - mu) / (sigma * Math.sqrt(2)))));
+            }
+            return { labels, pdf, cdf };
+        };
+
+        // --- CHARTING LOGIC ---
+        let charts = {};
+
+        const createOrUpdateChart = (id, labels, data, title, isCDF = false) => {
+            const ctx = document.getElementById(id).getContext('2d');
+            if (charts[id]) {
+                charts[id].data.labels = labels;
+                charts[id].data.datasets[0].data = data;
+                charts[id].update();
+                return;
+            }
+            charts[id] = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: title,
+                        data: data,
+                        borderColor: isCDF ? 'rgba(217, 70, 239, 1)' : 'rgba(5, 150, 105, 1)',
+                        backgroundColor: isCDF ? 'rgba(217, 70, 239, 0.1)' : 'rgba(5, 150, 105, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        pointRadius: 0,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: true, text: title, font: {size: 16} },
+                        legend: { display: false },
+                        tooltip: {
+                            intersect: false, mode: 'index',
+                            callbacks: {
+                                label: (context) => `${isCDF ? 'F' : 'f'}(${parseFloat(context.label).toFixed(2)}) = ${context.raw.toFixed(4)}`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, max: isCDF ? 1.1 : undefined, title: { display: true, text: isCDF ? 'CDF F(x)' : 'Density f(x)' } },
+                        x: { type: 'linear', title: { display: true, text: 'x' } }
+                    }
+                }
+            });
+        };
+
+        // --- DOM & EVENT LISTENERS ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-button');
+            const panels = document.querySelectorAll('.panel');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.replace('tab-active', 'tab-inactive'));
+                    panels.forEach(p => p.classList.add('hidden'));
+                    tab.classList.replace('tab-inactive', 'tab-active');
+                    document.getElementById(tab.id.replace('tab-', 'panel-')).classList.remove('hidden');
+                });
+            });
+
+            // Sliders and value displays
+            const aUniformSlider = document.getElementById('a-uniform'), bUniformSlider = document.getElementById('b-uniform');
+            const aUniformValue = document.getElementById('a-uniform-value'), bUniformValue = document.getElementById('b-uniform-value');
+            const lambdaExpSlider = document.getElementById('lambda-exponential'), lambdaExpValue = document.getElementById('lambda-exponential-value');
+            const alphaGammaSlider = document.getElementById('alpha-gamma'), lambdaGammaSlider = document.getElementById('lambda-gamma');
+            const alphaGammaValue = document.getElementById('alpha-gamma-value'), lambdaGammaValue = document.getElementById('lambda-gamma-value');
+            const muNormalSlider = document.getElementById('mu-normal'), sigmaNormalSlider = document.getElementById('sigma-normal');
+            const muNormalValue = document.getElementById('mu-normal-value'), sigmaNormalValue = document.getElementById('sigma-normal-value');
+
+            // Init functions
+            const initUniform = () => {
+                let a = parseFloat(aUniformSlider.value), b = parseFloat(bUniformSlider.value);
+                if (a >= b) { a = b - 0.5; aUniformSlider.value = a; }
+                aUniformValue.textContent = `a = ${a.toFixed(1)}`;
+                bUniformValue.textContent = `b = ${b.toFixed(1)}`;
+                const { labels, pdf, cdf } = getUniformData(a, b);
+                createOrUpdateChart('uniformPdfChart', labels, pdf, 'PDF');
+                createOrUpdateChart('uniformCdfChart', labels, cdf, 'CDF', true);
+            };
+
+            const initExponential = () => {
+                const lambda = parseFloat(lambdaExpSlider.value);
+                lambdaExpValue.textContent = `λ = ${lambda.toFixed(1)}`;
+                const { labels, pdf, cdf } = getExponentialData(lambda);
+                createOrUpdateChart('exponentialPdfChart', labels, pdf, 'PDF');
+                createOrUpdateChart('exponentialCdfChart', labels, cdf, 'CDF', true);
+            };
+            
+            const initGamma = () => {
+                const alpha = parseFloat(alphaGammaSlider.value);
+                const lambda = parseFloat(lambdaGammaSlider.value);
+                alphaGammaValue.textContent = `α = ${alpha.toFixed(1)}`;
+                lambdaGammaValue.textContent = `λ = ${lambda.toFixed(1)}`;
+                const { labels, pdf, cdf } = getGammaData(alpha, lambda);
+                createOrUpdateChart('gammaPdfChart', labels, pdf, 'PDF');
+                createOrUpdateChart('gammaCdfChart', labels, cdf, 'CDF', true);
+            };
+
+            const initNormal = () => {
+                const mu = parseFloat(muNormalSlider.value), sigma = parseFloat(sigmaNormalSlider.value);
+                muNormalValue.textContent = `μ = ${mu.toFixed(1)}`;
+                sigmaNormalValue.textContent = `σ = ${sigma.toFixed(1)}`;
+                const { labels, pdf, cdf } = getNormalData(mu, sigma);
+                createOrUpdateChart('normalPdfChart', labels, pdf, 'PDF');
+                createOrUpdateChart('normalCdfChart', labels, cdf, 'CDF', true);
+            };
+
+            // Add event listeners
+            [aUniformSlider, bUniformSlider].forEach(s => s.addEventListener('input', initUniform));
+            lambdaExpSlider.addEventListener('input', initExponential);
+            [alphaGammaSlider, lambdaGammaSlider].forEach(s => s.addEventListener('input', initGamma));
+            [muNormalSlider, sigmaNormalSlider].forEach(s => s.addEventListener('input', initNormal));
+
+            // Initial draw
+            initUniform();
+            initExponential();
+            initGamma();
+            initNormal();
+        });
+    </script>
+</body>
+</html>
