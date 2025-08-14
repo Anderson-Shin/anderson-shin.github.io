@@ -53,12 +53,12 @@ $$
 E[X] = \int_{0}^{\infty} x(\lambda e^{-\lambda x})dx.
 $$
 Using integration by parts ($\int u\,dv = uv - \int v\,du$) with $u=x$ and $dv = \lambda e^{-\lambda x} dx$, we get:
-\begin{align*}
+$\begin{align}
 E[X] &= \left[ -x e^{-\lambda x} \right]_{0}^{\infty} - \int_{0}^{\infty} (-e^{-\lambda x})dx \\
 &= (0-0) + \int_{0}^{\infty} e^{-\lambda x}dx \\
 &= \left[ -\frac{1}{\lambda} e^{-\lambda x} \right]_{0}^{\infty} \\
 &= (0) - \left(-\frac{1}{\lambda}\right) = \frac{1}{\lambda}
-\end{align*}
+\end{align}$
 
   If events occur at a rate $\lambda$, the expected time until the first event is $1/\lambda$.
 
