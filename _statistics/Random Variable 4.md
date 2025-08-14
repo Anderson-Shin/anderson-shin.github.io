@@ -48,12 +48,17 @@ For a uniform distribution on the interval $(\alpha,\beta)$, the PDF is $f(x) = 
 $E[X] = \int_{\alpha}^{\beta} x \cdot \frac{1}{\beta-\alpha}dx = \frac{1}{\beta-\alpha} \left[ \frac{x^2}{2} \right]_{\alpha}^{\beta} = \frac{\alpha+\beta}{2}$.
   
 * Example 2: Expectation of an Exponential Random Variable  
-An exponential random variable has a PDF of $f(x) = \lambda e^{-\lambda x}$ for $x \ge 0$.  
-$E[X] = \int_{0}^{\infty} x(\lambda e^{-\lambda x})dx$.  
-Using integration by parts ($\int u \,dv = uv - \int vdu$) with $u=x$ and $dv = \lambda e^{-\lambda x} dx$, we get:
-$E[X] = \left[ -x e^{-\lambda x} \right]_{0}^{\infty} - \int_{0}^{\infty} (-e^{-\lambda x})dx = (0-0) + \int_{0}^{\infty} e^{-\lambda x}dx$
-$E[X] = \left[ -\frac{1}{\lambda} e^{-\lambda x} \right]_{0}^{\infty} = (0) - (-\frac{1}{\lambda}) = \frac{1}{\lambda}$.  
-If events occur at a rate $\lambda$, the expected time until the first event is $1/\lambda$.
+An exponential random variable has a PDF of $f(x) = \lambda e^{-\lambda x}$ for $x \ge 0$.
+
+  $E[X] = \int_{0}^{\infty} x(\lambda e^{-\lambda x})dx$.  
+  Using integration by parts: 
+  
+  ($\int udv = uv - \int vdu$) with $u=x$ and $dv = \lambda e^{-\lambda x} dx$, we get:
+
+  $\begin{align}E[X] &= \left[ -x e^{-\lambda x} \right]_{0}^{\infty} - \int_{0}^{\infty} (-e^{-\lambda x})dx \\ 
+  &= (0-0) + \int_{0}^{\infty} e^{-\lambda x}dx\\ &= \left[ -\frac{1}{\lambda} e^{-\lambda x} \right]_{0}^{\infty}\\ &= (0) - (-\frac{1}{\lambda}) = \frac{1}{\lambda}\end{align}$
+
+  If events occur at a rate $\lambda$, the expected time until the first event is $1/\lambda$.
 
 ## **Expectation of a Function of a Random Variable**
 
@@ -110,8 +115,9 @@ Imagine a company is launching a new app. They estimate the following outcomes f
 * **Worst-case scenario:** -$2 million loss (30% probability)
 
 Let X be the random variable for the first-year profit. The expected profit is:  
-$E[X] = (\$5M \cdot 0.2) + (\$1M \cdot 0.5) + (-\$2M \cdot 0.3)$  
-$E[X] = \$1M + \$0.5M - \$0.6M = \$0.9M$  
+$E[X] = (5M \cdot 0.2) + (1M \cdot 0.5) + (-2M \cdot 0.3)$  
+$E[X] = 1M + 0.5M - 0.6M = 0.9M$ 
+
 The expected profit is **$900,000**. This single number helps the company make a strategic decision. Even though there's a risk of loss, the "average" outcome is a significant profit, which might justify the investment.
 
 ### **Variance: Assessing Investment Risk**
