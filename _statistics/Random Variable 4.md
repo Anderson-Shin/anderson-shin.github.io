@@ -53,7 +53,9 @@ An exponential random variable has a PDF of $f(x) = \lambda e^{-\lambda x}$ for 
 $$
 E[X] = \int_{0}^{\infty} x(\lambda e^{-\lambda x})dx.
 $$
+
 Using integration by parts ($\int u\,dv = uv - \int v\,du$) with $u=x$ and $dv = \lambda e^{-\lambda x} dx$, we get:
+
 $$
 \begin{align*}
 E[X] &= \left[ -x e^{-\lambda x} \right]_{0}^{\infty} - \int_{0}^{\infty} (-e^{-\lambda x})dx \\
