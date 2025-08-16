@@ -33,15 +33,15 @@ If $a$ and $b$ are constants, then
 
 **Proof** In the discrete case,
 
-$$ \begin{aligned}E[aX+b] &= \sum_{x:p(x)>0} (aX+b)p(x)\
-&= a \sum_{x:p(x)>0}xp(x)+b \sum_{x:p(x)>0} p(x)\
+$$ \begin{aligned}E[aX+b] &= \sum_{x:p(x)>0} (aX+b)p(x)\\
+&= a \sum_{x:p(x)>0}xp(x)+b \sum_{x:p(x)>0} p(x)\\
 &= aE[X]+b
 \end{aligned} $$
 
 In the continuous case,
 
-$$ \begin{aligned}E[aX+b] &= \int_{-\infin}^{\infin}(aX+b)f(x)dx\
-&= a \int_{-\infin}^{\infin}xf(x)dx+b \int_{-\infin}^{\infin} f(x)dx\
+$$ \begin{aligned}E[aX+b] &= \int_{-\infin}^{\infin}(aX+b)f(x)dx\\
+&= a \int_{-\infin}^{\infin}xf(x)dx+b \int_{-\infin}^{\infin} f(x)dx\\
 &= aE[X]+b
 \end{aligned} $$
 
@@ -133,17 +133,16 @@ If we take a look at Proposition 1, we can derive the expectation of a function 
 
 $$ E[g(X,Y)] =
 \begin{cases}
-  \sum_y\sum_xg(x,y)p(x,y) & \text{in the discrete case} \\
-\\
-  \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} g(x,y)f(x,y)dxdy & \text{in the continuous case}
+  \sum_y\sum_xg(x,y)p(x,y) & \text{in the discrete case}\\
+  \int_{-\infin}^{\infin}\int_{-\infin}^{\infin} g(x,y)f(x,y)dxdy & \text{in the continuous case}
 \end{cases}
 $$
 
 For example, if $g(X,Y)= X+Y$, then in the continuous case,
 
 $$ \begin{aligned}
-  E[X + Y] &= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} (x + y) f(x, y) \; dx \; dy \
-  &= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} xf(x, y) \; dx \; dy + \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} yf(x, y) \; dx \; dy \
+  E[X + Y] &= \int_{-\infin}^{\infin} \int_{-\infin}^{\infin} (x + y) f(x, y) \; dx \; dy \\
+  &= \int_{-\infin}^{\infin} \int_{-\infin}^{\infin} xf(x, y) \; dx \; dy + \int_{-\infin}^{\infin} \int_{-\infin}^{\infin} yf(x, y) \; dx \; dy \\
   &= E[X] + E[Y]
 \end{aligned} $$
 
@@ -170,19 +169,19 @@ $$ f(x,y)=f_X(x)f_Y(y) \tag{2} $$
 To prove this statement, consider first the discrete version, and suppose that the joint probability mass function $p(x,y)$ satisfies Equation (1).
 
 $$ \begin{aligned}
- P{X\leq a, Y\leq b} &= \sum_{y\leq b}\sum_{x\leq a}p(x,y)\
-&= \sum_{y\leq b}\sum_{x\leq a}p_X(x)p_Y(y)\
-&=\sum_{y\leq b}p_Y(y)\sum_{x\leq a}p_X(x)\
-&= P{Y\leq b}P{X\leq a}
+ P{X\leq a, Y\leq b} &= \sum_{y\leq b}\sum_{x\leq a}p(x,y)\\
+&= \sum_{y\leq b}\sum_{x\leq a}p_X(x)p_Y(y)\\
+&=\sum_{y\leq b}p_Y(y)\sum_{x\leq a}p_X(x)\\
+&= P\set{Y\leq b}P\set{X\leq a}
 \end{aligned} $$
 
 Now it is time to prove for the continuous version. Suppose that the joint probability distribution function $f(x,y)$ satisfies Equation (2).
 
 $$ \begin{aligned}
-F(a,b) &= P(X \le a, Y \le b)\
-&= \int_{-\infty}^{b} \int_{-\infty}^{a} f(x,y)\; dx\; dy \
-&= \int_{-\infty}^{b} f_Y(y) \left( \int_{-\infty}^{a} f_X(x) \, dx \right) dy \
-&= \left( \int_{-\infty}^{a} f_X(x) \, dx \right) \left( \int_{-\infty}^{b} f_Y(y) \, dy \right) \
+F(a,b) &= P(X \le a, Y \le b)\\
+&= \int_{-\infin}^{b} \int_{-\infin}^{a} f(x,y)\; dx\; dy \\
+&= \int_{-\infin}^{b} f_Y(y) \left( \int_{-\infin}^{a} f_X(x) \, dx \right) dy \\
+&= \left( \int_{-\infin}^{a} f_X(x) \, dx \right) \left( \int_{-\infin}^{b} f_Y(y) \, dy \right) \\
 & = F_X(a)F_Y(b)
 \end{aligned} $$
 
@@ -209,9 +208,9 @@ $$ E[g(X)h(Y)] = E[g(X)]E[h(Y)] $$
 The covariance of any two random variables $X$ and $Y$, denoted by $\text{Cov}(X,Y)$, is defined by:
 
 $$ \begin{aligned}
-\text{Cov}(X,Y) &= E[(X-E[X])(Y-E[Y])]
-\ &=E[XY - YE[X] - XE[Y] + E[X]E[Y]] \
- &=E[XY] - E[Y]E[X] - E[X]E[Y] + E[X]E[Y] \
+\text{Cov}(X,Y) &= E[(X-E[X])(Y-E[Y])]\\
+ &=E[XY - YE[X] - XE[Y] + E[X]E[Y]] \\
+ &=E[XY] - E[Y]E[X] - E[X]E[Y] + E[X]E[Y] \\
  &= E[XY]-E[X]E[Y]
 \end{aligned} $$
 
@@ -269,7 +268,7 @@ For any random variables, $X,Y,Z$ and constant $c$,
 The first three properties are immediate. I will prove the final property below:
 
 $$ \begin{aligned}
-\text{Cov}(X,Y+Z) &= E[X(Y+Z)]-E[X]E[Y+Z]\
+\text{Cov}(X,Y+Z) &= E[X(Y+Z)]-E[X]E[Y+Z]\\
 &=E[XY]-E[X]E[Y]+E[XZ]-E[X]E[Z]
 \ &=\text{Cov}(X,Y)+\text{Cov}(X,Z)
 \end{aligned} $$
@@ -287,9 +286,9 @@ Suppose that $X_1,...,X_n$ are independent and identically distributed with expe
 Since (a) and (b) are quite intuitive, I will prove (c) below:
 
 $$ \begin{aligned}
-\text{Cov}(\bar{X},X_i-\bar{X})&= \text{Cov}(\bar{X},X_i)-\text{Cov}(\bar{X},\bar{X})
-\ &=\frac{1}{n}\text{Cov}(X_i+ \sum_{j\neq i}X_j,X_i) - \text{Var}(\bar{X}) \
-& = \frac{1}{n}\text{Cov}(X_i,X_i) +\frac{1}{n}\text{Cov}(\sum_{j\neq i}X_j,X_i)-\frac{\sigma^2}{n} \
+\text{Cov}(\bar{X},X_i-\bar{X})&= \text{Cov}(\bar{X},X_i)-\text{Cov}(\bar{X},\bar{X}) \\ 
+&=\frac{1}{n}\text{Cov}(X_i+ \sum_{j\neq i}X_j,X_i) - \text{Var}(\bar{X}) \\
+& = \frac{1}{n}\text{Cov}(X_i,X_i) +\frac{1}{n}\text{Cov}(\sum_{j\neq i}X_j,X_i)-\frac{\sigma^2}{n} \\
 &= \frac{\sigma^2}{n} -\frac{\sigma^2}{n} = 0  
 \end{aligned} $$
 
