@@ -111,12 +111,12 @@ Let's say we roll two dice simultaneously: a red die (variable `X`) and a blue d
 
 We say that $X$ and $Y$ are *jointly continuous* if there exists a function $f(x,y)$, defined for all real $x$ and $y$, having the property that for all sets $A$ and $B$ of real numbers
 
-$$ P{X \in A, Y \in B} = \int_B\int_Af(x,y)dxdy $$
+$$ P\{X \in A, Y \in B\} = \int_B\int_Af(x,y)dxdy $$
 
 The function $f(x,y)$ is called *joint probability density function* of $X$ and $Y$. The probability density of $X$ (marginal probability of $X$) can be obtained from a $f(x,y)$ by the following reasoning:
 
 $$ \begin{aligned}
- P{X \in A } &= P{X \in A, \quad Y \in (-∞,∞)}\\
+ P\{X \in A \} &= P\{X \in A, \quad Y \in (-∞,∞)\}\\
 &= \int_{-∞}^{∞}\int_Af(x,y)dxdy\\
 &=\int_Af_X(x)dx
 \end{aligned} $$
@@ -232,11 +232,15 @@ Covariance is a measure of how two variables move in relation to each other.
 
 Let’s consider a special case where $X$ and $Y$ are indicator variables for whether or not events $A$ and $B$ occur. That is, for events $A$ and $B$, define 
 
-$$ X=\begin{cases} 1, & \text{if A occurs}\\
+$$ 
+X=\begin{cases} 1, & \text{if A occurs}\\
  0, & \text{otherwise}
-\end{cases} \quad Y=\begin{cases} 1, & \text{if B occurs}\\
+\end{cases} 
+\quad 
+Y=\begin{cases} 1, & \text{if B occurs}\\
  0, & \text{otherwise}
-\end{cases} $$
+\end{cases} 
+$$
 
 Then,
 
