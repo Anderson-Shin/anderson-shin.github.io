@@ -116,8 +116,8 @@ $$ P{X \in A, Y \in B} = \int_B\int_Af(x,y)dxdy $$
 The function $f(x,y)$ is called *joint probability density function* of $X$ and $Y$. The probability density of $X$ (marginal probability of $X$) can be obtained from a $f(x,y)$ by the following reasoning:
 
 $$ \begin{aligned}
- P{X \in A } &= P{X \in A, \quad Y \in (-∞,∞)}\
-&= \int_{-∞}^{∞}\int_Af(x,y)dxdy\
+ P{X \in A } &= P{X \in A, \quad Y \in (-∞,∞)}\\
+&= \int_{-∞}^{∞}\int_Af(x,y)dxdy\\
 &=\int_Af_X(x)dx
 \end{aligned} $$
 
@@ -160,13 +160,13 @@ $$ F(a,b)=F_X(a)F_Y(b) \quad \text{for all a, b} $$
 
 when $X$ and $Y$ are discrete, the condition of independence reduces to 
 
-$$ p(x,y)=P_X(x)P_Y(y) \tag{1} $$
+$$ p(x,y)=P_X(x)P_Y(y) \tag{a} $$
 
 while if $X$  and $Y$ are jointly continuous, independence reduces to 
 
-$$ f(x,y)=f_X(x)f_Y(y) \tag{2} $$
+$$ f(x,y)=f_X(x)f_Y(y) \tag{b} $$
 
-To prove this statement, consider first the discrete version, and suppose that the joint probability mass function $p(x,y)$ satisfies Equation (1).
+To prove this statement, consider first the discrete version, and suppose that the joint probability mass function $p(x,y)$ satisfies Equation (a).
 
 $$ \begin{aligned}
  P{X\leq a, Y\leq b} &= \sum_{y\leq b}\sum_{x\leq a}p(x,y)\\
@@ -175,7 +175,7 @@ $$ \begin{aligned}
 &= P\set{Y\leq b}P\set{X\leq a}
 \end{aligned} $$
 
-Now it is time to prove for the continuous version. Suppose that the joint probability distribution function $f(x,y)$ satisfies Equation (2).
+Now it is time to prove for the continuous version. Suppose that the joint probability distribution function $f(x,y)$ satisfies Equation (b).
 
 $$ \begin{aligned}
 F(a,b) &= P(X \le a, Y \le b)\\
@@ -232,9 +232,9 @@ Covariance is a measure of how two variables move in relation to each other.
 
 Let’s consider a special case where $X$ and $Y$ are indicator variables for whether or not events $A$ and $B$ occur. That is, for events $A$ and $B$, define 
 
-$$ X=\begin{cases} 1, & \text{if A occurs}\
+$$ X=\begin{cases} 1, & \text{if A occurs}\\
  0, & \text{otherwise}
-\end{cases} \quad Y=\begin{cases} 1, & \text{if B occurs}\
+\end{cases} \quad Y=\begin{cases} 1, & \text{if B occurs}\\
  0, & \text{otherwise}
 \end{cases} $$
 
@@ -244,13 +244,13 @@ $$ \text{Cov}(X,Y) = E[XY] - E[X]E[Y] $$
 
 and because $XY$ will equal 1 or 0 depending on whether or not both $X$ and $Y$ equal 1, we see that
 
-$$ \text{Cov}(X,Y) = P{X=1, Y=1}-P{X=1}P{Y=1} $$
+$$ \text{Cov}(X,Y) = P\set{X=1, Y=1}-P\set{X=1}P\set{Y=1} $$
 
 From this we can observe that
 
 $$ \begin{aligned}
-  \text{Cov}(X, Y) > 0 &\Leftrightarrow P{X = 1, Y = 1} > P{X = 1}P{Y = 1} \
-  &\Leftrightarrow \frac{P{X = 1, Y = 1}}{P{X = 1}} > P{Y = 1} \
+  \text{Cov}(X, Y) > 0 &\Leftrightarrow P{X = 1, Y = 1} > P{X = 1}P{Y = 1} \\
+  &\Leftrightarrow \frac{P{X = 1, Y = 1}}{P{X = 1}} > P{Y = 1} \\
   &\Leftrightarrow P{Y = 1 \mid X = 1} > P{Y = 1}
 \end{aligned} $$
 
@@ -270,7 +270,7 @@ The first three properties are immediate. I will prove the final property below:
 $$ \begin{aligned}
 \text{Cov}(X,Y+Z) &= E[X(Y+Z)]-E[X]E[Y+Z]\\
 &=E[XY]-E[X]E[Y]+E[XZ]-E[X]E[Z]
-\ &=\text{Cov}(X,Y)+\text{Cov}(X,Z)
+\\ &=\text{Cov}(X,Y)+\text{Cov}(X,Z)
 \end{aligned} $$
 
 If $X_1,...,X_n$ are independent and identically distributed, then the random variable $\bar{X} = \sum_{i=1}^n \frac{X_i}{n}$ is called the *sample mean*.
