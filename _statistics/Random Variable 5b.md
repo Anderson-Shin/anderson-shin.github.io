@@ -24,7 +24,7 @@ When you have two random variables, $X_1$ and $X_2$, with a known joint probabil
 To find the new joint PDF, $f_{Y_1, Y_2}(y_1, y_2)$, you can use the following formula:
 
 $$
-f_{Y_1,Y_2}(y_1, y_2) = f_{X_1,X_2}(x_1, x_2)|J(x_1, x_2)|^{-1}
+f_{Y_1,Y_2}(y_1, y_2) = f_{X_1,X_2}(x_1, x_2)\left|J(x_1, x_2)\right|^{-1}
 $$
 
 This formula is valid if two conditions are met:
@@ -52,13 +52,13 @@ Imagine the original joint PDF, $f_{X_1, X_2}(x_1, x_2)$, is a lumpy surface ove
 
 When you transform the variables from $(X_1, X_2)$ to $(Y_1, Y_2)$, you are essentially stretching, shrinking, or rotating the original map. A small square on the original map might become a stretched-out parallelogram on the new map.
 
-The **Jacobian determinant**, $|J(x_1, x_2)|$, is the **scaling factor** that tells you how much the area of that small square has changed during the transformation.
+The **Jacobian determinant**, $\left|J(x_1, x_2)\right|$, is the **scaling factor** that tells you how much the area of that small square has changed during the transformation.
 
 * If $\left|J\right| > 1$, the area has expanded.
 
 * If $\left|J\right| < 1$, the area has shrunk.
 
-The formula $f_{Y_1,Y_2}(y_1, y_2) = f_{X_1,X_2}(x_1, x_2) \div \left|J(x_1, x_2)\right|$ ensures that the total probability remains 1. If the area expands ($|J| > 1$), the probability density must decrease (you divide by a larger number) to keep the total volume constant. Conversely, if the area shrinks ($\left|J\right| < 1$), the density must increase. It's like spreading the same amount of butter over a larger or smaller piece of toast; the thickness of the butter (the density) changes to compensate.
+The formula $f_{Y_1,Y_2}(y_1, y_2) = f_{X_1,X_2}(x_1, x_2) \div \left|J(x_1, x_2)\right|$ ensures that the total probability remains 1. If the area expands ($\left|J\right| > 1$), the probability density must decrease (you divide by a larger number) to keep the total volume constant. Conversely, if the area shrinks ($\left|J\right| < 1$), the density must increase. It's like spreading the same amount of butter over a larger or smaller piece of toast; the thickness of the butter (the density) changes to compensate.
 
 ## A Simpler Example: Sum and Difference of Uniform Variables
 
