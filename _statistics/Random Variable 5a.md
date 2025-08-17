@@ -25,7 +25,7 @@ In our random variable series, we discussed the expectation and variance of disc
     
 2. If $X$ is a continuous random variable with probability density function $f(x)$, then for any real-valued function g,
 
-$$ E[g(X)]=\int_{-\infin}^{\infin} g(x)f(x)dx $$
+$$ E[g(X)]=\int_{-\∞}^{\∞} g(x)f(x)dx $$
 
 ## Corollary 1.1
 
@@ -40,8 +40,8 @@ $$ \begin{aligned}E[aX+b] &= \sum_{x:p(x)>0} (aX+b)p(x)\\
 
 In the continuous case,
 
-$$ \begin{aligned}E[aX+b] &= \int_{-\infin}^{\infin}(aX+b)f(x)dx\\
-&= a \int_{-\infin}^{\infin}xf(x)dx+b \int_{-\infin}^{\infin} f(x)dx\\
+$$ \begin{aligned}E[aX+b] &= \int_{-\∞}^{\∞}(aX+b)f(x)dx\\
+&= a \int_{-\∞}^{\∞}xf(x)dx+b \int_{-\∞}^{\∞} f(x)dx\\
 &= aE[X]+b
 \end{aligned} $$
 
@@ -71,13 +71,13 @@ Okay, we have discussed expectations and variances of discrete and continuous va
 
 To deal with such probabilities, we define, for any two random variables $X$ and $Y$, the *joint cumulative probability distribution function* of $X$ and $Y$  by
 
-$$ F(a,b)=P{X\leq a, Y\leq b}, \quad -\infin<a, b<\infin $$
+$$ F(a,b)=P{X\leq a, Y\leq b}, \quad -\∞<a, b<\∞ $$
 
 The distribution of $X$ can be obtained from the joint distribution of $X$  and $Y$ as follows:
 
 $$ \begin{aligned} F_X(a) &= P{X\leq a}\
-&= P{X\leq a, Y < \infin }
-\ &=F(a,\infin)
+&= P{X\leq a, Y < \∞ }
+\ &=F(a,\∞)
 \end{aligned} $$
 
 In the case where $X$ and $Y$ are both discrete random variables, it is convenient to define the *joint probability mass function* of $X,Y$ by
@@ -116,33 +116,33 @@ $$ P{X \in A, Y \in B} = \int_B\int_Af(x,y)dxdy $$
 The function $f(x,y)$ is called *joint probability density function* of $X$ and $Y$. The probability density of $X$ (marginal probability of $X$) can be obtained from a $f(x,y)$ by the following reasoning:
 
 $$ \begin{aligned}
- P{X \in A } &= P{X \in A, \quad Y \in (-\infin,\infin)}\
-&= \int_{-\infin}^{\infin}\int_Af(x,y)dxdy\
+ P{X \in A } &= P{X \in A, \quad Y \in (-\∞,\∞)}\
+&= \int_{-\∞}^{\∞}\int_Af(x,y)dxdy\
 &=\int_Af_X(x)dx
 \end{aligned} $$
 
 where
 
-$$ f_X(x)=\int_{-\infin}^{\infin}f(x,y)dy $$
+$$ f_X(x)=\int_{-\∞}^{\∞}f(x,y)dy $$
 
 Similarly,
 
-$$ f_Y(y)=\int_{-\infin}^{\infin}f(x,y)dx $$
+$$ f_Y(y)=\int_{-\∞}^{\∞}f(x,y)dx $$
 
 If we take a look at Proposition 1, we can derive the expectation of a function of jointly distributed random variables.
 
 $$ E[g(X,Y)] =
 \begin{cases}
   \sum_y\sum_xg(x,y)p(x,y) & \text{in the discrete case}\\
-  \int_{-\infin}^{\infin}\int_{-\infin}^{\infin} g(x,y)f(x,y)dxdy & \text{in the continuous case}
+  \int_{-\∞}^{\∞}\int_{-\∞}^{\∞} g(x,y)f(x,y)dxdy & \text{in the continuous case}
 \end{cases}
 $$
 
 For example, if $g(X,Y)= X+Y$, then in the continuous case,
 
 $$ \begin{aligned}
-  E[X + Y] &= \int_{-\infin}^{\infin} \int_{-\infin}^{\infin} (x + y) f(x, y) \; dx \; dy \\
-  &= \int_{-\infin}^{\infin} \int_{-\infin}^{\infin} xf(x, y) \; dx \; dy + \int_{-\infin}^{\infin} \int_{-\infin}^{\infin} yf(x, y) \; dx \; dy \\
+  E[X + Y] &= \int_{-\∞}^{\∞} \int_{-\∞}^{\∞} (x + y) f(x, y) \; dx \; dy \\
+  &= \int_{-\∞}^{\∞} \int_{-\∞}^{\∞} xf(x, y) \; dx \; dy + \int_{-\∞}^{\∞} \int_{-\∞}^{\∞} yf(x, y) \; dx \; dy \\
   &= E[X] + E[Y]
 \end{aligned} $$
 
@@ -179,9 +179,9 @@ Now it is time to prove for the continuous version. Suppose that the joint proba
 
 $$ \begin{aligned}
 F(a,b) &= P(X \le a, Y \le b)\\
-&= \int_{-\infin}^{b} \int_{-\infin}^{a} f(x,y)\; dx\; dy \\
-&= \int_{-\infin}^{b} f_Y(y) \left( \int_{-\infin}^{a} f_X(x) \, dx \right) dy \\
-&= \left( \int_{-\infin}^{a} f_X(x) \, dx \right) \left( \int_{-\infin}^{b} f_Y(y) \, dy \right) \\
+&= \int_{-\∞}^{b} \int_{-\∞}^{a} f(x,y)\; dx\; dy \\
+&= \int_{-\∞}^{b} f_Y(y) \left( \int_{-\∞}^{a} f_X(x) \, dx \right) dy \\
+&= \left( \int_{-\∞}^{a} f_X(x) \, dx \right) \left( \int_{-\∞}^{b} f_Y(y) \, dy \right) \\
 & = F_X(a)F_Y(b)
 \end{aligned} $$
 
