@@ -71,7 +71,7 @@ Okay, we have discussed expectations and variances of discrete and continuous va
 
 To deal with such probabilities, we define, for any two random variables $X$ and $Y$, the *joint cumulative probability distribution function* of $X$ and $Y$  by
 
-$$ F(a,b)=P\set{X\leq a, Y\leq b}, \quad -∞<a, b<∞ $$
+$$ F(a,b)=P \{X\leq a, Y\leq b\}, \quad -∞<a, b<∞ $$
 
 The distribution of $X$ can be obtained from the joint distribution of $X$  and $Y$ as follows:
 
@@ -82,7 +82,7 @@ $$ \begin{aligned} F_X(a) &= P\set{X\leq a}\\
 
 In the case where $X$ and $Y$ are both discrete random variables, it is convenient to define the *joint probability mass function* of $X,Y$ by
 
-$$ p(x,y)=P\set{X=x,Y=y} $$
+$$ p(x,y)=P\{X=x,Y=y\} $$
 
 The probability mass function of $X$ may be obtained from $p(x,y)$ by
 
@@ -244,7 +244,7 @@ $$ \text{Cov}(X,Y) = E[XY] - E[X]E[Y] $$
 
 and because $XY$ will equal 1 or 0 depending on whether or not both $X$ and $Y$ equal 1, we see that
 
-$$ \text{Cov}(X,Y) = P \set{X=1, Y=1} - P \set{X=1} P \set{Y=1} $$
+$$ \text{Cov}(X,Y) = P \{X=1, Y=1\} - P \{X=1\} P \{Y=1\} $$
 
 From this we can observe that
 
