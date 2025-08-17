@@ -237,11 +237,9 @@ X=\begin{cases} 1, & \text{if A occurs}\\
 
 0, & \text{otherwise}
 
-\end{cases}
-$$
-
-$$
-Y=\begin{cases} 1, & \text{if B occurs}\\
+\end{cases}$$
+ 
+$$ Y =\begin{cases} 1, & \text{if B occurs}\\
 
 0, & \text{otherwise}
 
