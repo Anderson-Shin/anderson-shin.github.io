@@ -233,19 +233,19 @@ Covariance is a measure of how two variables move in relation to each other.
 Let’s consider a special case where $X$ and $Y$ are indicator variables for whether or not events $A$ and $B$ occur. That is, for events $A$ and $B$, define 
 
 $$ 
-X = \left\{
-\begin{array}{ll}
-  1, & \text{if A occurs} \\
-  0, & \text{otherwise}
-\end{array}
-\right.
-\quad
-Y = \left\{
-\begin{array}{ll}
-  1, & \text{if B occurs} \\
-  0, & \text{otherwise}
-\end{array}
-\right.
+X=\begin{cases} 1, & \text{if A occurs}\\
+
+0, & \text{otherwise}
+
+\end{cases}
+$$
+
+$$
+Y=\begin{cases} 1, & \text{if B occurs}\\
+
+0, & \text{otherwise}
+
+\end{cases}
 $$
 
 Then,
