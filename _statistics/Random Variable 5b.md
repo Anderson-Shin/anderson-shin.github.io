@@ -52,7 +52,7 @@ Imagine the original joint PDF, $f_{X_1, X_2}(x_1, x_2)$, is a lumpy surface ove
 
 When you transform the variables from $(X_1, X_2)$ to $(Y_1, Y_2)$, you are essentially stretching, shrinking, or rotating the original map. A small square on the original map might become a stretched-out parallelogram on the new map.
 
-The **Jacobian determinant**, $\left|J(x_1, x_2)\right|$, is the **scaling factor** that tells you how much the area of that small square has changed during the transformation.
+The **Jacobian determinant**, $|J(x_1, x_2)|$, is the **scaling factor** that tells you how much the area of that small square has changed during the transformation.
 
 * If $\left|J\right| > 1$, the area has expanded.
 
