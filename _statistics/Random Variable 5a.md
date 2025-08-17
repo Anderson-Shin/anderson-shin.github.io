@@ -234,15 +234,15 @@ Let’s consider a special case where $X$ and $Y$ are indicator variables for wh
 
 $$ 
 X=\begin{cases} 1, & \text{if A occurs}\\
-
 0, & \text{otherwise}
+\end{cases}
+$$
 
-\end{cases}$$
+and
+
  
-$$ Y =\begin{cases} 1, & \text{if B occurs}\\
-
+$$Y =\begin{cases} 1, & \text{if B occurs}\\
 0, & \text{otherwise}
-
 \end{cases}
 $$
 
