@@ -36,12 +36,14 @@ This formula is valid if two conditions are met:
 The **Jacobian determinant** is defined as:
 
 $$
-J(x_1, x_2) = 
+\begin{aligned}
+J(x_1, x_2) &= 
 \begin{vmatrix}
 \frac{\partial g_1}{\partial x_1} & \frac{\partial g_1}{\partial x_2} \\
 \frac{\partial g_2}{\partial x_1} & \frac{\partial g_2}{\partial x_2}
-\end{vmatrix}
-= \frac{\partial g_1}{\partial x_1}\frac{\partial g_2}{\partial x_2} - \frac{\partial g_1}{\partial x_2}\frac{\partial g_2}{\partial x_1}
+\end{vmatrix} \\
+&= \frac{\partial g_1}{\partial x_1}\frac{\partial g_2}{\partial x_2} - \frac{\partial g_1}{\partial x_2}\frac{\partial g_2}{\partial x_1}
+\end{aligned}
 $$
 
 ## Intuitive Explanation 
@@ -96,12 +98,14 @@ $$
 Now, we compute the determinant:
 
 $$
-J(x,y) = 
+\begin{aligned}
+J(x,y) &= 
 \begin{vmatrix}
 1 & 1 \\
 1 & -1
-\end{vmatrix}
-= (1)(-1) - (1)(1) = -2
+\end{vmatrix} \\
+&= (1)(-1) - (1)(1) = -2
+\end{aligned}
 $$
 
 The scaling factor we need is the inverse of the absolute value: $\frac{1}{\lvert J(x,y)\rvert} = \frac{1}{\lvert -2\rvert} = \frac{1}{2}$.
