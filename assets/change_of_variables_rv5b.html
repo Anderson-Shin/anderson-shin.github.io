@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change of Variables Visualization</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        canvas { display: block; width: 100%; height: 100%; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Visualizing the Change of Variables</h1>
+            <p class="text-md md:text-lg text-gray-600 mt-3">An interactive journey to see how probability density transforms.</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <!-- Original Distribution -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-center text-blue-600">The Original Distribution, f(x, y)</h2>
+                    <p class="text-center text-gray-600 mt-2">We start with two independent variables, X and Y, both uniformly random between 0 and 1. Think of this as picking a random point inside a 1x1 square on the floor.</p>
+                </div>
+                <div id="original-container" class="w-full h-96 md:h-[500px] cursor-grab active:cursor-grabbing"></div>
+                 <div class="p-4 bg-gray-50 text-sm text-gray-600 text-center space-y-1">
+                    <p><span class="font-semibold">Base Area:</span> 1 &times; 1 = 1</p>
+                    <p><span class="font-semibold">Probability Density (Height):</span> 1</p>
+                    <p class="font-bold text-gray-800">Total Probability (Volume): 1 &times; 1 = 1</p>
+                </div>
+            </div>
+
+            <!-- Transformed Distribution -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-center text-purple-600">The Transformed Distribution, f(u, v)</h2>
+                    <p class="text-center text-gray-600 mt-2">We create new variables: U = X+Y (the sum) and V = X-Y (the difference). This transformation rotates and stretches our original square.</p>
+                </div>
+                <div id="transformed-container" class="w-full h-96 md:h-[500px] cursor-grab active:cursor-grabbing"></div>
+                 <div class="p-4 bg-gray-50 text-sm text-gray-600 text-center space-y-1">
+                    <p><span class="font-semibold">New Base Area:</span> 2</p>
+                    <p><span class="font-semibold">New Density (Height):</span> 1/2 (due to Jacobian)</p>
+                    <p class="font-bold text-gray-800">Total Probability (Volume): 2 &times; 1/2 = 1</p>
+                </div>
+            </div>
+        </div>
+         <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>Click and drag to rotate. Use the mouse wheel to zoom.</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- Common Utility: Create Text Labels ---
+        function createTextSprite(message, parameters) {
+            const fontface = parameters.hasOwnProperty("fontface") ? parameters["fontface"] : "Arial";
+            const fontsize = parameters.hasOwnProperty("fontsize") ? parameters["fontsize"] : 18;
+            const textColor = parameters.hasOwnProperty("textColor") ? parameters["textColor"] : { r:0, g:0, b:0, a:1.0 };
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = 512;
+            canvas.height = 128;
+            context.font = `Bold ${fontsize}px ${fontface}`;
+            
+            context.fillStyle = `rgba(${textColor.r}, ${textColor.g}, ${textColor.b}, ${textColor.a})`;
+            context.fillText(message, 6, fontsize);
+
+            const texture = new THREE.Texture(canvas);
+            texture.needsUpdate = true;
+
+            const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+            const sprite = new THREE.Sprite(spriteMaterial);
+            sprite.scale.set(2, 0.5, 1.0);
+            return sprite;
+        }
+
+        // --- Common Scene Initialization ---
+        function initScene(containerId) {
+            const container = document.getElementById(containerId);
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf0f4f8);
+
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 10, 7.5);
+            scene.add(directionalLight);
+
+            // Axes: X=Red, Y=Green(Height), Z=Blue
+            const axesHelper = new THREE.AxesHelper(3);
+            scene.add(axesHelper);
+
+            const viz = { container, scene, camera, renderer, controls };
+
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            container.__viz = viz;
+            return viz;
+        }
+
+        // --- Scene 1: Original Distribution ---
+        const viz1 = initScene('original-container');
+        viz1.camera.position.set(1.8, 1.8, 2.8);
+        viz1.camera.lookAt(0.5, 0.5, 0.5);
+
+        const grid1 = new THREE.GridHelper(4, 4);
+        grid1.position.y = -0.01;
+        viz1.scene.add(grid1);
+
+        const geometry1 = new THREE.BoxGeometry(1, 1, 1);
+        const material1 = new THREE.MeshPhongMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.7 });
+        const cube = new THREE.Mesh(geometry1, material1);
+        cube.position.set(0.5, 0.5, 0.5);
+        viz1.scene.add(cube);
+        
+        // Labels for Scene 1
+        const xLabel1 = createTextSprite('X', { fontsize: 48, textColor: {r:210, g:40, b:40}});
+        xLabel1.position.set(2, 0, 0);
+        viz1.scene.add(xLabel1);
+
+        const yLabel1 = createTextSprite('Y', { fontsize: 48, textColor: {r:40, g:40, b:210}});
+        yLabel1.position.set(0, 0, 2);
+        viz1.scene.add(yLabel1);
+        
+        const densityLabel1 = createTextSprite('Density = 1', { fontsize: 32 });
+        densityLabel1.position.set(0.5, 1.2, 0.5);
+        viz1.scene.add(densityLabel1);
+        
+        const originLabel1 = createTextSprite('(0,0)', { fontsize: 24 });
+        originLabel1.position.set(0, -0.2, 0);
+        viz1.scene.add(originLabel1);
+        
+        const p10_label = createTextSprite('(1,0)', { fontsize: 24 });
+        p10_label.position.set(1, -0.2, 0);
+        viz1.scene.add(p10_label);
+        
+        const p01_label = createTextSprite('(0,1)', { fontsize: 24 });
+        p01_label.position.set(0, -0.2, 1);
+        viz1.scene.add(p01_label);
+
+
+        // --- Scene 2: Transformed Distribution ---
+        const viz2 = initScene('transformed-container');
+        viz2.camera.position.set(2.5, 2.5, 3.5);
+        viz2.camera.lookAt(1, 0, 0);
+
+        const grid2 = new THREE.GridHelper(5, 5);
+        grid2.position.y = -0.01;
+        viz2.scene.add(grid2);
+
+        const shape = new THREE.Shape();
+        shape.moveTo(0, 0);
+        shape.lineTo(1, 1);
+        shape.lineTo(2, 0);
+        shape.lineTo(1, -1);
+        shape.lineTo(0, 0);
+
+        const extrudeSettings = { depth: 0.5, bevelEnabled: false };
+        const geometry2 = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+        const material2 = new THREE.MeshPhongMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.7 });
+        const prism = new THREE.Mesh(geometry2, material2);
+        
+        prism.rotation.x = -Math.PI / 2;
+        prism.position.y = 0.5;
+        viz2.scene.add(prism);
+
+        // Labels for Scene 2
+        const uLabel = createTextSprite('U (X+Y)', { fontsize: 48, textColor: {r:210, g:40, b:40}});
+        uLabel.position.set(2.5, 0, 0);
+        viz2.scene.add(uLabel);
+
+        const vLabel = createTextSprite('V (X-Y)', { fontsize: 48, textColor: {r:40, g:40, b:210}});
+        vLabel.position.set(0, 0, 1.5);
+        viz2.scene.add(vLabel);
+        
+        const densityLabel2 = createTextSprite('Density = 1/2', { fontsize: 32 });
+        densityLabel2.position.set(1, 0.7, 0);
+        viz2.scene.add(densityLabel2);
+
+        const p_c00 = createTextSprite('(0,0)', { fontsize: 24 });
+        p_c00.position.set(0, -0.2, 0);
+        viz2.scene.add(p_c00);
+        
+        const p_c20 = createTextSprite('(2,0)', { fontsize: 24 });
+        p_c20.position.set(2, -0.2, 0);
+        viz2.scene.add(p_c20);
+
+        const p_c11 = createTextSprite('(1,1)', { fontsize: 24 });
+        p_c11.position.set(1, -0.2, 1);
+        viz2.scene.add(p_c11);
+
+        const p_c1m1 = createTextSprite('(1,-1)', { fontsize: 24 });
+        p_c1m1.position.set(1, -0.2, -1);
+        viz2.scene.add(p_c1m1);
+
+
+        // --- Handle window resizing ---
+        function onWindowResize() {
+             [viz1, viz2].forEach(viz => {
+                if (!viz) return;
+                const { container, camera, renderer } = viz;
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+                if (width > 0 && height > 0) {
+                    camera.aspect = width / height;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(width, height);
+                }
+            });
+        }
+        window.addEventListener('resize', onWindowResize, false);
+    </script>
+</body>
+</html>
