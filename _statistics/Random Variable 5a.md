@@ -150,7 +150,7 @@ $$ \begin{aligned}
 
 The random variables $X$  and $Y$ are said to be *independent* if, for all $a,b$
 
-$$ P{X\le a, Y\leq b}=P{X\leq a}P{Y\leq b} $$
+$$ P\{X\le a, Y\leq b\}=P\{X\leq a\}P\{Y\leq b\} $$
 
 In other words, $X$  and $Y$ are independent if, for all $a$ and $b$, the events $E_a={X\leq a}$ and $F_b={Y\leq b}$ are independent.
 
@@ -169,7 +169,7 @@ $$ f(x,y)=f_X(x)f_Y(y) \tag{b} $$
 To prove this statement, consider first the discrete version, and suppose that the joint probability mass function $p(x,y)$ satisfies Equation (a).
 
 $$ \begin{aligned}
- P{X\leq a, Y\leq b} &= \sum_{y\leq b}\sum_{x\leq a}p(x,y)\\
+ P\{X\leq a, Y\leq b\} &= \sum_{y\leq b}\sum_{x\leq a}p(x,y)\\
 &= \sum_{y\leq b}\sum_{x\leq a}p_X(x)p_Y(y)\\
 &=\sum_{y\leq b}p_Y(y)\sum_{x\leq a}p_X(x)\\
 &= P\set{Y\leq b}P\set{X\leq a}
@@ -233,13 +233,19 @@ Covariance is a measure of how two variables move in relation to each other.
 Let’s consider a special case where $X$ and $Y$ are indicator variables for whether or not events $A$ and $B$ occur. That is, for events $A$ and $B$, define 
 
 $$ 
-X=\begin{cases} 1, & \text{if A occurs}\\
- 0, & \text{otherwise}
-\end{cases} 
-\quad 
-Y=\begin{cases} 1, & \text{if B occurs}\\
- 0, & \text{otherwise}
-\end{cases} 
+X = \left\{
+\begin{array}{ll}
+  1, & \text{if A occurs} \\
+  0, & \text{otherwise}
+\end{array}
+\right.
+\quad
+Y = \left\{
+\begin{array}{ll}
+  1, & \text{if B occurs} \\
+  0, & \text{otherwise}
+\end{array}
+\right.
 $$
 
 Then,
