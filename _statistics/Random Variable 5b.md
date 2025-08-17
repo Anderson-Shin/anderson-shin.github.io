@@ -104,7 +104,7 @@ J(x,y) =
 = (1)(-1) - (1)(1) = -2
 $$
 
-The scaling factor we need is the absolute value of the inverse: $\left|J(x,y)\right|^{-1} = |-2|^{-1} = \frac{1}{2}$.
+The scaling factor we need is the absolute value of the inverse: $\left|J(x,y)\right|^{-1} = \left|-2\right|^{-1} = \frac{1}{2}$.
 
 **Step 3: Apply the formula.**
 Now we plug everything into the main formula:
