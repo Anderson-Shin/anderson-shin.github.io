@@ -24,7 +24,7 @@ When you have two random variables, $X_1$ and $X_2$, with a known joint probabil
 To find the new joint PDF, $f_{Y_1, Y_2}(y_1, y_2)$, you can use the following formula:
 
 $$
-f_{Y_1,Y_2}(y_1, y_2) = f_{X_1,X_2}(x_1, x_2)\lvert J(x_1, x_2)\rvert^{-1}
+f_{Y_1,Y_2}(y_1, y_2) = \frac{f_{X_1,X_2}(x_1, x_2)}{\lvert J(x_1, x_2)\rvert}
 $$
 
 This formula is valid if two conditions are met:
@@ -104,13 +104,13 @@ J(x,y) =
 = (1)(-1) - (1)(1) = -2
 $$
 
-The scaling factor we need is the absolute value of the inverse: $\lvert J(x,y)\rvert^{-1} = \lvert -2\rvert^{-1} = \frac{1}{2}$.
+The scaling factor we need is the inverse of the absolute value: $\frac{1}{\lvert J(x,y)\rvert} = \frac{1}{\lvert -2\rvert} = \frac{1}{2}$.
 
 **Step 3: Apply the formula.**
 Now we plug everything into the main formula:
 
 $$
-f_{U,V}(u,v) = f_{X,Y}\left(\frac{u+v}{2}, \frac{u-v}{2}\right) \cdot \lvert J\rvert^{-1}
+f_{U,V}(u,v) = f_{X,Y}\left(\frac{u+v}{2}, \frac{u-v}{2}\right) \cdot \frac{1}{\lvert J\rvert}
 $$
 
 Since the original PDF $f_{X,Y}$ is just 1 (within its domain), this becomes:
