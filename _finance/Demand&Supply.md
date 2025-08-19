@@ -3,7 +3,7 @@ title: "Demand and Supply"
 collection: finance
 permalink: /finance/Demand_and_Supply
 excerpt: 'Understanding the consequences of changes in demand and supply'
-date: 2023-10-03
+date: 2024-02-22
 venue: 'Finance post 8'
 ---
 

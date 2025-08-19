@@ -3,7 +3,7 @@ title: "Basic functions of yfinance library "
 collection: data_analysis
 permalink: /data_analysis/yfinance_tutorial_1
 excerpt: 'Post about storng python API library to handle data of stocks in yahoo finance'
-date: 2023-09-14
+date: 2024-03-01
 venue: 'data anlaysis post 1'
 ---
 # Yfinance API tutorial 1

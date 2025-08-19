@@ -4,7 +4,7 @@ collection: data_analysis
 permalink: /data_analysis/portfolio_risk_estimation_practice2
 excerpt: "Non-parametric approach utilizing different weighted bootstrap methodologies"
 venue: "Data Analysis Post"
-date: 2025-05-30
+date: 2025-01-21
 location: ""
 ---
 

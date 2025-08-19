@@ -4,7 +4,7 @@ collection: finance
 permalink: /finance/market_risk_estimation
 excerpt: 'Deep dive into VaR, Expected Shortfall, and Spectral Risk Measures (SRM)'
 venue: "Finance post"
-date: 2025-05-19
+date: 2024-06-13
 location: ""
 ---
 

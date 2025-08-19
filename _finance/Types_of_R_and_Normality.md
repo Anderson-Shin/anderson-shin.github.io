@@ -3,7 +3,7 @@ title: "Types of return and its normality"
 collection: finance
 permalink: /finance/return and its normality
 excerpt: 'return and its normality'
-date: 2023-09-18
+date: 2024-01-29
 venue: 'Finance post 5'
 ---
 

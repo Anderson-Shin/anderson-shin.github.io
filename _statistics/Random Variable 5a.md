@@ -3,7 +3,7 @@ title: "A Deep Dive into Random Variables (Part 5a): Joint Distributions and Cov
 collection: statistics
 permalink: /statistics/random-variables-part5a/
 excerpt: "The fifth post in our series on random variables. We move beyond single variables to explore how multiple variables interact, covering key concepts like Joint Distributions, Independence, and Covariance."
-date: 2025-08-17
+date: 2024-05-28
 use_math: true
 tags:
   - Expectation

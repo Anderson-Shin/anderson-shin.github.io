@@ -3,7 +3,7 @@ title: "A Deep Dive into Random Variables (Part 2): Discrete distributions"
 collection: statistics
 permalink: /statistics/random-variables-part2/
 excerpt: "The first post in a series on random variables. We lay the groundwork by defining what a random variable is, distinguishing between discrete and continuous types, and introducing the all-powerful Cumulative Distribution Function (CDF)."
-date: 2025-08-13
+date: 2024-05-07
 tags:
   - Random Variable
   - Discrete Variable

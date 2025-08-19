@@ -3,7 +3,7 @@ title: "A Deep Dive into Random Variables (Part 4): Expectation and Variance"
 collection: statistics
 permalink: /statistics/random-variables-part4/
 excerpt: "The fourth post in our series on random variables. We explore two of the most fundamental concepts for summarizing distributions: Expectation (the average outcome) and Variance (the measure of spread or risk)."
-date: 2025-08-15
+date: 2024-05-21
 use_math: true
 tags:
   - Expectation

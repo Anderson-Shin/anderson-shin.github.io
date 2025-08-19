@@ -3,7 +3,7 @@ title: "Bond ETF Portfolio Risk Analysis: Backtesting a Dynamic VaR Model with P
 collection: data_analysis
 permalink: /data_analysis/bond-etf-var-principal-mapping/
 excerpt: "A detailed implementation and backtest of a dynamic Value at Risk (VaR) model for a fixed-weight bond ETF portfolio, utilizing the Principal Mapping technique and validated with Kupiec's POF test."
-date: 2025-08-13
+date: 2025-08-18
 tags:
   - Portfolio Analysis
   - Risk Management

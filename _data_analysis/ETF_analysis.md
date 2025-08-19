@@ -3,7 +3,7 @@ title: "ETF Portfolio Risk Analysis: Backtesting Parametric vs. Non-Parametric M
 collection: data_analysis
 permalink: /data_analysis/etf-risk-analysis-backtesting/
 excerpt: "An in-depth comparison and backtest of Parametric, Historical, and GARCH-FHS models for VaR and ES estimation on an optimized ETF portfolio."
-date: 2025-08-11
+date: 2025-08-04
 tags:
   - Portfolio Analysis
   - Risk Management

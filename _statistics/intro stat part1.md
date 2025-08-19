@@ -3,7 +3,7 @@ title: "Introductory Statistics (Part 1): Setting the Stage"
 collection: statistics
 permalink: /statistics/probability-for-everyone-part1/
 excerpt: "The first post in a beginner-friendly series on probability. This introduction sets the stage by explaining the fundamental concepts of Sample Space and Events, the building blocks for understanding uncertainty."
-date: 2025-08-13
+date: 2024-04-05
 tags:
   - Probability
   - Sample Space

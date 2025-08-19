@@ -3,7 +3,7 @@ title: "A Deep Dive into Random Variables (Part 3): Continuous Distributions"
 collection: statistics
 permalink: /statistics/random-variables-part3/
 excerpt: "In the third post of our series, we explore the world of continuous random variables. We'll introduce the Probability Density Function (PDF) and dive into key distributions like the Uniform, Exponential, Gamma, and the famous Normal distribution."
-date: 2025-08-14
+date: 2024-05-14
 tags:
   - Random Variable
   - Continuous Variable

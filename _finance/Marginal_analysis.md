@@ -3,7 +3,7 @@ title: "Marginal analysis"
 collection: finance
 permalink: /finance/marginal_analysis
 excerpt: 'Ratiional determination under marginal analysis'
-date: 2023-10-01
+date: 2023-02-15
 venue: 'Finance post 7'
 ---
 

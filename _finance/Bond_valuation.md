@@ -4,7 +4,7 @@ collection: finance
 permalink: /finance/bond_valuation
 excerpt: 'Outlook for bond price value method'
 venue: "Finance post 3"
-date: 2023-09-10
+date: 2024-01-15
 location: ""
 
 ---

@@ -3,7 +3,7 @@ title: "Introductory Statistics (Part 2): Putting Numbers on Possibilities"
 collection: statistics
 permalink: /statistics/probability-for-everyone-part2/
 excerpt: "The second post in a beginner-friendly series on probability. In this follow-up, we dive into the mechanics of probability. Learn the addition rule for combining events, explore the powerful concept of conditional probability, and discover what it means for two events to be truly independent."
-date: 2025-08-13
+date: 2024-04-12
 tags:
   - Independence
   - Conditional Probability

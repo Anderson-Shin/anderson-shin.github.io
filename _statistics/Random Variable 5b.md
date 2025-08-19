@@ -3,7 +3,7 @@ title: "A Deep Dive into Random Variables (Part 5b): Joint Distributions [Change
 collection: statistics
 permalink: /statistics/random-variables-part5b/
 excerpt: "The sixth post in our series on random variables. Further dive into changes of variables in joint distribution function."
-date: 2025-08-17
+date: 2024-06-06
 use_math: true
 tags:
   - Joint Distribution

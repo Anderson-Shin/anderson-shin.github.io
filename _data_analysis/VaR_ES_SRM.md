@@ -4,7 +4,7 @@ collection: data_analysis
 permalink: /data_analysis/portfolio_risk_estimation_practice1
 excerpt: "Deep dive into VaR, Expected Shortfall, and Spectral Risk Measures (SRM) using Python"
 venue: "Data Analysis Post"
-date: 2025-05-23
+date: 2025-06-01
 location: ""
 ---
 

@@ -3,7 +3,7 @@ title: "Fundamental definitions"
 collection: finance
 permalink: /finance/fundamental_definitions
 excerpt: 'Fundamental definitions to understand stock market flow'
-date: 2023-09-01
+date: 2024-01-01
 venue: 'Finance post 1'
 ---
 
