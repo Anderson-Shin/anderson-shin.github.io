@@ -68,8 +68,9 @@ df.columns = ['1M', '3M', '6M', '2Y', '5Y', '10Y', '20Y', '30Y']
 ```
 
 **Latest Interest Rate Levels (as of 2025-08-15):**
+
 | Maturity | Rate  |
-|----------|-------|
+| -------- | ----- |
 | 1M       | 4.31% |
 | 3M       | 4.21% |
 | 6M       | 4.07% |
@@ -101,8 +102,9 @@ volatility_annualized = rate_changes.std() / np.sqrt(dt)
 - **Maximum**: 0.009141
 
 **Volatility Estimation Results:**
+
 | Parameter                | Value    | Interpretation |
-|--------------------------|----------|----------------|
+| ------------------------ | -------- | -------------- |
 | Daily Volatility         | 0.000635 | Daily std. dev. of rate changes |
 | Annualized Volatility (σ)| 0.010073 | Annual std. dev. (1.01%) |
 
@@ -110,7 +112,7 @@ The volatility parameter provides insight into expected interest rate variabilit
 - After 1 year: Standard deviation of ±1.01% 
 - After 2 years: Standard deviation of ±1.42%
 
-![Daily Rate Changes and Distribution](images/model1_volatility_distribution.png)
+![Daily Rate Changes and Distribution](/images/model1_volatility_distribution.png)
 
 ## 🧮 Model 1 Implementation
 
@@ -170,7 +172,7 @@ We simulated 10,000 future interest rate paths over a 5-year period using Model 
 - **75th Percentile**: 5.81%
 - **95th Percentile**: 8.04%
 
-![Model 1 Simulation Results](images/model1_simulation.png)
+![Model 1 Simulation Results](/images/model1_simulation.png)
 
 ## 🔍 Model Validation and Performance Assessment
 

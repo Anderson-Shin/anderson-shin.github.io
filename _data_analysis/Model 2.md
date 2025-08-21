@@ -69,8 +69,9 @@ df_decimal = df / 100
 ```
 
 **Latest Interest Rate Levels (as of 2025-08-15):**
+
 | Maturity | Rate  |
-|----------|-------|
+| -------- | ----- |
 | 1M       | 4.31% |
 | 3M       | 4.21% |
 | 6M       | 4.07% |
@@ -132,8 +133,9 @@ Model 2 requires the estimation of two key parameters: the drift coefficient (λ
    ```
 
 **Estimation Results:**
+
 | Method | Drift Coefficient (λ) | Volatility (σ) |
-|--------|----------------------|----------------|
+| ------ | --------------------- | -------------- |
 | Method of Moments | 0.007834 | 0.010081 |
 | Maximum Likelihood | 0.007834 | 0.010077 |
 | Regression Analysis | 0.007834 | 0.010077 |
@@ -196,7 +198,7 @@ We simulated 10,000 future interest rate paths over a 5-year period using Model 
 - The empirical drift effect after 5 years was approximately 3.91%
 - The probability of negative interest rates was extremely low (0.1%), much lower than in Model 1 (5.25%)
 
-![Model 2 Simulation Results](images/model2_simulation.png)
+![Model 2 Simulation Results](/images/model2_simulation.png)
 
 The figure above illustrates the key simulation results from Model 2, including:
 

@@ -366,7 +366,7 @@ The simulation results reveal the expected evolution of short rates across diffe
 | 1.5Y | 0.0349 | ±0.0122 | [-0.0169, 0.0811] |
 | 2.0Y | 0.0352 | ±0.0142 | [-0.0262, 0.0932] |
 
-![Ho-Lee Simulation Results](images/ho_lee_simulation.png)
+![Ho-Lee Simulation Results](/images/ho_lee_simulation.png)
 
 *Figure 1: Monte Carlo simulation paths showing the evolution of short rates over a 2-year horizon. The fan chart illustrates the increasing uncertainty as the forecast horizon extends.*
 
@@ -592,7 +592,7 @@ Examining the distribution of rates at the simulation horizon provides insights 
 | Maximum | 0.0932 |
 | Median | 0.0353 |
 
-![Yield Curve Comparison](images/yield_curve_comparison.png)
+![Yield Curve Comparison](/images/yield_curve_comparison.png)
 
 *Figure 2: Comparison of current market yield curve (Nelson-Siegel fit) with simulated rate evolution, demonstrating model consistency with market observations.*
 
