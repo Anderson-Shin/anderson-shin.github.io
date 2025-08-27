@@ -13,7 +13,7 @@ redirect_from:
 
 * **BSc. in Risk Management, Minor in Finance**  
   * The University of Hong Kong, 2019 \- 2026 (Expected)  
-  * Cumulative GPA: 3.22 / 4.3  
+  * Cumulative GPA: 3.22 / 4.3  (Tentative)
   * *Relevant Courses: Corporate Finance, Risk Management and Insurance, Statistics of Investment Risk, Linear Regression Analysis, Statistical Machine Learning*
 
 # **Certifications**
@@ -21,7 +21,7 @@ redirect_from:
 * **FRM (Financial Risk Manager)**  
   * Global Association of Risk Professionals (GARP)  
   * Level 1 Passed (Sep 2024\)  
-  * Level 2 Candidate (Results Pending)
+  * Level 2 Passed (Aug 2025\)
 
 # **Work Experience**
 
