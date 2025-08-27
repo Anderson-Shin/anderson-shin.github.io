@@ -3,7 +3,7 @@ title: "Term Structure Modeling Part 2: Model 2 (Drift Model)"
 collection: data_analysis
 permalink: /data_analysis/term-structure-modeling2/
 excerpt: "Implementation and analysis of a Drift Term Structure model with parameter estimation, Monte Carlo simulations, and comparative analysis against the No-Drift Model."
-date: 2025-08-21
+date: 2025-08-23
 toc: true
 toc_sticky: true
 tags:

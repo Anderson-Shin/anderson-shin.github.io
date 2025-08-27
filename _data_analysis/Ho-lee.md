@@ -3,7 +3,7 @@ title: "Term Structure Modeling Part 3: Ho-Lee Model Implementation"
 collection: data_analysis
 permalink: /data_analysis/ho-lee-model/
 excerpt: "Comprehensive implementation and analysis of the Ho-Lee model for interest rate term structure, including yield curve calibration, parameter estimation, and Monte Carlo simulations."
-date: 2025-08-21
+date: 2025-08-26
 toc: true
 toc_sticky: true
 tags:
