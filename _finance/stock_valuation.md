@@ -3,7 +3,7 @@ title: "Stock valuation"
 collection: finance
 permalink: /finance/stock_valuation
 excerpt: 'Basic concept of stock valuation'
-date: 2023-01-08
+date: 2023-11-08
 venue: 'Finance post 2'
 ---
 # Gordon Growth Model
